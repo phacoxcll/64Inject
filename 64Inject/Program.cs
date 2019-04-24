@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace _64Inject
 {
-    static class Program
+    class Program
     {
         [System.Runtime.InteropServices.DllImport("kernel32.dll")]
         static extern bool FreeConsole();

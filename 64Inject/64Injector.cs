@@ -10,7 +10,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.1 debug"; //CllVersionReplace "major.minor stability"
+        public const string Release = "1.1.1 debug"; //CllVersionReplace "major.minor.revision stability"
 
         public Cll.Log Log;
 

@@ -60,7 +60,7 @@ namespace _64Inject
                 File.Exists(path + "\\meta\\meta.xml"))
             {
                 XmlDocument xmlMeta = new XmlDocument();
-                xmlMeta.Load("base\\meta\\meta.xml");
+                xmlMeta.Load(path + "\\meta\\meta.xml");
                 XmlNode meta_title_id = xmlMeta.SelectSingleNode("menu/title_id");
                 return meta_title_id.InnerText;
             }

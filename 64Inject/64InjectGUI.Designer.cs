@@ -121,8 +121,8 @@
             // 
             // textBoxShortName
             // 
-            this.textBoxShortName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxShortName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxShortName.Location = new System.Drawing.Point(81, 58);
             this.textBoxShortName.MaxLength = 256;
             this.textBoxShortName.Name = "textBoxShortName";
@@ -168,8 +168,8 @@
             // 
             // textBoxRom
             // 
-            this.textBoxRom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRom.Location = new System.Drawing.Point(81, 6);
             this.textBoxRom.Name = "textBoxRom";
             this.textBoxRom.Size = new System.Drawing.Size(557, 20);
@@ -177,8 +177,8 @@
             // 
             // textBoxIni
             // 
-            this.textBoxIni.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxIni.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxIni.Location = new System.Drawing.Point(81, 32);
             this.textBoxIni.Name = "textBoxIni";
             this.textBoxIni.Size = new System.Drawing.Size(557, 20);
@@ -186,8 +186,8 @@
             // 
             // buttonInject
             // 
-            this.buttonInject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonInject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInject.Enabled = false;
             this.buttonInject.Location = new System.Drawing.Point(3, 480);
             this.buttonInject.Name = "buttonInject";
@@ -494,8 +494,8 @@
             // 
             // textBoxLNLine2
             // 
-            this.textBoxLNLine2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLNLine2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxLNLine2.Enabled = false;
             this.textBoxLNLine2.Location = new System.Drawing.Point(100, 110);
             this.textBoxLNLine2.MaxLength = 255;
@@ -506,8 +506,8 @@
             // 
             // textBoxLNLine1
             // 
-            this.textBoxLNLine1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLNLine1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxLNLine1.Enabled = false;
             this.textBoxLNLine1.Location = new System.Drawing.Point(100, 84);
             this.textBoxLNLine1.MaxLength = 255;
@@ -590,9 +590,9 @@
             this.labelLoadedBase.AutoSize = true;
             this.labelLoadedBase.Location = new System.Drawing.Point(146, 191);
             this.labelLoadedBase.Name = "labelLoadedBase";
-            this.labelLoadedBase.Size = new System.Drawing.Size(69, 26);
+            this.labelLoadedBase.Size = new System.Drawing.Size(69, 13);
             this.labelLoadedBase.TabIndex = 15;
-            this.labelLoadedBase.Text = "Base loaded:\r\nSVN:";
+            this.labelLoadedBase.Text = "Base loaded:\r\n";
             // 
             // panelValidKey
             // 
@@ -629,8 +629,8 @@
             // 
             // textBoxImagesDir
             // 
-            this.textBoxImagesDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxImagesDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxImagesDir.Location = new System.Drawing.Point(120, 58);
             this.textBoxImagesDir.Name = "textBoxImagesDir";
             this.textBoxImagesDir.Size = new System.Drawing.Size(518, 20);
@@ -688,8 +688,8 @@
             // 
             // textBoxBaseFrom
             // 
-            this.textBoxBaseFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBaseFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBaseFrom.Location = new System.Drawing.Point(120, 162);
             this.textBoxBaseFrom.Name = "textBoxBaseFrom";
             this.textBoxBaseFrom.Size = new System.Drawing.Size(518, 20);
@@ -697,8 +697,8 @@
             // 
             // textBoxIniDir
             // 
-            this.textBoxIniDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxIniDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxIniDir.Location = new System.Drawing.Point(120, 32);
             this.textBoxIniDir.Name = "textBoxIniDir";
             this.textBoxIniDir.Size = new System.Drawing.Size(518, 20);
@@ -706,8 +706,8 @@
             // 
             // textBoxRomDir
             // 
-            this.textBoxRomDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRomDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRomDir.Location = new System.Drawing.Point(120, 6);
             this.textBoxRomDir.Name = "textBoxRomDir";
             this.textBoxRomDir.Size = new System.Drawing.Size(518, 20);
