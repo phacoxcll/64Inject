@@ -14,8 +14,10 @@
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <FileUpgradeFlags></FileUpgradeFlags>
-    <UpgradeBackupLocation></UpgradeBackupLocation>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
@@ -195,7 +197,6 @@
     </Compile>
     <Compile Include="64Injector.cs" />
     <Compile Include="BootImage.cs" />
-    <Compile Include="CRC32.cs" />
     <Compile Include="IconImage.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Program.cs" />
@@ -207,6 +208,7 @@
     </Compile>
     <Compile Include="RomN64.cs" />
     <Compile Include="NusContent.cs" />
+    <Compile Include="Security.cs" />
     <Compile Include="Useful.cs" />
     <Compile Include="VCN64.cs" />
   </ItemGroup>

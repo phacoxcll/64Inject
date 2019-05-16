@@ -105,12 +105,6 @@ namespace _64Inject
 
                 if (_continue)
                     _continue = Inject();
-
-                injector.Log.WriteLine("");
-                if (_continue)
-                    injector.Log.WriteLine("Injection completed successfully!");
-                else
-                    injector.Log.WriteLine("The injection failed.");
             }
             //Console.ReadLine();
         }
@@ -499,7 +493,6 @@ namespace _64Inject
         {
             injector.Log.WriteLine("Injecting ---------------------------------------------------------------------");
             if (injector.BasePath != null) injector.Log.WriteLine("base: " + injector.BasePath);
-            //if (injector.ProductCode != null) injector.Log.WriteLine("code: " + injector.ProductCode);
             if (injector.ShortName != null) injector.Log.WriteLine("name: " + injector.ShortName);
             if (injector.LongName != null) injector.Log.WriteLine("longname:\n" + injector.LongName);
             if (injector.InPath != null) injector.Log.WriteLine("in: " + injector.InPath);
@@ -743,7 +736,7 @@ namespace _64Inject
             }
             else
             {
-                injector.ShortName = injector.Rom.Name;
+                injector.ShortName = injector.Rom.Title;
             }
             return true;
         }

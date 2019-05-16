@@ -16,86 +16,103 @@ namespace _64Inject
 
         private bool disposed = false;
 
-        private byte[] _data;
-        private int _size;
-        private Endian _endianness;
-        private string _name;
-        private char _formatCode;
-        private string _id;
-        private char _contryCode;
-        private byte _version;
-
         public int Size
-        { get { return _size; } }
+        { private set; get; }
         public Endian Endianness
-        { get { return _endianness; } }
-        public string Name
-        { get { return _name; } }
+        { private set; get; }
+        public string Title
+        { private set; get; }
         public char FormatCode
-        { get { return _formatCode; } }
+        { private set; get; }
         public string Id
-        { get { return _id; } }
+        { private set; get; }
         public char ContryCode
-        { get { return _contryCode; } }
+        { private set; get; }
         public byte Version
-        { get { return _version; } }
+        { private set; get; }
 
         public char Revision
-        { get { return _version == 0? ' ' :(char)(_version + 0x40); } }
+        { get { return Version == 0? ' ' :(char)(Version + 0x40); } }
         public string ProductCode
-        { get { return (_formatCode + _id + _contryCode).ToUpper(); } }
+        { get { return (FormatCode + Id + ContryCode).ToUpper(); } }
         public string ProductCodeVersion
-        { get { return ProductCode + _version.ToString(); } }
+        { get { return ProductCode + Version.ToString("X1"); } }
         public bool IsValid
-        { get { return _endianness != Endian.Indeterminate && _size > 0xFFF; } }
+        { private set; get; }
+        public uint HashCRC32
+        { private set; get; }
 
         public RomN64(string filename)
         {
-            _data = null;
-            _size = 0;
-            _name = "";
-            _formatCode = '?';
-            _id = "??";
-            _contryCode = '?';
-            _version = 0;
+            Size = 0;
+            Title = "";
+            FormatCode = '?';
+            Id = "??";
+            ContryCode = '?';
+            Version = 0;
 
-            byte[] indicator = new byte[4];
-            FileStream fs = File.Open(filename, FileMode.Open);
-            _size = (int)fs.Length; 
-            fs.Read(indicator, 0, 4);
-            fs.Close();
-            _endianness = DetermineEndian(indicator);
-
-            if (IsValid)
+            try
             {
-                byte[] name = new byte[20];
-                byte formatCode;
-                byte[] id = new byte[2];
-                byte contryCode;
-
-                _data = new byte[_size];
-                fs = File.Open(filename, FileMode.Open);
-                fs.Read(_data, 0, _size);
+                byte[] header = new byte[0x40];
+                FileStream fs = File.Open(filename, FileMode.Open);
+                Size = (int)fs.Length;
+                fs.Read(header, 0, 0x40);
                 fs.Close();
-                _data = ToBigEndian(_data, _endianness);
 
-                Array.Copy(_data, 0x20, name, 0, 20);
-                formatCode = _data[0x3B];
-                id[0] = _data[0x3C];
-                id[1] = _data[0x3D];
-                contryCode = _data[0x3E];
-                _version = _data[0x3F];
+                if (Size > 0xFFF)
+                {
+                    if (header[0] == 0x80 &&
+                        header[1] == 0x37 &&
+                        header[2] == 0x12 &&
+                        header[3] == 0x40)
+                        Endianness = Endian.BigEndian;
+                    else if (header[0] == 0x37 &&
+                        header[1] == 0x80 &&
+                        header[2] == 0x40 &&
+                        header[3] == 0x12)
+                        Endianness = Endian.ByteSwapped;
+                    else if (header[0] == 0x40 &&
+                        header[1] == 0x12 &&
+                        header[2] == 0x37 &&
+                        header[3] == 0x80)
+                        Endianness = Endian.LittleEndian;
+                    else
+                        Endianness = Endian.Indeterminate;
 
-                int count = 20;
-                while (name[--count] == 0x20 && count > 0) ;
+                    if (Endianness != Endian.Indeterminate && Size % 4 == 0)
+                    {
+                        IsValid = true;
 
-                _name = Encoding.ASCII.GetString(name, 0, count + 1);
-                _formatCode = (char)formatCode;
-                _id = Encoding.ASCII.GetString(id);
-                _contryCode = (char)contryCode;         
+                        byte formatCode;
+                        byte[] id = new byte[2];
+                        byte contryCode;
+
+                        header = ToBigEndian(header, Endianness);
+
+                        formatCode = header[0x3B];
+                        id[0] = header[0x3C];
+                        id[1] = header[0x3D];
+                        contryCode = header[0x3E];
+                        Version = header[0x3F];
+                        FormatCode = (char)formatCode;
+                        Id = Encoding.ASCII.GetString(id);
+                        ContryCode = (char)contryCode;
+
+                        byte[] titleBytes = new byte[20];
+                        Array.Copy(header, 0x20, titleBytes, 0, 20);
+                        int count = 20;
+                        while (titleBytes[--count] == 0x20 && count > 0) ;
+                        Title = Encoding.ASCII.GetString(titleBytes, 0, count + 1);
+
+                        fs = File.Open(filename, FileMode.Open);
+                        HashCRC32 = Cll.Security.ComputeCRC32(fs);
+                        fs.Close();
+                    }
+                }
+                else
+                    Size = 0;
             }
-            else
-                _size = 0;
+            catch { }
         }
 
         ~RomN64()
@@ -116,20 +133,28 @@ namespace _64Inject
                 if (disposing)
                 {
                 }
-                _data = null;
                 disposed = true;
             }
         }
 
-        public bool Save(string filename)
+        public static bool ToBigEndian(string source, string destination)
         {
-            if (IsValid)
+            RomN64 rom = new RomN64(source);
+
+            if (rom.IsValid)
             {
                 try
                 {
-                    FileStream fs = File.Open(filename, FileMode.Create);
-                    fs.Write(_data, 0, _data.Length);
+                    FileStream fs = File.Open(source, FileMode.Open);
+                    byte[] data = new byte[fs.Length];
+                    fs.Read(data, 0, data.Length);
                     fs.Close();
+
+                    data = ToBigEndian(data, rom.Endianness);
+                    fs = File.Open(destination, FileMode.Create);
+                    fs.Write(data, 0, data.Length);
+                    fs.Close();
+
                     return true;
                 }
                 catch { }
@@ -137,35 +162,7 @@ namespace _64Inject
             return false;
         }
 
-        public uint GetHashCRC32(uint crc)
-        {
-            return CRC32.Compute(_data, 0, _data.Length, crc);
-        }
-
-        private Endian DetermineEndian(byte[] indicator)
-        {
-            if (indicator != null && indicator.Length >= 4)
-            {
-                if (indicator[0] == 0x80 &&
-                    indicator[1] == 0x37 &&
-                    indicator[2] == 0x12 &&
-                    indicator[3] == 0x40)
-                    return Endian.BigEndian;
-                else if (indicator[0] == 0x37 &&
-                    indicator[1] == 0x80 &&
-                    indicator[2] == 0x40 &&
-                    indicator[3] == 0x12)
-                    return Endian.ByteSwapped;
-                else if (indicator[0] == 0x40 &&
-                    indicator[1] == 0x12 &&
-                    indicator[2] == 0x37 &&
-                    indicator[3] == 0x80)
-                    return Endian.LittleEndian;
-            }
-            return Endian.Indeterminate;
-        }
-
-        private byte[] ToBigEndian(byte[] array, Endian endianness)
+        private static byte[] ToBigEndian(byte[] array, Endian endianness)
         {
             if (array.Length % 4 != 0)
                 throw new Exception("ToBigEndian: Invalid array length.");

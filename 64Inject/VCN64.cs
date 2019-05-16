@@ -5,18 +5,18 @@ namespace _64Inject
     {
         public readonly uint HashCRC32;
         public readonly string Title;
-        public readonly string BuildInfo;
+        public readonly string Info;
 
-        public VCN64(uint hashCRC32, string buildInfo, string title)
+        public VCN64(uint hashCRC32, string info, string title)
         {
             HashCRC32 = hashCRC32;
             Title = title;
-            BuildInfo = buildInfo;
+            Info = info;
         }
 
         public override string ToString()
         {
-            return Title + "\nCRC32: " + HashCRC32.ToString("X8") + " " + BuildInfo;
+            return Title + "\nCRC32: " + HashCRC32.ToString("X8") + " " + Info;
         }
 
         public static readonly VCN64 DonkeyKong64   = new VCN64(0xFB245F10, "SVN: 1680 TIME: 2015/01/20 14:12:06", "Donkey Kong 64 (NTSC-U)");

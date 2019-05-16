@@ -68,9 +68,15 @@ namespace _64Inject
                 if (disposing)
                 {
                     if (Frame != null)
+                    {
                         Frame.Dispose();
+                        Frame = null;
+                    }
                     if (TitleScreen != null)
+                    {
                         TitleScreen.Dispose();
+                        TitleScreen = null;
+                    }
                 }
                 disposed = true;
             }
@@ -80,6 +86,8 @@ namespace _64Inject
         {
             Bitmap img = new Bitmap(1280, 720);
             Graphics g = Graphics.FromImage(img);
+            g.PixelOffsetMode = PixelOffsetMode.Half;
+            //g.InterpolationMode = InterpolationMode.NearestNeighbor;
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.CompositingMode = CompositingMode.SourceOver;
             g.CompositingQuality = CompositingQuality.HighQuality;
@@ -95,7 +103,6 @@ namespace _64Inject
             Rectangle rectangleNL2 = new Rectangle(578, 368, 640, 50);
             Rectangle rectangleR = new Rectangle(586, 450, 250, 40);
             Rectangle rectangleP = new Rectangle(586, 496, 200, 40);
-            Rectangle rectangleTS = new Rectangle(131, 249, 400, 300);
             SolidBrush brush = new SolidBrush(Color.FromArgb(32, 32, 32));
             Pen outlineBold = new Pen(Color.FromArgb(222, 222, 222), 5.0F);
             Pen shadowBold = new Pen(Color.FromArgb(190, 190, 190), 7.0F);
@@ -151,9 +158,26 @@ namespace _64Inject
             }
 
             if (TitleScreen != null)
-                g.DrawImage(TitleScreen, rectangleTS);
+            {
+                if (TitleScreen.Width > TitleScreen.Height)
+                {
+                    g.DrawImage(TitleScreen, 131, 249, 400, 300);
+                }
+                else if (TitleScreen.Width < TitleScreen.Height)
+                {
+                    g.FillRectangle(new SolidBrush(Color.Black), 131, 249, 400, 300);
+                    g.DrawImage(TitleScreen, 218, 249, 225, 300);
+                }
+                else
+                {
+                    g.FillRectangle(new SolidBrush(Color.Black), 131, 249, 400, 300);
+                    //g.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    g.DrawImage(TitleScreen, new Rectangle(203, 271, 256, 256));
+                    //g.InterpolationMode = InterpolationMode.Default;
+                }
+            }
             else
-                g.FillRectangle(new SolidBrush(Color.Black), rectangleTS);
+                g.FillRectangle(new SolidBrush(Color.Black), 131, 249, 400, 300);
 
             if (Frame != null)
                 g.DrawImage(Frame, new Rectangle(0, 0, 1280, 720));

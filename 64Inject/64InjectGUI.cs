@@ -249,8 +249,7 @@ namespace _64Inject
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyComputer);
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                
+            {                
                 injector.RomPath = openFileDialog.FileName;
                 textBoxRom.Text = injector.RomPath;
 
@@ -259,9 +258,17 @@ namespace _64Inject
 
                 injector.Rom = new RomN64(injector.RomPath);
 
-                this.Text = "64Inject " + _64Injector.Release + " :: " + injector.Rom.Name;
-                labelProductCode.Text = "Product code: " + injector.Rom.ProductCode +
-                    (injector.Rom.Version != 0 ? " (Rev " + injector.Rom.Revision + ")" : "");
+                if (injector.Rom.IsValid)
+                {
+                    this.Text = "64Inject " + _64Injector.Release + " :: " + injector.Rom.Title;
+                    labelProductCode.Text = "Product code: " + injector.Rom.ProductCode +
+                        (injector.Rom.Version != 0 ? " (Rev " + injector.Rom.Revision + ")" : "");
+                }
+                else
+                {
+                    this.Text = "DSInject " + _64Injector.Release;
+                    labelProductCode.Text = "Product code:";
+                }
 
                 if ((injector.BaseIsLoaded || checkBoxAskBase.Checked) &&
                     injector.Rom.IsValid &&

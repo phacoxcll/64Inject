@@ -111,7 +111,7 @@
             // buttonIni
             // 
             this.buttonIni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonIni.Location = new System.Drawing.Point(644, 30);
+            this.buttonIni.Location = new System.Drawing.Point(644, 108);
             this.buttonIni.Name = "buttonIni";
             this.buttonIni.Size = new System.Drawing.Size(24, 23);
             this.buttonIni.TabIndex = 1;
@@ -123,7 +123,7 @@
             // 
             this.textBoxShortName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxShortName.Location = new System.Drawing.Point(81, 58);
+            this.textBoxShortName.Location = new System.Drawing.Point(81, 32);
             this.textBoxShortName.MaxLength = 256;
             this.textBoxShortName.Name = "textBoxShortName";
             this.textBoxShortName.Size = new System.Drawing.Size(587, 20);
@@ -142,7 +142,7 @@
             // labelIni
             // 
             this.labelIni.AutoSize = true;
-            this.labelIni.Location = new System.Drawing.Point(8, 35);
+            this.labelIni.Location = new System.Drawing.Point(8, 113);
             this.labelIni.Name = "labelIni";
             this.labelIni.Size = new System.Drawing.Size(48, 13);
             this.labelIni.TabIndex = 5;
@@ -151,7 +151,7 @@
             // labeShortName
             // 
             this.labeShortName.AutoSize = true;
-            this.labeShortName.Location = new System.Drawing.Point(9, 61);
+            this.labeShortName.Location = new System.Drawing.Point(8, 35);
             this.labeShortName.Name = "labeShortName";
             this.labeShortName.Size = new System.Drawing.Size(64, 13);
             this.labeShortName.TabIndex = 6;
@@ -179,7 +179,7 @@
             // 
             this.textBoxIni.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIni.Location = new System.Drawing.Point(81, 32);
+            this.textBoxIni.Location = new System.Drawing.Point(81, 110);
             this.textBoxIni.Name = "textBoxIni";
             this.textBoxIni.Size = new System.Drawing.Size(557, 20);
             this.textBoxIni.TabIndex = 9;
@@ -497,7 +497,7 @@
             this.textBoxLNLine2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxLNLine2.Enabled = false;
-            this.textBoxLNLine2.Location = new System.Drawing.Point(100, 110);
+            this.textBoxLNLine2.Location = new System.Drawing.Point(100, 84);
             this.textBoxLNLine2.MaxLength = 255;
             this.textBoxLNLine2.Name = "textBoxLNLine2";
             this.textBoxLNLine2.Size = new System.Drawing.Size(568, 20);
@@ -509,7 +509,7 @@
             this.textBoxLNLine1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxLNLine1.Enabled = false;
-            this.textBoxLNLine1.Location = new System.Drawing.Point(100, 84);
+            this.textBoxLNLine1.Location = new System.Drawing.Point(100, 58);
             this.textBoxLNLine1.MaxLength = 255;
             this.textBoxLNLine1.Name = "textBoxLNLine1";
             this.textBoxLNLine1.Size = new System.Drawing.Size(568, 20);
@@ -519,7 +519,7 @@
             // checkBoxLongName
             // 
             this.checkBoxLongName.AutoSize = true;
-            this.checkBoxLongName.Location = new System.Drawing.Point(12, 92);
+            this.checkBoxLongName.Location = new System.Drawing.Point(12, 66);
             this.checkBoxLongName.Name = "checkBoxLongName";
             this.checkBoxLongName.Size = new System.Drawing.Size(82, 17);
             this.checkBoxLongName.TabIndex = 12;
@@ -609,7 +609,7 @@
             this.checkBoxImagesDir.AutoSize = true;
             this.checkBoxImagesDir.Checked = true;
             this.checkBoxImagesDir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxImagesDir.Location = new System.Drawing.Point(8, 60);
+            this.checkBoxImagesDir.Location = new System.Drawing.Point(8, 34);
             this.checkBoxImagesDir.Name = "checkBoxImagesDir";
             this.checkBoxImagesDir.Size = new System.Drawing.Size(106, 17);
             this.checkBoxImagesDir.TabIndex = 13;
@@ -619,7 +619,7 @@
             // buttonImagesDir
             // 
             this.buttonImagesDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonImagesDir.Location = new System.Drawing.Point(644, 56);
+            this.buttonImagesDir.Location = new System.Drawing.Point(644, 30);
             this.buttonImagesDir.Name = "buttonImagesDir";
             this.buttonImagesDir.Size = new System.Drawing.Size(24, 23);
             this.buttonImagesDir.TabIndex = 12;
@@ -631,7 +631,7 @@
             // 
             this.textBoxImagesDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxImagesDir.Location = new System.Drawing.Point(120, 58);
+            this.textBoxImagesDir.Location = new System.Drawing.Point(120, 32);
             this.textBoxImagesDir.Name = "textBoxImagesDir";
             this.textBoxImagesDir.Size = new System.Drawing.Size(518, 20);
             this.textBoxImagesDir.TabIndex = 11;
@@ -667,7 +667,7 @@
             // buttonIniDir
             // 
             this.buttonIniDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonIniDir.Location = new System.Drawing.Point(644, 30);
+            this.buttonIniDir.Location = new System.Drawing.Point(644, 56);
             this.buttonIniDir.Name = "buttonIniDir";
             this.buttonIniDir.Size = new System.Drawing.Size(24, 23);
             this.buttonIniDir.TabIndex = 7;
@@ -699,7 +699,7 @@
             // 
             this.textBoxIniDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIniDir.Location = new System.Drawing.Point(120, 32);
+            this.textBoxIniDir.Location = new System.Drawing.Point(120, 58);
             this.textBoxIniDir.Name = "textBoxIniDir";
             this.textBoxIniDir.Size = new System.Drawing.Size(518, 20);
             this.textBoxIniDir.TabIndex = 4;
@@ -729,7 +729,7 @@
             this.checkBoxIniDir.AutoSize = true;
             this.checkBoxIniDir.Checked = true;
             this.checkBoxIniDir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxIniDir.Location = new System.Drawing.Point(8, 34);
+            this.checkBoxIniDir.Location = new System.Drawing.Point(8, 60);
             this.checkBoxIniDir.Name = "checkBoxIniDir";
             this.checkBoxIniDir.Size = new System.Drawing.Size(86, 17);
             this.checkBoxIniDir.TabIndex = 1;
@@ -755,7 +755,7 @@
             this.ClientSize = new System.Drawing.Size(684, 549);
             this.Controls.Add(this.tabControlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(692, 580);
+            this.MinimumSize = new System.Drawing.Size(700, 588);
             this.Name = "_64InjectGUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "64InjectGUI";

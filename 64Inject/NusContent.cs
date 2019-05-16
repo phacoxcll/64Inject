@@ -110,7 +110,7 @@ namespace _64Inject
         private static bool IsValidCommonKey(string key)
         {
             byte[] array = Encoding.ASCII.GetBytes(key);
-            uint hash = CRC32.Compute(array, 0, array.Length);
+            uint hash = Cll.Security.ComputeCRC32(array, 0, array.Length);
             if (hash == CommonKeyHashCRC32)
                 return true;
             return false;

@@ -10,7 +10,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.1.1 debug"; //CllVersionReplace "major.minor.revision stability"
+        public const string Release = "1.2 debug"; //CllVersionReplace "major.minor stability"
 
         public Cll.Log Log;
 
@@ -88,24 +88,26 @@ namespace _64Inject
         {
             get
             {
-                uint crc32;
+                ulong crc;
 
                 if (BaseIsLoaded)
-                    crc32 = _base.HashCRC32;
+                    crc = _base.HashCRC32;
                 else
-                    crc32 = CRC32.Compute(new byte[] { }, 0, 0);
+                    crc = Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
 
                 if (RomIsLoaded)
-                    crc32 = Rom.GetHashCRC32(crc32);                    
+                    crc += Rom.HashCRC32;                    
                 else
-                    crc32 = CRC32.Compute(new byte[] { }, 0, 0, crc32);
+                    crc += Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
+                crc >>= 1;
 
                 if (IniIsLoaded)
-                    crc32 = CRC32.Compute(_ini, 0, _ini.Length, crc32);
+                    crc += Cll.Security.ComputeCRC32(_ini, 0, _ini.Length);
                 else
-                    crc32 = CRC32.Compute(new byte[] { }, 0, 0, crc32);
+                    crc += Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
+                crc >>= 1;
 
-                byte[] b = BitConverter.GetBytes(crc32);
+                byte[] b = BitConverter.GetBytes((uint)crc);
                 UInt16 id = (UInt16)((((b[3] << 8) + (b[2])) + ((b[1] << 8) + (b[0]))) >> 1);
 
                 int flags = 0;
@@ -181,6 +183,11 @@ namespace _64Inject
                     _continue = Useful.DirectoryCopy("base", OutPath, true);
                 }          
             }
+
+            if (_continue)
+                Log.WriteLine("Injection completed successfully!");
+            else
+                Log.WriteLine("The injection failed.");
 
             return _continue;
         }
@@ -430,13 +437,8 @@ namespace _64Inject
 
             try
             {
-                Directory.Delete("base\\content\\rom", true);
-                Directory.CreateDirectory("base\\content\\rom");
                 Directory.Delete("base\\content\\config", true);
                 Directory.CreateDirectory("base\\content\\config");
-
-                if (!Rom.Save("base\\content\\rom\\U" + Rom.ProductCodeVersion + ".z64"))
-                    injected = false;
 
                 if (IniIsLoaded)
                 {
@@ -446,6 +448,12 @@ namespace _64Inject
                 }
                 else
                     File.Create("base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini").Close();
+
+                Directory.Delete("base\\content\\rom", true);
+                Directory.CreateDirectory("base\\content\\rom");
+
+                if (!RomN64.ToBigEndian(RomPath, "base\\content\\rom\\U" + Rom.ProductCodeVersion + ".z64"))
+                    injected = false;
             }
             catch
             {
@@ -499,60 +507,43 @@ namespace _64Inject
             if (IsValidBase("base"))
             {
                 FileStream fs = File.Open("base\\code\\VESSEL.rpx", FileMode.Open);
-                uint hash = CRC32.Compute(fs);
+                uint hash = Cll.Security.ComputeCRC32(fs);
                 fs.Close();
 
                 if (hash == VCN64.DonkeyKong64.HashCRC32)
                     return VCN64.DonkeyKong64;
-
                 else if (hash == VCN64.Ocarina.HashCRC32)
                     return VCN64.Ocarina;
-
                 else if (hash == VCN64.PaperMario.HashCRC32)
                     return VCN64.PaperMario;
-
                 else if (hash == VCN64.Kirby64.HashCRC32)
                     return VCN64.Kirby64;
-
                 else if (hash == VCN64.MarioTennis.HashCRC32)
                     return VCN64.MarioTennis;
-
                 else if (hash == VCN64.MarioGolf.HashCRC32)
                     return VCN64.MarioGolf;
-
                 else if (hash == VCN64.StarFox64.HashCRC32)
                     return VCN64.StarFox64;
-
                 else if (hash == VCN64.SinAndP.HashCRC32)
                     return VCN64.SinAndP;
-
                 else if (hash == VCN64.MarioKart64.HashCRC32)
                     return VCN64.MarioKart64;
-
                 else if (hash == VCN64.YoshiStory.HashCRC32)
                     return VCN64.YoshiStory;
-
                 else if (hash == VCN64.WaveRace64.HashCRC32)
                     return VCN64.WaveRace64;
-
                 else if (hash == VCN64.Majora.HashCRC32)
                     return VCN64.Majora;
-
                 else if (hash == VCN64.PokemonSnap.HashCRC32)
                     return VCN64.PokemonSnap;
-
                 else if (hash == VCN64.MarioParty2.HashCRC32)
                     return VCN64.MarioParty2;
-
                 else if (hash == VCN64.OgreBattle64.HashCRC32)
                     return VCN64.OgreBattle64;
-
                 else if (hash == VCN64.Excitebike64.HashCRC32)
                     return VCN64.Excitebike64;
-
                 else if (hash == VCN64.FZeroX.HashCRC32)
                     return VCN64.FZeroX;
-
                 else
                     return new VCN64(hash, "", "**Unidentified**");
             }
