@@ -18,6 +18,10 @@ namespace _64Inject
 
         public _64InjectGUI()
         {
+            Cll.Log.SaveIn("64Inject_log.txt");
+            Cll.Log.WriteLine(DateTime.UtcNow.ToString());
+            Cll.Log.WriteLine("64Inject open in GUI mode.");
+
             injector = new _64Injector();
 
             InitializeComponent();
@@ -100,6 +104,8 @@ namespace _64Inject
         private void _64InjectGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveXmlConfig();
+            Cll.Log.WriteLine("Close.");
+            Cll.Log.WriteLine("----------------------------------------------------------------");
         }
 
         #region Config
@@ -660,6 +666,20 @@ namespace _64Inject
 
                 if (_continue)
                 {
+                    Cll.Log.WriteLine("Injecting - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+                    if (injector.BasePath != null) Cll.Log.WriteLine("base: " + injector.BasePath);
+                    if (injector.ShortName != null) Cll.Log.WriteLine("name: " + injector.ShortName);
+                    if (injector.LongName != null) Cll.Log.WriteLine("longname:\n" + injector.LongName);
+                    if (injector.InPath != null) Cll.Log.WriteLine("in: " + injector.InPath);
+                    if (injector.RomPath != null) Cll.Log.WriteLine("rom: " + injector.RomPath);
+                    if (injector.IniPath != null) Cll.Log.WriteLine("ini: " + injector.IniPath);
+                    if (injector.BootTvPath != null) Cll.Log.WriteLine("tv: " + injector.BootTvPath);
+                    if (injector.BootDrcPath != null) Cll.Log.WriteLine("drc: " + injector.BootDrcPath);
+                    if (injector.IconPath != null) Cll.Log.WriteLine("icon: " + injector.IconPath);
+                    if (injector.OutPath != null) Cll.Log.WriteLine("out: " + injector.OutPath);
+                    Cll.Log.WriteLine("encrypt: " + injector.Encrypt.ToString());
+                    Cll.Log.WriteLine("Please wait...");
+
                     if (injector.Inject())
                         MessageBox.Show("Injection completed successfully!",
                             "64Inject", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -839,10 +859,12 @@ namespace _64Inject
 
                 textBoxBaseFrom.Text = folderBrowserDialog.SelectedPath;
 
+                Cll.Log.WriteLine("Loading base.");
                 if (injector.LoadBase(textBoxBaseFrom.Text))
                 {
                     labelLoadedBase.Text = "Base loaded: " + injector.LoadedBase;
                     panelLoadedBase.BackgroundImage = global::_64Inject.Properties.Resources.checkmark_16;
+                    Cll.Log.WriteLine("Base loaded: " + injector.LoadedBase);
                     return true;
                 }
                 else

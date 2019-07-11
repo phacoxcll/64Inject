@@ -9,46 +9,50 @@ namespace _64Inject
 
         public _64InjectCMD()
         {
+            Cll.Log.SaveIn("64Inject_log.txt");
+            Cll.Log.WriteLine(DateTime.UtcNow.ToString());
+            Cll.Log.WriteLine("64Inject open in CMD mode.");
+
             injector = new _64Injector();
         }
 
         public void Run(string[] args)
         {
-            injector.Log.WriteLine("64Inject " + _64Injector.Release + " - by phacox.cll");
-            injector.Log.WriteLine("");
+            Cll.Log.WriteLine("64Inject " + _64Injector.Release + " - by phacox.cll");
+            Cll.Log.WriteLine("");
 
             if (NusContent.GetJavaVersion() == null)
             {
-                injector.Log.WriteLine("Warning! Apparently the system does not have Java installed!");
-                injector.Log.WriteLine("Java is needed to NUSPacker (encrypt) and JNUSTool (decrypt).");
-                injector.Log.WriteLine("");
+                Cll.Log.WriteLine("Warning! Apparently the system does not have Java installed!");
+                Cll.Log.WriteLine("Java is needed to NUSPacker (encrypt) and JNUSTool (decrypt).");
+                Cll.Log.WriteLine("");
             }
             else
             {
                 if (!File.Exists("resources\\nuspacker\\NUSPacker.jar"))
                 {
-                    injector.Log.WriteLine("Warning! \"resources\\nuspacker\\NUSPacker.jar\" not found!");
-                    injector.Log.WriteLine("NUSPacker allows you to encrypt the result for WUPInstaller.");
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("Warning! \"resources\\nuspacker\\NUSPacker.jar\" not found!");
+                    Cll.Log.WriteLine("NUSPacker allows you to encrypt the result for WUPInstaller.");
+                    Cll.Log.WriteLine("");
                 }
                 if (!File.Exists("resources\\jnustool\\JNUSTool.jar"))
                 {
-                    injector.Log.WriteLine("Warning! \"resources\\jnustool\\JNUSTool.jar\" not found!");
-                    injector.Log.WriteLine("JNUSTool allows you to decrypt Wii U VC games to use as a base.");
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("Warning! \"resources\\jnustool\\JNUSTool.jar\" not found!");
+                    Cll.Log.WriteLine("JNUSTool allows you to decrypt Wii U VC games to use as a base.");
+                    Cll.Log.WriteLine("");
                 }
             }            
 
             if (NusContent.CheckCommonKeyFiles())
-                injector.Log.WriteLine("Common Key found successfully.");
+                Cll.Log.WriteLine("Common Key found successfully.");
             else
-                injector.Log.WriteLine("Common Key not found. Use load-key option.");
+                Cll.Log.WriteLine("Common Key not found. Use load-key option.");
 
             if (injector.BaseIsLoaded)
-                injector.Log.WriteLine("Base loaded: " + injector.LoadedBase);
+                Cll.Log.WriteLine("Base loaded: " + injector.LoadedBase);
             else
-                injector.Log.WriteLine("Base not found. Use load-base option or specify one using the -base option.");
-            injector.Log.WriteLine("");
+                Cll.Log.WriteLine("Base not found. Use load-base option or specify one using the -base option.");
+            Cll.Log.WriteLine("");
 
             if (args.Length == 0)
             {
@@ -60,36 +64,36 @@ namespace _64Inject
             }
             else if (args.Length == 2 && args[0] == "load-key")
             {
-                injector.Log.WriteLine("load-key: " + args[1]);
+                Cll.Log.WriteLine("load-key: " + args[1]);
 
                 if (NusContent.LoadKey(args[1]))
-                    injector.Log.WriteLine("Common Key loaded successfully.");
+                    Cll.Log.WriteLine("Common Key loaded successfully.");
                 else
-                    injector.Log.WriteLine("The load of the key failed. Is a valid Common Key?");
+                    Cll.Log.WriteLine("The load of the key failed. Is a valid Common Key?");
             }
             else if (args.Length == 2 && args[0] == "load-base")
             {
-                injector.Log.WriteLine("load-base: " + args[1]);
-                injector.Log.WriteLine("Loading base, please wait...");
+                Cll.Log.WriteLine("load-base: " + args[1]);
+                Cll.Log.WriteLine("Loading base, please wait...");
 
                 if (injector.LoadBase(args[1]))
-                    injector.Log.WriteLine("Base loaded: " + injector.LoadedBase);
+                    Cll.Log.WriteLine("Base loaded: " + injector.LoadedBase);
                 else
-                    injector.Log.WriteLine("The base was not loaded correctly.");
+                    Cll.Log.WriteLine("The base was not loaded correctly.");
             }
             else if (args.Length >= 1 && args[0] == "create-image")
             {
                 if (CreateImage(args))
-                    injector.Log.WriteLine("Image created.");
+                    Cll.Log.WriteLine("Image created.");
                 else
-                    injector.Log.WriteLine("Image not created.");
+                    Cll.Log.WriteLine("Image not created.");
             }
             else if (args.Length >= 1 && args[0] == "create-icon")
             {
                 if (CreateIcon(args))
-                    injector.Log.WriteLine("Icon created.");
+                    Cll.Log.WriteLine("Icon created.");
                 else
-                    injector.Log.WriteLine("Icon not created.");
+                    Cll.Log.WriteLine("Icon not created.");
             }
             else if ((args.Length == 3 || args.Length == 5) &&
                 (args[0] == "pack" || args[0] == "unpack"))
@@ -104,14 +108,15 @@ namespace _64Inject
                     _continue = ValidArgs();      
 
                 if (_continue)
-                    _continue = Inject();
+                    Inject();
             }
-            //Console.ReadLine();
+            Cll.Log.WriteLine("Close.");
+            Cll.Log.WriteLine("----------------------------------------------------------------");
         }
 
         private void ConsoleHelp()
         {
-            injector.Log.WriteText(global::_64Inject.Properties.Resources.Help, 80, 0, Cll.Log.TabMode.All);
+            Cll.Log.WriteText(global::_64Inject.Properties.Resources.Help, 80, 0, Cll.Log.TabMode.All);
         }
 
         private bool CreateImage(string[] args)
@@ -137,7 +142,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-frame\" option.");
+                            Cll.Log.WriteLine("Error in the \"-frame\" option.");
                             return false;
                         }
                     case "-title":
@@ -148,7 +153,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-title\" option.");
+                            Cll.Log.WriteLine("Error in the \"-title\" option.");
                             return false;
                         }
                     case "-name":
@@ -161,7 +166,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-name\" option.");
+                            Cll.Log.WriteLine("Error in the \"-name\" option.");
                             return false;
                         }
                     case "-longname":
@@ -174,7 +179,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-longname\" option.");
+                            Cll.Log.WriteLine("Error in the \"-longname\" option.");
                             return false;
                         }
                     case "-r":
@@ -185,7 +190,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-r\" option.");
+                            Cll.Log.WriteLine("Error in the \"-r\" option.");
                             return false;
                         }
                     case "-p":
@@ -196,7 +201,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-p\" option.");
+                            Cll.Log.WriteLine("Error in the \"-p\" option.");
                             return false;
                         }
                     case "-out":
@@ -207,23 +212,23 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-out\" option.");
+                            Cll.Log.WriteLine("Error in the \"-out\" option.");
                             return false;
                         }
                     default:
-                        injector.Log.WriteLine("Invalid option \"" + args[i] + "\".");
+                        Cll.Log.WriteLine("Invalid option \"" + args[i] + "\".");
                         return false;
                 }
             }
 
             if (framePath != null && !File.Exists(framePath))
             {
-                injector.Log.WriteLine("The frame image \"" + framePath + "\" not exists.");
+                Cll.Log.WriteLine("The frame image \"" + framePath + "\" not exists.");
                 return false;
             }
             if (titlePath != null && !File.Exists(titlePath))
             {
-                injector.Log.WriteLine("The title screen \"" + titlePath + "\" not exists.");
+                Cll.Log.WriteLine("The title screen \"" + titlePath + "\" not exists.");
                 return false;
             }
             if (released != null)
@@ -233,13 +238,13 @@ namespace _64Inject
                     bootImg.Released = Convert.ToInt32(released);
                     if (bootImg.Released < 1996)
                     {
-                        injector.Log.WriteLine("The year of release is less than 1996.");
+                        Cll.Log.WriteLine("The year of release is less than 1996.");
                         return false;
                     }
                 }
                 catch
                 {
-                    injector.Log.WriteLine("The year of release is not an integer.");
+                    Cll.Log.WriteLine("The year of release is not an integer.");
                     return false;
                 }
             }
@@ -250,13 +255,13 @@ namespace _64Inject
                     bootImg.Players = Convert.ToInt32(players);
                     if (bootImg.Players < 1 || bootImg.Players > 4)
                     {
-                        injector.Log.WriteLine("The number of players must be between 1 and 4.");
+                        Cll.Log.WriteLine("The number of players must be between 1 and 4.");
                         return false;
                     }
                 }
                 catch
                 {
-                    injector.Log.WriteLine("The number of players is not an integer.");
+                    Cll.Log.WriteLine("The number of players is not an integer.");
                     return false;
                 }
             }
@@ -264,7 +269,7 @@ namespace _64Inject
             {
                 if (!Directory.Exists(outPath))
                 {
-                    injector.Log.WriteLine("The \"" + outPath + "\" folder not exist.");
+                    Cll.Log.WriteLine("The \"" + outPath + "\" folder not exist.");
                     return false;
                 }
             }
@@ -272,17 +277,17 @@ namespace _64Inject
                 outPath = Environment.CurrentDirectory;
 
             outPath += "\\image.png";
-            injector.Log.WriteLine("Creating image ----------------------------------------------------------------");
-            if (titlePath != null) injector.Log.WriteLine("title: " + titlePath);
-            if (framePath != null) injector.Log.WriteLine("frame: " + framePath);
+            Cll.Log.WriteLine("Creating image ----------------------------------------------------------------");
+            if (titlePath != null) Cll.Log.WriteLine("title: " + titlePath);
+            if (framePath != null) Cll.Log.WriteLine("frame: " + framePath);
             if (bootImg.NameLine1 != "")
             {
-                if (bootImg.NameLine2 == "") injector.Log.WriteLine("name: " + bootImg.NameLine1);
-                else injector.Log.WriteLine("longname:\n" + bootImg.NameLine1 + "\n" + bootImg.NameLine2);
+                if (bootImg.NameLine2 == "") Cll.Log.WriteLine("name: " + bootImg.NameLine1);
+                else Cll.Log.WriteLine("longname:\n" + bootImg.NameLine1 + "\n" + bootImg.NameLine2);
             }
-            if (released != null) injector.Log.WriteLine("released: " + released);
-            if (players != null) injector.Log.WriteLine("players: " + players);
-            if (outPath != null) injector.Log.WriteLine("out: " + outPath);
+            if (released != null) Cll.Log.WriteLine("released: " + released);
+            if (players != null) Cll.Log.WriteLine("players: " + players);
+            if (outPath != null) Cll.Log.WriteLine("out: " + outPath);
 
             System.Drawing.Bitmap image = null;
             try
@@ -329,7 +334,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-frame\" option.");
+                            Cll.Log.WriteLine("Error in the \"-frame\" option.");
                             return false;
                         }
                     case "-title":
@@ -340,7 +345,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-title\" option.");
+                            Cll.Log.WriteLine("Error in the \"-title\" option.");
                             return false;
                         }
                     case "-out":
@@ -351,30 +356,30 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-out\" option.");
+                            Cll.Log.WriteLine("Error in the \"-out\" option.");
                             return false;
                         }
                     default:
-                        injector.Log.WriteLine("Invalid option \"" + args[i] + "\".");
+                        Cll.Log.WriteLine("Invalid option \"" + args[i] + "\".");
                         return false;
                 }
             }
 
             if (framePath != null && !File.Exists(framePath))
             {
-                injector.Log.WriteLine("The frame image \"" + framePath + "\" not exists.");
+                Cll.Log.WriteLine("The frame image \"" + framePath + "\" not exists.");
                 return false;
             }
             if (titlePath != null && !File.Exists(titlePath))
             {
-                injector.Log.WriteLine("The title screen \"" + titlePath + "\" not exists.");
+                Cll.Log.WriteLine("The title screen \"" + titlePath + "\" not exists.");
                 return false;
             }
             if (outPath != null)
             {
                 if (!Directory.Exists(outPath))
                 {
-                    injector.Log.WriteLine("The \"" + outPath + "\" folder not exist.");
+                    Cll.Log.WriteLine("The \"" + outPath + "\" folder not exist.");
                     return false;
                 }
             }
@@ -382,10 +387,10 @@ namespace _64Inject
                 outPath = Environment.CurrentDirectory;
 
             outPath += "\\icon.png";
-            injector.Log.WriteLine("Creating icon -----------------------------------------------------------------");
-            if (titlePath != null) injector.Log.WriteLine("title: " + titlePath);
-            if (framePath != null) injector.Log.WriteLine("frame: " + framePath);
-            if (outPath != null) injector.Log.WriteLine("out: " + outPath);
+            Cll.Log.WriteLine("Creating icon -----------------------------------------------------------------");
+            if (titlePath != null) Cll.Log.WriteLine("title: " + titlePath);
+            if (framePath != null) Cll.Log.WriteLine("frame: " + framePath);
+            if (outPath != null) Cll.Log.WriteLine("out: " + outPath);
 
             System.Drawing.Bitmap icon = null;
             try
@@ -430,8 +435,8 @@ namespace _64Inject
             }
             else
             {
-                injector.Log.WriteLine("Incorrect " + args[0] + " syntax.");
-                injector.Log.WriteLine("");
+                Cll.Log.WriteLine("Incorrect " + args[0] + " syntax.");
+                Cll.Log.WriteLine("");
                 _continue = false;
             }
 
@@ -439,16 +444,16 @@ namespace _64Inject
             {
                 if (!Directory.Exists(injector.InPath) || !Path.IsPathRooted(injector.InPath))
                 {
-                    injector.Log.WriteLine("The input folder \"" + injector.InPath + "\" not exist.");
-                    injector.Log.WriteLine("Do not use relative paths.");
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("The input folder \"" + injector.InPath + "\" not exist.");
+                    Cll.Log.WriteLine("Do not use relative paths.");
+                    Cll.Log.WriteLine("");
                     _continue = false;
                 }
                 if (!Directory.Exists(injector.OutPath) || !Path.IsPathRooted(injector.OutPath))
                 {
-                    injector.Log.WriteLine("The output folder \"" + injector.OutPath + "\" not exist.");
-                    injector.Log.WriteLine("Do not use relative paths.");
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("The output folder \"" + injector.OutPath + "\" not exist.");
+                    Cll.Log.WriteLine("Do not use relative paths.");
+                    Cll.Log.WriteLine("");
                     _continue = false;
                 }
             }
@@ -457,53 +462,53 @@ namespace _64Inject
                 if (Directory.GetDirectories(injector.OutPath).Length != 0 ||
                     Directory.GetFiles(injector.OutPath).Length != 0)
                 {
-                    injector.Log.WriteLine("The \"" + injector.OutPath + "\" folder exist and not empty.");
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("The \"" + injector.OutPath + "\" folder exist and not empty.");
+                    Cll.Log.WriteLine("");
                     _continue = false;
                 }
 
             if (_continue)
             {
-                injector.Log.WriteLine("in: " + injector.InPath);
-                injector.Log.WriteLine("out: " + injector.OutPath);
-                injector.Log.WriteLine("");
+                Cll.Log.WriteLine("in: " + injector.InPath);
+                Cll.Log.WriteLine("out: " + injector.OutPath);
+                Cll.Log.WriteLine("");
 
                 if (args[0] == "pack")
                 {
                     if (NusContent.Encrypt(injector.InPath, injector.OutPath))
-                        injector.Log.WriteLine("The encryption was successful.");
+                        Cll.Log.WriteLine("The encryption was successful.");
                     else
-                        injector.Log.WriteLine("The encryption failed.");
+                        Cll.Log.WriteLine("The encryption failed.");
                 }
                 else if (args[0] == "unpack")
                 {
                     if (NusContent.Decrypt(injector.InPath, injector.OutPath))
-                        injector.Log.WriteLine("The decryption was successful.");
+                        Cll.Log.WriteLine("The decryption was successful.");
                     else
-                        injector.Log.WriteLine("The decryption failed.");
+                        Cll.Log.WriteLine("The decryption failed.");
                 }
             }
             else if (args[0] == "pack")
-                injector.Log.WriteLine("The encryption failed.");
+                Cll.Log.WriteLine("The encryption failed.");
             else
-                injector.Log.WriteLine("The decryption failed.");
+                Cll.Log.WriteLine("The decryption failed.");
         }
 
         private bool Inject()
         {
-            injector.Log.WriteLine("Injecting ---------------------------------------------------------------------");
-            if (injector.BasePath != null) injector.Log.WriteLine("base: " + injector.BasePath);
-            if (injector.ShortName != null) injector.Log.WriteLine("name: " + injector.ShortName);
-            if (injector.LongName != null) injector.Log.WriteLine("longname:\n" + injector.LongName);
-            if (injector.InPath != null) injector.Log.WriteLine("in: " + injector.InPath);
-            if (injector.RomPath != null) injector.Log.WriteLine("rom: " + injector.RomPath);
-            if (injector.IniPath != null) injector.Log.WriteLine("ini: " + injector.IniPath);
-            if (injector.BootTvPath != null) injector.Log.WriteLine("tv: " + injector.BootTvPath);
-            if (injector.BootDrcPath != null) injector.Log.WriteLine("drc: " + injector.BootDrcPath);
-            if (injector.IconPath != null) injector.Log.WriteLine("icon: " + injector.IconPath);
-            if (injector.OutPath != null) injector.Log.WriteLine("out: " + injector.OutPath);
-            injector.Log.WriteLine("encrypt: " + injector.Encrypt.ToString());
-            injector.Log.WriteLine("Please wait...");
+            Cll.Log.WriteLine("Injecting - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
+            if (injector.BasePath != null) Cll.Log.WriteLine("base: " + injector.BasePath);
+            if (injector.ShortName != null) Cll.Log.WriteLine("name: " + injector.ShortName);
+            if (injector.LongName != null) Cll.Log.WriteLine("longname:\n" + injector.LongName);
+            if (injector.InPath != null) Cll.Log.WriteLine("in: " + injector.InPath);
+            if (injector.RomPath != null) Cll.Log.WriteLine("rom: " + injector.RomPath);
+            if (injector.IniPath != null) Cll.Log.WriteLine("ini: " + injector.IniPath);
+            if (injector.BootTvPath != null) Cll.Log.WriteLine("tv: " + injector.BootTvPath);
+            if (injector.BootDrcPath != null) Cll.Log.WriteLine("drc: " + injector.BootDrcPath);
+            if (injector.IconPath != null) Cll.Log.WriteLine("icon: " + injector.IconPath);
+            if (injector.OutPath != null) Cll.Log.WriteLine("out: " + injector.OutPath);
+            Cll.Log.WriteLine("encrypt: " + injector.Encrypt.ToString());
+            Cll.Log.WriteLine("Please wait...");
 
             return injector.Inject();
         }
@@ -522,7 +527,7 @@ namespace _64Inject
                         }
                         else
                         { 
-                            injector.Log.WriteLine("Error in the \"-base\" option.");
+                            Cll.Log.WriteLine("Error in the \"-base\" option.");
                             return false;
                         }
                     case "-name":
@@ -533,7 +538,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-name\" option.");
+                            Cll.Log.WriteLine("Error in the \"-name\" option.");
                             return false;
                         }
                     case "-longname":
@@ -544,7 +549,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-longname\" option.");
+                            Cll.Log.WriteLine("Error in the \"-longname\" option.");
                             return false;
                         }
                     case "no-darkfilter":
@@ -561,7 +566,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-zoom\" option.");
+                            Cll.Log.WriteLine("Error in the \"-zoom\" option.");
                             return false;
                         }
                     case "-in":
@@ -572,7 +577,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-in\" option.");
+                            Cll.Log.WriteLine("Error in the \"-in\" option.");
                             return false;
                         }
                     case "-rom":
@@ -583,7 +588,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-rom\" option.");
+                            Cll.Log.WriteLine("Error in the \"-rom\" option.");
                             return false;
                         }
                     case "-ini":
@@ -594,7 +599,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-ini\" option.");
+                            Cll.Log.WriteLine("Error in the \"-ini\" option.");
                             return false;
                         }
                     case "-icon":
@@ -605,7 +610,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-icon\" option.");
+                            Cll.Log.WriteLine("Error in the \"-icon\" option.");
                             return false;
                         }
                     case "-tv":
@@ -616,7 +621,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-tv\" option.");
+                            Cll.Log.WriteLine("Error in the \"-tv\" option.");
                             return false;
                         }
                     case "-drc":
@@ -627,7 +632,7 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-drc\" option.");
+                            Cll.Log.WriteLine("Error in the \"-drc\" option.");
                             return false;
                         }
                     case "-out":
@@ -638,14 +643,14 @@ namespace _64Inject
                         }
                         else
                         {
-                            injector.Log.WriteLine("Error in the \"-out\" option.");
+                            Cll.Log.WriteLine("Error in the \"-out\" option.");
                             return false;
                         }
                     case "not-encrypt":
                         injector.Encrypt = false;
                         break;
                     default:
-                        injector.Log.WriteLine("Invalid option \"" + args[i] + "\".");
+                        Cll.Log.WriteLine("Invalid option \"" + args[i] + "\".");
                         return false;
                 }
             }
@@ -696,24 +701,24 @@ namespace _64Inject
         {
             if (injector.BasePath != null)
             {
-                injector.Log.WriteLine("Loading base, please wait...");
+                Cll.Log.WriteLine("Loading base, please wait...");
 
                 if (injector.LoadBase(injector.BasePath))
                 {
-                    injector.Log.WriteLine("Base loaded: " + injector.LoadedBase);
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("Base loaded: " + injector.LoadedBase);
+                    Cll.Log.WriteLine("");
                 }
                 else
                 {
-                    injector.Log.WriteLine("The base was not loaded correctly.");
-                    injector.Log.WriteLine("");
+                    Cll.Log.WriteLine("The base was not loaded correctly.");
+                    Cll.Log.WriteLine("");
                     return false;
                 }
             }
             else if (!injector.BaseIsLoaded)
             {
-                injector.Log.WriteLine("There is not a loaded base.");
-                injector.Log.WriteLine("");
+                Cll.Log.WriteLine("There is not a loaded base.");
+                Cll.Log.WriteLine("");
                 return false;
             }
             return true;
@@ -725,12 +730,12 @@ namespace _64Inject
             {
                 if (injector.ShortName.Length == 0)
                 {
-                    injector.Log.WriteLine("The name of the game is empty.");
+                    Cll.Log.WriteLine("The name of the game is empty.");
                     return false;
                 }
                 else if (injector.ShortName.Length > 256)
                 {
-                    injector.Log.WriteLine("The name is not valid, it has more than 256 characters.");
+                    Cll.Log.WriteLine("The name is not valid, it has more than 256 characters.");
                     return false;
                 }
             }
@@ -747,12 +752,12 @@ namespace _64Inject
             {
                 if (injector.ShortName.Length == 0)
                 {
-                    injector.Log.WriteLine("The long name of the game is empty.");
+                    Cll.Log.WriteLine("The long name of the game is empty.");
                     return false;
                 }
                 else if (injector.LongName.Length > 512)
                 {
-                    injector.Log.WriteLine("The long name is not valid, it has more than 512 characters.");
+                    Cll.Log.WriteLine("The long name is not valid, it has more than 512 characters.");
                     return false;
                 }
             }
@@ -772,24 +777,24 @@ namespace _64Inject
                     injector.Scale = Convert.ToSingle(injector.Zoom);
                     if (injector.Scale < 50.0F || injector.Scale > 200.0F)
                     {
-                        injector.Log.WriteLine("The zoom value must be between 50 and 200.");
+                        Cll.Log.WriteLine("The zoom value must be between 50 and 200.");
                         return false;
                     }
                 }
                 catch
                 {
-                    injector.Log.WriteLine("The zoom value is not a number.");
+                    Cll.Log.WriteLine("The zoom value is not a number.");
                     return false;
                 }
 
                 if (injector.ShortName.Length == 0)
                 {
-                    injector.Log.WriteLine("The name of the game is empty.");
+                    Cll.Log.WriteLine("The name of the game is empty.");
                     return false;
                 }
                 else if (injector.ShortName.Length > 256)
                 {
-                    injector.Log.WriteLine("The name is not valid, it has more than 256 characters.");
+                    Cll.Log.WriteLine("The name is not valid, it has more than 256 characters.");
                     return false;
                 }
             }
@@ -806,12 +811,12 @@ namespace _64Inject
             {
                 if (!Directory.Exists(injector.InPath))
                 {
-                    injector.Log.WriteLine("The input folder \"" + injector.InPath + "\" not exists.");
+                    Cll.Log.WriteLine("The input folder \"" + injector.InPath + "\" not exists.");
                     return false;
                 }
             }
             else
-                injector.Log.WriteLine("The input folder was not specified.");
+                Cll.Log.WriteLine("The input folder was not specified.");
             return true;
         }
 
@@ -824,13 +829,13 @@ namespace _64Inject
                     injector.Rom = new RomN64(injector.RomPath);
                     if (!injector.Rom.IsValid)
                     {
-                        injector.Log.WriteLine("The ROM file is not valid.");
+                        Cll.Log.WriteLine("The ROM file is not valid.");
                         return false;
                     }
                 }
                 else
                 {
-                    injector.Log.WriteLine("The ROM file \"" + injector.RomPath + "\" not exists.");
+                    Cll.Log.WriteLine("The ROM file \"" + injector.RomPath + "\" not exists.");
                     return false;
                 }
             }
@@ -844,20 +849,20 @@ namespace _64Inject
                         injector.Rom = new RomN64(injector.RomPath);
                         if (!injector.Rom.IsValid)
                         {
-                            injector.Log.WriteLine("The ROM file is not valid.");
+                            Cll.Log.WriteLine("The ROM file is not valid.");
                             return false;
                         }
                     }
                     else
                     {
-                        injector.Log.WriteLine("The ROM file \"" + injector.RomPath + "\" not exists.");
+                        Cll.Log.WriteLine("The ROM file \"" + injector.RomPath + "\" not exists.");
                         return false;
                     }
                 }
                 else
                 {
-                    //injector.Log.WriteLine("The input folder was not specified.");
-                    injector.Log.WriteLine("ROM not found.");
+                    //Cll.Log.WriteLine("The input folder was not specified.");
+                    Cll.Log.WriteLine("ROM not found.");
                     return false;
                 }
             }
@@ -872,13 +877,13 @@ namespace _64Inject
                 {
                     if (!injector.LoadIni(injector.IniPath))
                     {
-                        injector.Log.WriteLine("The INI file is not valid.");
+                        Cll.Log.WriteLine("The INI file is not valid.");
                         return false;
                     }
                 }
                 else
                 {
-                    injector.Log.WriteLine("The INI file \"" + injector.IniPath + "\" not exists.");
+                    Cll.Log.WriteLine("The INI file \"" + injector.IniPath + "\" not exists.");
                     return false;
                 }
             }
@@ -891,21 +896,21 @@ namespace _64Inject
                     {
                         if (!injector.LoadIni(injector.IniPath))
                         {
-                            injector.Log.WriteLine("The INI file is not valid.");
+                            Cll.Log.WriteLine("The INI file is not valid.");
                             return false;
                         }
                     }
                     else
                     {
                         injector.IniPath = null;
-                        injector.Log.WriteLine("The INI file \"" + injector.IniPath + "\" not exists.");
-                        injector.Log.WriteLine("An empty INI file will be used.");
+                        Cll.Log.WriteLine("The INI file \"" + injector.IniPath + "\" not exists.");
+                        Cll.Log.WriteLine("An empty INI file will be used.");
                     }
                 }
                 else
                 {
-                    //injector.Log.WriteLine("The input folder was not specified.");
-                    injector.Log.WriteLine("An empty INI file will be used.");
+                    //Cll.Log.WriteLine("The input folder was not specified.");
+                    Cll.Log.WriteLine("An empty INI file will be used.");
                 }
             }
             return true;
@@ -917,7 +922,7 @@ namespace _64Inject
             {
                 if (!File.Exists(injector.BootTvPath))
                 {
-                    injector.Log.WriteLine("The boot tv image file \"" + injector.BootTvPath + "\" not exists.");
+                    Cll.Log.WriteLine("The boot tv image file \"" + injector.BootTvPath + "\" not exists.");
                     return false;
                 }
                 else
@@ -930,24 +935,24 @@ namespace _64Inject
                     injector.BootTvPath = injector.InPath + "\\tv.png";
                     if (!File.Exists(injector.BootTvPath))
                     {
-                        injector.Log.WriteLine("The boot tv image file \"" + injector.BootTvPath + "\" not exists.");
+                        Cll.Log.WriteLine("The boot tv image file \"" + injector.BootTvPath + "\" not exists.");
                         if (File.Exists("resources\\boot.png"))
                             injector.BootTvPath = "resources\\boot.png";
                         else
                             injector.BootTvPath = null;
-                        injector.Log.WriteLine("A default image will be used as boot tv.");
+                        Cll.Log.WriteLine("A default image will be used as boot tv.");
                     }
                     else
                         injector.BootTvImg.IsDefault = false;
                 }
                 else
                 {
-                    //injector.Log.WriteLine("The input folder was not specified.");
+                    //Cll.Log.WriteLine("The input folder was not specified.");
                     if (File.Exists("resources\\boot.png"))
                         injector.BootTvPath = "resources\\boot.png";
                     else
                         injector.BootTvPath = null;
-                    injector.Log.WriteLine("A default image will be used as boot tv.");
+                    Cll.Log.WriteLine("A default image will be used as boot tv.");
                 }
             }
             return true;
@@ -959,7 +964,7 @@ namespace _64Inject
             {
                 if (!File.Exists(injector.BootDrcPath))
                 {
-                    injector.Log.WriteLine("The boot drc image file \"" + injector.BootDrcPath + "\" not exists.");
+                    Cll.Log.WriteLine("The boot drc image file \"" + injector.BootDrcPath + "\" not exists.");
                     return false;
                 }
                 else
@@ -972,7 +977,7 @@ namespace _64Inject
                     injector.BootDrcPath = injector.InPath + "\\drc.png";
                     if (!File.Exists(injector.BootDrcPath))
                     {
-                        injector.Log.WriteLine("The boot drc image file \"" + injector.BootDrcPath + "\" not exists.");
+                        Cll.Log.WriteLine("The boot drc image file \"" + injector.BootDrcPath + "\" not exists.");
                         injector.BootDrcPath = injector.BootTvPath;
                         if (!File.Exists(injector.BootDrcPath))
                         {
@@ -980,17 +985,17 @@ namespace _64Inject
                                 injector.BootDrcPath = "resources\\boot.png";
                             else
                                 injector.BootDrcPath = null;
-                            injector.Log.WriteLine("A default image will be used as boot drc.");
+                            Cll.Log.WriteLine("A default image will be used as boot drc.");
                         }
                         else
-                            injector.Log.WriteLine("The boot tv image will be used as boot drc.");
+                            Cll.Log.WriteLine("The boot tv image will be used as boot drc.");
                     }
                     else
                         injector.BootDrcImg.IsDefault = false;
                 }
                 else
                 {
-                    //injector.Log.WriteLine("The input folder was not specified.");
+                    //Cll.Log.WriteLine("The input folder was not specified.");
                     injector.BootDrcPath = injector.BootTvPath;
                     if (!File.Exists(injector.BootDrcPath))
                     {
@@ -998,10 +1003,10 @@ namespace _64Inject
                             injector.BootDrcPath = "resources\\boot.png";
                         else
                             injector.BootDrcPath = null;
-                        injector.Log.WriteLine("A default image will be used as boot drc.");
+                        Cll.Log.WriteLine("A default image will be used as boot drc.");
                     }
                     else
-                        injector.Log.WriteLine("The boot tv image will be used as boot drc.");
+                        Cll.Log.WriteLine("The boot tv image will be used as boot drc.");
                 }
             }
             return true;
@@ -1013,7 +1018,7 @@ namespace _64Inject
             {
                 if (!File.Exists(injector.IconPath))
                 {
-                    injector.Log.WriteLine("The icon file \"" + injector.IconPath + "\" not exists.");
+                    Cll.Log.WriteLine("The icon file \"" + injector.IconPath + "\" not exists.");
                     return false;
                 }
                 else
@@ -1026,24 +1031,24 @@ namespace _64Inject
                     injector.IconPath = injector.InPath + "\\icon.png";
                     if (!File.Exists(injector.IconPath))
                     {
-                        injector.Log.WriteLine("The icon file \"" + injector.IconPath + "\" not exists.");
+                        Cll.Log.WriteLine("The icon file \"" + injector.IconPath + "\" not exists.");
                         if (File.Exists("resources\\icon.png"))
                             injector.IconPath = "resources\\icon.png";                        
                         else
                             injector.IconPath = null;  
-                        injector.Log.WriteLine("A default image will be used as icon.");
+                        Cll.Log.WriteLine("A default image will be used as icon.");
                     }
                     else
                         injector.IconImg.IsDefault = false;
                 }
                 else
                 {
-                    //injector.Log.WriteLine("The input folder was not specified.");
+                    //Cll.Log.WriteLine("The input folder was not specified.");
                     if (File.Exists("resources\\icon.png"))
                         injector.IconPath = "resources\\icon.png";
                     else
                         injector.IconPath = null;
-                    injector.Log.WriteLine("A default image will be used as icon.");
+                    Cll.Log.WriteLine("A default image will be used as icon.");
                 }
             }
             return true;
@@ -1055,15 +1060,15 @@ namespace _64Inject
             {
                 if (!Directory.Exists(injector.OutPath))
                 {
-                    injector.Log.WriteLine("The \"" + injector.OutPath + "\" folder not exist.");
+                    Cll.Log.WriteLine("The \"" + injector.OutPath + "\" folder not exist.");
                     return false;
                 }
             }
             else
             {
-                injector.Log.WriteLine("The output folder was not specified.");
+                Cll.Log.WriteLine("The output folder was not specified.");
                 injector.OutPath = Environment.CurrentDirectory;
-                injector.Log.WriteLine("The root folder of 64Inject will be used as the output folder.");
+                Cll.Log.WriteLine("The root folder of 64Inject will be used as the output folder.");
             }
 
             injector.OutPath += "\\" + injector.ShortNameASCII + " [" + injector.TitleId + "]";
@@ -1072,7 +1077,7 @@ namespace _64Inject
                 if (Directory.GetDirectories(injector.OutPath).Length != 0 ||
                     Directory.GetFiles(injector.OutPath).Length != 0)
                 {
-                    injector.Log.WriteLine("The \"" + injector.OutPath + "\" folder exist and not empty.");
+                    Cll.Log.WriteLine("The \"" + injector.OutPath + "\" folder exist and not empty.");
                     return false;
                 }
 

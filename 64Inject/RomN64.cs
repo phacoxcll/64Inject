@@ -53,6 +53,8 @@ namespace _64Inject
 
             try
             {
+                Cll.Log.WriteLine("Validating ROM.");
+
                 byte[] header = new byte[0x40];
                 FileStream fs = File.Open(filename, FileMode.Open);
                 Size = (int)fs.Length;
@@ -107,12 +109,22 @@ namespace _64Inject
                         fs = File.Open(filename, FileMode.Open);
                         HashCRC32 = Cll.Security.ComputeCRC32(fs);
                         fs.Close();
+
+                        Cll.Log.WriteLine("The ROM is valid and its metadata has been loaded.");
                     }
+                    else
+                        Cll.Log.WriteLine("It was not possible to determine the ROM format.");
                 }
                 else
+                {
                     Size = 0;
+                    Cll.Log.WriteLine("The ROM is too small to be valid.");
+                }
             }
-            catch { }
+            catch
+            {
+                Cll.Log.WriteLine("Error reading ROM.");
+            }
         }
 
         ~RomN64()

@@ -263,6 +263,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PreBuildEvent>"C:\Users\Alberto\Documents\Visual Studio 2008\Projects\64Inject\64Inject\CllAssemblyVersion.exe" assemblyInfo "$(ProjectDir)Properties\AssemblyInfo.cs" projectPath "$(ProjectPath)" config "$(ConfigurationName)" platform "$(PlatformName)" title "$(SolutionName)" format "major.minor.build.revision" replaceIn "$(ProjectDir)64Injector.cs"</PreBuildEvent>
+    <PreBuildEvent>"C:\Users\Alberto\source\repos\64Inject\64Inject\CllAssemblyVersion.exe" assemblyInfo "$(ProjectDir)Properties\AssemblyInfo.cs" projectPath "$(ProjectPath)" config "$(ConfigurationName)" platform "$(PlatformName)" title "$(SolutionName)" format "major.minor.build.revision" replaceIn "$(ProjectDir)64Injector.cs"</PreBuildEvent>
   </PropertyGroup>
 </Project>

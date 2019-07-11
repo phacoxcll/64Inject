@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Cll
 {
-    public class Log : IDisposable
+    public static class Log
     {
         public enum TabMode
         {
@@ -14,77 +14,36 @@ namespace Cll
             All
         }
 
-        private bool disposed = false;
-        private StreamWriter _log;
-
-        public Log()
-        {
-            _log = null;
-        }
-
-        public Log(string filename)
+        private static String _filename;
+        public static void SaveIn(String filename, bool clear = true)
         {
             if (filename != null && filename.Length > 0)
             {
-                try
-                {
-                    _log = File.CreateText(filename);
-                }
-                catch
-                {
-                    _log = null;
-                }
+                _filename = filename;
+                if (clear)
+                    File.Delete(filename);
             }
             else
-                _log = null;
+                _filename = null;
         }
 
-        ~Log()
-        {
-            Dispose(false);
-        }
-
-        public void Close()
-        {
-            Dispose();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    if (_log != null)
-                        _log.Dispose();
-                }
-                disposed = true;
-            }
-        }
-
-        public void Write(string value)
+        public static void Write(string value)
         {
             Debug.Write(value);
             Console.Write(value);
-            if (_log != null)
-                _log.Write(value);
+            if (_filename != null)
+                File.AppendAllText(_filename, value);
         }
 
-        public void WriteLine(string value)
+        public static void WriteLine(string value)
         {
             Debug.WriteLine(value);
             Console.WriteLine(value);
-            if (_log != null)
-                _log.WriteLine(value);
+            if (_filename != null)
+                File.AppendAllText(_filename, value + "\r\n");
         }
 
-        public void WriteLine(string value, int width, int tab, TabMode mode)
+        public static void WriteLine(string value, int width, int tab, TabMode mode)
         {
             int tabLength = GetTabLength(value);
             string t = tab > 0 ? new string(' ', tab) : value.Substring(0, tabLength);
@@ -140,7 +99,7 @@ namespace Cll
                 WriteLine(mode == TabMode.All || mode == TabMode.OnlyFirst ? t : "");
         }
 
-        public void WriteText(string text, int width, int tab, TabMode mode)
+        public static void WriteText(string text, int width, int tab, TabMode mode)
         {
             text = text.Replace("\r", "");
             string[] lines = text.Split(new char[] { '\n' });
@@ -149,7 +108,7 @@ namespace Cll
                 WriteLine(line, width, tab, mode);
         }
 
-        private int GetTabLength(string line)
+        private static int GetTabLength(string line)
         {
             int i;
 

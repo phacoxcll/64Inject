@@ -10,9 +10,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.2 debug"; //CllVersionReplace "major.minor stability"
-
-        public Cll.Log Log;
+        public const string Release = "1.3 debug"; //CllVersionReplace "major.minor stability"
 
         public string BasePath;
         public string ShortName;
@@ -35,8 +33,7 @@ namespace _64Inject
         public float Scale;
         public BootImage BootTvImg;
         public BootImage BootDrcImg;
-        public IconImage IconImg;
-        
+        public IconImage IconImg;        
 
         public bool BaseIsLoaded
         {
@@ -125,8 +122,6 @@ namespace _64Inject
 
         public _64Injector()
         {
-            Log = new Cll.Log();
-
             BasePath = null;
             ShortName = null;
             LongName = null;
@@ -155,7 +150,7 @@ namespace _64Inject
         {
             _base = GetLoadedBase();
             bool _continue = BaseIsLoaded;
-            Log.WriteLine("The base is ready: " + _continue.ToString());
+            Cll.Log.WriteLine("The base is ready: " + _continue.ToString());
 
             if (_continue)
                 _continue = InjectGameLayout();
@@ -173,21 +168,21 @@ namespace _64Inject
             {
                 if (Encrypt)
                 {
-                    Log.WriteLine("Creating encrypted output.");
+                    Cll.Log.WriteLine("Creating encrypted output.");
                     string inPath = Environment.CurrentDirectory + "\\base";
                     _continue = NusContent.Encrypt(inPath, OutPath);
                 }
                 else
                 {
-                    Log.WriteLine("Creating unencrypted output.");
+                    Cll.Log.WriteLine("Creating unencrypted output.");
                     _continue = Useful.DirectoryCopy("base", OutPath, true);
                 }          
             }
 
             if (_continue)
-                Log.WriteLine("Injection completed successfully!");
+                Cll.Log.WriteLine("Injection completed successfully!");
             else
-                Log.WriteLine("The injection failed.");
+                Cll.Log.WriteLine("The injection failed.");
 
             return _continue;
         }
@@ -197,6 +192,8 @@ namespace _64Inject
             FileStream fs = null;
             try
             {
+                Cll.Log.WriteLine("Editing \"FrameLayout.arc\" file.");
+
                 byte darkFilterB = (byte)(DarkFilter ? 1 : 0);
                 byte[] widescreenB = Widescreen ?
                     new byte[] { 0x44, 0xF0, 0, 0 } :
@@ -290,6 +287,7 @@ namespace _64Inject
                                 }
                                 else if (name == "power_save_bg")
                                 {
+                                    Cll.Log.WriteLine("\"FrameLayout.arc\" file editing successfully.");
                                     return true;
                                 }
 
@@ -309,7 +307,7 @@ namespace _64Inject
                 }                    
                 fs.Close();
             }
-            catch { Log.WriteLine("Error editing the \"FrameLayout.arc\"."); }
+            catch { Cll.Log.WriteLine("Error editing \"FrameLayout.arc\"."); }
             finally { if (fs != null) fs.Close(); }
             
             return false;
@@ -326,6 +324,8 @@ namespace _64Inject
 
             try
             {
+                Cll.Log.WriteLine("Creating bitmaps.");
+
                 if (BootTvPath != null)
                     tmp = new Bitmap(BootTvPath);
                 else
@@ -355,19 +355,32 @@ namespace _64Inject
                 g.DrawImage(tmp, new Rectangle(0, 0, 128, 128));
                 g.Dispose();
                 tmp.Dispose();
+
+                Cll.Log.WriteLine("Bitmaps created.");
             }
             catch
             {
-                Log.WriteLine("Error creating images.");
+                Cll.Log.WriteLine("Error creating bitmaps.");
                 return false;
             }
 
             if (!NusContent.ConvertToTGA(bootTvImg, currentDir + "\\base\\meta\\bootTvTex.tga"))
+            {
+                Cll.Log.WriteLine("Error creating \"bootTvTex.tga\" file.");
                 return false;
+            }
             if (!NusContent.ConvertToTGA(bootDrcImg, currentDir + "\\base\\meta\\bootDrcTex.tga"))
+            {
+                Cll.Log.WriteLine("Error creating \"bootDrcTex.tga\" file.");
                 return false;
+            }
             if (!NusContent.ConvertToTGA(iconImg, currentDir + "\\base\\meta\\iconTex.tga"))
+            {
+                Cll.Log.WriteLine("Error creating \"iconTex.tga\" file.");
                 return false;
+            }
+
+            Cll.Log.WriteLine("Injected TGA files.");
 
             return true;
         }
@@ -391,6 +404,8 @@ namespace _64Inject
 
             try
             {
+                Cll.Log.WriteLine("Editing \"app.xml\" and \"meta.xml\" files.");
+
                 xmlApp.Load("base\\code\\app.xml");
                 xmlMeta.Load("base\\meta\\meta.xml");
 
@@ -421,11 +436,13 @@ namespace _64Inject
                 app.Close();
                 meta.Close();
 
+                Cll.Log.WriteLine("\"app.xml\" and \"meta.xml\" files editing successfully.");
+
                 return true;
             }
             catch
             {
-                Log.WriteLine("Error editing the \"meta.xml\".");
+                Cll.Log.WriteLine("Error editing \"app.xml\" and \"meta.xml\" files.");
             }
 
             return false;
@@ -437,27 +454,42 @@ namespace _64Inject
 
             try
             {
+                Cll.Log.WriteLine("Empty \"base\\content\\config\" folder.");
                 Directory.Delete("base\\content\\config", true);
                 Directory.CreateDirectory("base\\content\\config");
 
+                Cll.Log.WriteLine("Injecting INI data.");
                 if (IniIsLoaded)
                 {
                     FileStream fs = File.Open("base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini", FileMode.Create);
                     fs.Write(_ini, 0, _ini.Length);
                     fs.Close();
+                    Cll.Log.WriteLine("INI injected.");
                 }
                 else
+                {
                     File.Create("base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini").Close();
+                    Cll.Log.WriteLine("An empty INI injected.");
+                }
 
+                Cll.Log.WriteLine("Empty \"base\\content\\rom\" folder.");
                 Directory.Delete("base\\content\\rom", true);
                 Directory.CreateDirectory("base\\content\\rom");
 
-                if (!RomN64.ToBigEndian(RomPath, "base\\content\\rom\\U" + Rom.ProductCodeVersion + ".z64"))
+                Cll.Log.WriteLine("Injecting ROM.");
+                if (RomN64.ToBigEndian(RomPath, "base\\content\\rom\\U" + Rom.ProductCodeVersion + ".z64"))
+                {
+                    Cll.Log.WriteLine("Injected ROM.");
+                }
+                else
+                {
+                    Cll.Log.WriteLine("ROM not injected, \"ToBigEndian\" failed.");
                     injected = false;
+                }
             }
             catch
             {
-                Log.WriteLine("Error injecting ROM.");
+                Cll.Log.WriteLine("Error injecting ROM.");
                 injected = false;
             }
 
@@ -470,16 +502,23 @@ namespace _64Inject
         public bool LoadBase(string path)
         {
             if (Directory.Exists("base"))
+            {                
                 Directory.Delete("base", true);
+                Cll.Log.WriteLine("Previous base deleted.");
+            }
 
             if (IsValidBase(path))
+            {
+                Cll.Log.WriteLine("The \"" + path + "\" folder contains a valid base.");
                 Useful.DirectoryCopy(path, "base", true);
-
+            }
             else if (IsValidEncryptedBase(path))
+            {
+                Cll.Log.WriteLine("The \"" + path + "\" folder contains a valid encrypted base.");
                 NusContent.Decrypt(path, "base");
-
+            }
             else
-                Console.WriteLine("The \"" + path + "\" folder not contain a valid base.");
+                Cll.Log.WriteLine("The \"" + path + "\" folder not contains a valid base.");
 
             _base = GetLoadedBase();
 
