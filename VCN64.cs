@@ -1,0 +1,40 @@
+﻿
+namespace _64Inject
+{
+    public class VCN64
+    {
+        public readonly uint HashCRC32;
+        public readonly string Title;
+        public readonly string Info;
+
+        public VCN64(uint hashCRC32, string info, string title)
+        {
+            HashCRC32 = hashCRC32;
+            Title = title;
+            Info = info;
+        }
+
+        public override string ToString()
+        {
+            return Title + "\nCRC32: " + HashCRC32.ToString("X8") + " " + Info;
+        }
+
+        public static readonly VCN64 DonkeyKong64   = new VCN64(0xFB245F10, "SVN: 1680 TIME: 2015/01/20 14:12:06", "Donkey Kong 64 (NTSC-U)");
+        public static readonly VCN64 Ocarina        = new VCN64(0xF042E451, "SVN: 1696 TIME: 2015/01/30 10:49:22", "The Legend of Zelda: Ocarina of Time (NTSC-U)");
+        public static readonly VCN64 PaperMario     = new VCN64(0xAE933905, "SVN: 1743 TIME: 2015/03/05 15:06:57", "Paper Mario (NTSC-U)");
+        public static readonly VCN64 Kirby64        = new VCN64(0x7EB7B97D, "SVN: 1790 TIME: 2015/03/24 13:46:36", "Kirby 64: The Crystal Shards (NTSC-U)");
+        public static readonly VCN64 MarioTennis    = new VCN64(0x05F20995, "SVN: 1918 TIME: 2015/05/20 14:34:00", "Mario Tennis (NTSC-U)");
+        public static readonly VCN64 MarioGolf      = new VCN64(0x307DCE21, "SVN: 1955 TIME: 2015/06/16 16:09:03", "Mario Golf (NTSC-U)");
+        public static readonly VCN64 StarFox64      = new VCN64(0xF41BC127, "SVN: 1970 TIME: 2015/06/30 14:07:35", "Star Fox 64 (NTSC-U)");
+        public static readonly VCN64 SinAndP        = new VCN64(0x36C0456E, "SVN: 1991 TIME: 2015/07/16 09:20:39", "Sin and Punishment (NTSC-U)");
+        public static readonly VCN64 MarioKart64    = new VCN64(0x5559F831, "SVN: 2043 TIME: 2015/08/18 10:07:52", "Mario Kart 64 (NTSC-U)");
+        public static readonly VCN64 YoshiStory     = new VCN64(0xD554D2E4, "SVN: 2079 TIME: 2015/09/15 16:19:11", "Yoshi's Story (NTSC-U)");
+        public static readonly VCN64 WaveRace64     = new VCN64(0xC376B949, "SVN: 2136 TIME: 2015/11/18 12:41:26", "Wave Race 64 (NTSC-U)");
+        public static readonly VCN64 Majora         = new VCN64(0x71FC1731, "SVN: 2190 TIME: 2016/01/05 16:50:14", "The Legend of Zelda: Majora's Mask (NTSC-U)");
+        public static readonly VCN64 PokemonSnap    = new VCN64(0x967E7DF0, "SVN: 2195 TIME: 2016/01/08 09:42:51", "Pokémon Snap (NTSC-U)");
+        public static readonly VCN64 MarioParty2    = new VCN64(0xBE3CEC5F, "SVN: 2234 TIME: 2016/02/02 10:56:10", "Mario Party 2 (NTSC-U)");
+        public static readonly VCN64 OgreBattle64   = new VCN64(0xFED1FB48, "SVN: 2395 TIME: 2016/08/30 13:57:02", "Ogre Battle 64: Person of Lordly Caliber (NTSC-U)");
+        public static readonly VCN64 Excitebike64   = new VCN64(0x724C4F5D, "SVN: 2404 TIME: 2016/09/14 13:42:00", "Excitebike 64 (NTSC-U)");
+        public static readonly VCN64 FZeroX         = new VCN64(0x2AF3C23B, "SVN: 2428 TIME: 2016/11/18 11:44:39", "F-Zero X (NTSC-U)");
+    }
+}
