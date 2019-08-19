@@ -507,6 +507,7 @@ namespace _64Inject
                 Cll.Log.WriteLine("Previous base deleted.");
             }
 
+            Cll.Log.WriteLine("Validating input base...");
             if (IsValidBase(path))
             {
                 Cll.Log.WriteLine("The \"" + path + "\" folder contains a valid base.");
@@ -543,6 +544,7 @@ namespace _64Inject
 
         private VCN64 GetLoadedBase()
         {
+            Cll.Log.WriteLine("Validating loaded base...");
             if (IsValidBase("base"))
             {
                 FileStream fs = File.Open("base\\code\\VESSEL.rpx", FileMode.Open);
@@ -592,44 +594,52 @@ namespace _64Inject
             else
                 return null;
         }
-        
+
         #endregion
 
         #region Validations
 
         private bool IsValidBase(string path)
         {
-            if (File.Exists(path + "\\code\\app.xml") &&
-                File.Exists(path + "\\code\\cos.xml") &&
-                File.Exists(path + "\\code\\VESSEL.rpx") &&
-                Directory.Exists(path + "\\content\\config") &&
-                Directory.Exists(path + "\\content\\rom") &&
-                File.Exists(path + "\\content\\BuildInfo.txt") &&
-                File.Exists(path + "\\content\\config.ini") &&
-                File.Exists(path + "\\content\\FrameLayout.arc") &&
-                File.Exists(path + "\\meta\\iconTex.tga") &&
-                File.Exists(path + "\\meta\\bootTvTex.tga") &&
-                File.Exists(path + "\\meta\\bootDrcTex.tga") &&
-                File.Exists(path + "\\meta\\meta.xml"))
-                return true;
-            else
+            bool validBase = true;
+            string[] contentFolders = new string[]
+            {
+                "\\content\\config",
+                "\\content\\rom"
+            };
+            string[] contentFiles = new string[]
+            {
+                "\\code\\cos.xml",
+                "\\code\\VESSEL.rpx",
+                "\\content\\BuildInfo.txt",
+                "\\content\\config.ini",
+                "\\content\\FrameLayout.arc",
+                "\\meta\\iconTex.tga",
+                "\\meta\\bootTvTex.tga",
+                "\\meta\\bootDrcTex.tga",
+                "\\meta\\meta.xml"
+            };
+            for (int i = 0; i < contentFiles.Length; i++)
+            {
+                if (!File.Exists(path + contentFiles[i]))
+                {
+                    Cll.Log.WriteLine(string.Format("This file is missing: {0}", path + contentFiles[i]));
+                    validBase = false;
+                }
+            }
+            for (int j = 0; j < contentFolders.Length; j++)
+            {
+                if (!Directory.Exists(path + contentFolders[j]))
+                {
+                    Cll.Log.WriteLine(string.Format("This folder is missing: {0}", path + contentFolders[j]));
+                    validBase = false;
+                }
+            }
+            if (!validBase)
             {
                 Cll.Log.WriteLine("The base is invalid.");
-                Cll.Log.WriteLine("Some of the following files or folders are missing:");
-                Cll.Log.WriteLine(path + "\\code\\app.xml");
-                Cll.Log.WriteLine(path + "\\code\\cos.xml");
-                Cll.Log.WriteLine(path + "\\code\\VESSEL.rpx");
-                Cll.Log.WriteLine(path + "\\content\\config");
-                Cll.Log.WriteLine(path + "\\content\\rom");
-                Cll.Log.WriteLine(path + "\\content\\BuildInfo.txt");
-                Cll.Log.WriteLine(path + "\\content\\config.ini");
-                Cll.Log.WriteLine(path + "\\content\\FrameLayout.arc");
-                Cll.Log.WriteLine(path + "\\meta\\iconTex.tga");
-                Cll.Log.WriteLine(path + "\\meta\\bootTvTex.tga");
-                Cll.Log.WriteLine(path + "\\meta\\bootDrcTex.tga");
-                Cll.Log.WriteLine(path + "\\meta\\meta.xml");
-                return false;
             }
+            return validBase;
         }
 
         private bool IsValidEncryptedBase(string path)
