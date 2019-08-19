@@ -553,14 +553,22 @@ namespace _64Inject
 
                 if (hash == VCN64.DonkeyKong64.HashCRC32)
                     return VCN64.DonkeyKong64;
+                else if (hash == VCN64.DonkeyKong64J.HashCRC32)
+                    return VCN64.DonkeyKong64J;
                 else if (hash == VCN64.Ocarina.HashCRC32)
                     return VCN64.Ocarina;
                 else if (hash == VCN64.PaperMario.HashCRC32)
                     return VCN64.PaperMario;
+                else if (hash == VCN64.Kirby64J.HashCRC32)
+                    return VCN64.Kirby64J;
                 else if (hash == VCN64.Kirby64.HashCRC32)
                     return VCN64.Kirby64;
+                else if (hash == VCN64.SnowJ.HashCRC32)
+                    return VCN64.SnowJ;
                 else if (hash == VCN64.MarioTennis.HashCRC32)
                     return VCN64.MarioTennis;
+                else if (hash == VCN64.MarioGolfJ.HashCRC32)
+                    return VCN64.MarioGolfJ;
                 else if (hash == VCN64.MarioGolf.HashCRC32)
                     return VCN64.MarioGolf;
                 else if (hash == VCN64.StarFox64.HashCRC32)
@@ -573,6 +581,8 @@ namespace _64Inject
                     return VCN64.YoshiStory;
                 else if (hash == VCN64.WaveRace64.HashCRC32)
                     return VCN64.WaveRace64;
+                else if (hash == VCN64.MajoraJ.HashCRC32)
+                    return VCN64.MajoraJ;
                 else if (hash == VCN64.Majora.HashCRC32)
                     return VCN64.Majora;
                 else if (hash == VCN64.PokemonSnap.HashCRC32)
