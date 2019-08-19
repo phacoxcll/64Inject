@@ -18,18 +18,22 @@ namespace _64Inject
         {
             return Title + "\nCRC32: " + HashCRC32.ToString("X8") + " " + Info;
         }
-
         public static readonly VCN64 DonkeyKong64   = new VCN64(0xFB245F10, "SVN: 1680 TIME: 2015/01/20 14:12:06", "Donkey Kong 64 (NTSC-U)");
+        public static readonly VCN64 DonkeyKong64J  = new VCN64(0x8EF60284, "SVN: 1690 TIME: 2015/01/27 16:08:00", "Donkey Kong 64 (NTSC-J)");
         public static readonly VCN64 Ocarina        = new VCN64(0xF042E451, "SVN: 1696 TIME: 2015/01/30 10:49:22", "The Legend of Zelda: Ocarina of Time (NTSC-U)");
         public static readonly VCN64 PaperMario     = new VCN64(0xAE933905, "SVN: 1743 TIME: 2015/03/05 15:06:57", "Paper Mario (NTSC-U)");
+        public static readonly VCN64 Kirby64J       = new VCN64(0xCEB7A833, "SVN: 1778 TIME: 2015/03/19 16:15:32", "Hoshi no Kirby (NTSC-J)");
         public static readonly VCN64 Kirby64        = new VCN64(0x7EB7B97D, "SVN: 1790 TIME: 2015/03/24 13:46:36", "Kirby 64: The Crystal Shards (NTSC-U)");
+        public static readonly VCN64 SnowJ          = new VCN64(0x17BCC968, "SVN: 1897 TIME: 2015/05/12 17:32:21", "1080° Snowboarding (NTSC-J)");
         public static readonly VCN64 MarioTennis    = new VCN64(0x05F20995, "SVN: 1918 TIME: 2015/05/20 14:34:00", "Mario Tennis (NTSC-U)");
+        public static readonly VCN64 MarioGolfJ     = new VCN64(0x8D3C196C, "SVN: 1946 TIME: 2015/06/09 11:00:28", "Mario Golf (NTSC-U)");
         public static readonly VCN64 MarioGolf      = new VCN64(0x307DCE21, "SVN: 1955 TIME: 2015/06/16 16:09:03", "Mario Golf (NTSC-U)");
         public static readonly VCN64 StarFox64      = new VCN64(0xF41BC127, "SVN: 1970 TIME: 2015/06/30 14:07:35", "Star Fox 64 (NTSC-U)");
         public static readonly VCN64 SinAndP        = new VCN64(0x36C0456E, "SVN: 1991 TIME: 2015/07/16 09:20:39", "Sin and Punishment (NTSC-U)");
         public static readonly VCN64 MarioKart64    = new VCN64(0x5559F831, "SVN: 2043 TIME: 2015/08/18 10:07:52", "Mario Kart 64 (NTSC-U)");
         public static readonly VCN64 YoshiStory     = new VCN64(0xD554D2E4, "SVN: 2079 TIME: 2015/09/15 16:19:11", "Yoshi's Story (NTSC-U)");
         public static readonly VCN64 WaveRace64     = new VCN64(0xC376B949, "SVN: 2136 TIME: 2015/11/18 12:41:26", "Wave Race 64 (NTSC-U)");
+        public static readonly VCN64 MajoraJ        = new VCN64(0xEE8855FF, "SVN: 2170 TIME: 2015/12/16 16:01:23", "Zelda no Densetsu : Mujura no Kamen (NTSC-J)");
         public static readonly VCN64 Majora         = new VCN64(0x71FC1731, "SVN: 2190 TIME: 2016/01/05 16:50:14", "The Legend of Zelda: Majora's Mask (NTSC-U)");
         public static readonly VCN64 PokemonSnap    = new VCN64(0x967E7DF0, "SVN: 2195 TIME: 2016/01/08 09:42:51", "Pokémon Snap (NTSC-U)");
         public static readonly VCN64 MarioParty2    = new VCN64(0xBE3CEC5F, "SVN: 2234 TIME: 2016/02/02 10:56:10", "Mario Party 2 (NTSC-U)");
