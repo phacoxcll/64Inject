@@ -37,9 +37,9 @@ namespace _64Inject
         public static readonly VCN64 Majora         = new VCN64(0x71FC1731, "SVN: 2190 TIME: 2016/01/05 16:50:14", "The Legend of Zelda: Majora's Mask (NTSC-U)");
         public static readonly VCN64 PokemonSnap    = new VCN64(0x967E7DF0, "SVN: 2195 TIME: 2016/01/08 09:42:51", "Pokémon Snap (NTSC-U)");
         public static readonly VCN64 MarioParty2    = new VCN64(0xBE3CEC5F, "SVN: 2234 TIME: 2016/02/02 10:56:10", "Mario Party 2 (NTSC-U)");
+        public static readonly VCN64 CustomRoboV2   = new VCN64(0x89F2BC09, "SVN: 2244 TIME: 2016/02/26 09:03:55", "Custom Robo V2 (NTSC-J)");
         public static readonly VCN64 OgreBattle64   = new VCN64(0xFED1FB48, "SVN: 2395 TIME: 2016/08/30 13:57:02", "Ogre Battle 64: Person of Lordly Caliber (NTSC-U)");
         public static readonly VCN64 Excitebike64   = new VCN64(0x724C4F5D, "SVN: 2404 TIME: 2016/09/14 13:42:00", "Excitebike 64 (NTSC-U)");
-        public static readonly VCN64 CustomRoboV2   = new VCN64(0x89F2BC09, "SVN: 2244 TIME: 2016/02/26 09:03:55", "Custom Robo V2 (NTSC-J)");
         public static readonly VCN64 FZeroX         = new VCN64(0x2AF3C23B, "SVN: 2428 TIME: 2016/11/18 11:44:39", "F-Zero X (NTSC-U)");
     }
 }
