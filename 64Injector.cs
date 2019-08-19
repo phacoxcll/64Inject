@@ -583,6 +583,8 @@ namespace _64Inject
                     return VCN64.OgreBattle64;
                 else if (hash == VCN64.Excitebike64.HashCRC32)
                     return VCN64.Excitebike64;
+                else if (hash == VCN64.CustomRoboV2.HashCRC32)
+                    return VCN64.CustomRoboV2;
                 else if (hash == VCN64.FZeroX.HashCRC32)
                     return VCN64.FZeroX;
                 else
