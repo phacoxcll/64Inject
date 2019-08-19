@@ -26,7 +26,7 @@ namespace _64Inject
         public static readonly VCN64 Kirby64        = new VCN64(0x7EB7B97D, "SVN: 1790 TIME: 2015/03/24 13:46:36", "Kirby 64: The Crystal Shards (NTSC-U)");
         public static readonly VCN64 SnowJ          = new VCN64(0x17BCC968, "SVN: 1897 TIME: 2015/05/12 17:32:21", "1080° Snowboarding (NTSC-J)");
         public static readonly VCN64 MarioTennis    = new VCN64(0x05F20995, "SVN: 1918 TIME: 2015/05/20 14:34:00", "Mario Tennis (NTSC-U)");
-        public static readonly VCN64 MarioGolfJ     = new VCN64(0x8D3C196C, "SVN: 1946 TIME: 2015/06/09 11:00:28", "Mario Golf (NTSC-U)");
+        public static readonly VCN64 MarioGolfJ     = new VCN64(0x8D3C196C, "SVN: 1946 TIME: 2015/06/09 11:00:28", "Mario Golf (NTSC-J)");
         public static readonly VCN64 MarioGolf      = new VCN64(0x307DCE21, "SVN: 1955 TIME: 2015/06/16 16:09:03", "Mario Golf (NTSC-U)");
         public static readonly VCN64 StarFox64      = new VCN64(0xF41BC127, "SVN: 1970 TIME: 2015/06/30 14:07:35", "Star Fox 64 (NTSC-U)");
         public static readonly VCN64 SinAndP        = new VCN64(0x36C0456E, "SVN: 1991 TIME: 2015/07/16 09:20:39", "Sin and Punishment (NTSC-U)");
