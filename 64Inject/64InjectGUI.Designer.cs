@@ -30,17 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_64InjectGUI));
             this.buttonRom = new System.Windows.Forms.Button();
-            this.buttonIni = new System.Windows.Forms.Button();
+            this.buttonConfigFile = new System.Windows.Forms.Button();
             this.textBoxShortName = new System.Windows.Forms.TextBox();
             this.labelRom = new System.Windows.Forms.Label();
-            this.labelIni = new System.Windows.Forms.Label();
+            this.labelConfigFile = new System.Windows.Forms.Label();
             this.labeShortName = new System.Windows.Forms.Label();
             this.labelProductCode = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxRom = new System.Windows.Forms.TextBox();
-            this.textBoxIni = new System.Windows.Forms.TextBox();
-            this.buttonInject = new System.Windows.Forms.Button();
-            this.groupBoxImages = new System.Windows.Forms.GroupBox();
+            this.textBoxConfigFile = new System.Windows.Forms.TextBox();
+            this.buttonInjectPack = new System.Windows.Forms.Button();
             this.buttonTitleScreen = new System.Windows.Forms.Button();
             this.comboBoxPlayers = new System.Windows.Forms.ComboBox();
             this.comboBoxReleased = new System.Windows.Forms.ComboBox();
@@ -53,384 +52,357 @@
             this.buttonIcon = new System.Windows.Forms.Button();
             this.buttonBootTv = new System.Windows.Forms.Button();
             this.pictureBoxBootTv = new System.Windows.Forms.PictureBox();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.tabPageMain = new System.Windows.Forms.TabPage();
-            this.groupBoxGameLayout = new System.Windows.Forms.GroupBox();
+            this.groupBoxVCSettings = new System.Windows.Forms.GroupBox();
             this.checkBoxDarkFilter = new System.Windows.Forms.CheckBox();
             this.numericUpDownZoom = new System.Windows.Forms.NumericUpDown();
             this.checkBoxWidescreen = new System.Windows.Forms.CheckBox();
             this.labelZoom = new System.Windows.Forms.Label();
-            this.checkBoxPackUpResult = new System.Windows.Forms.CheckBox();
             this.labelTitleId = new System.Windows.Forms.Label();
             this.textBoxLNLine2 = new System.Windows.Forms.TextBox();
             this.textBoxLNLine1 = new System.Windows.Forms.TextBox();
             this.checkBoxLongName = new System.Windows.Forms.CheckBox();
-            this.tabPageConfig = new System.Windows.Forms.TabPage();
             this.labelBy = new System.Windows.Forms.Label();
-            this.labelBaseFrom = new System.Windows.Forms.Label();
             this.panelLoadedBase = new System.Windows.Forms.Panel();
             this.labelLoadedBase = new System.Windows.Forms.Label();
             this.panelValidKey = new System.Windows.Forms.Panel();
-            this.checkBoxImagesDir = new System.Windows.Forms.CheckBox();
-            this.buttonImagesDir = new System.Windows.Forms.Button();
-            this.textBoxImagesDir = new System.Windows.Forms.TextBox();
+            this.checkBoxImagesPath = new System.Windows.Forms.CheckBox();
+            this.buttonImagesPath = new System.Windows.Forms.Button();
+            this.textBoxImagesPath = new System.Windows.Forms.TextBox();
             this.labelCommonKey = new System.Windows.Forms.Label();
             this.textBoxCommonKey = new System.Windows.Forms.TextBox();
-            this.buttonBaseFrom = new System.Windows.Forms.Button();
-            this.buttonIniDir = new System.Windows.Forms.Button();
-            this.buttonRomDir = new System.Windows.Forms.Button();
-            this.textBoxBaseFrom = new System.Windows.Forms.TextBox();
-            this.textBoxIniDir = new System.Windows.Forms.TextBox();
-            this.textBoxRomDir = new System.Windows.Forms.TextBox();
-            this.checkBoxAskBase = new System.Windows.Forms.CheckBox();
-            this.checkBoxIniDir = new System.Windows.Forms.CheckBox();
-            this.checkBoxRomDir = new System.Windows.Forms.CheckBox();
+            this.buttonLoadBase = new System.Windows.Forms.Button();
+            this.buttonConfigFilesPath = new System.Windows.Forms.Button();
+            this.buttonRomPath = new System.Windows.Forms.Button();
+            this.textBoxConfigFilesPath = new System.Windows.Forms.TextBox();
+            this.textBoxRomPath = new System.Windows.Forms.TextBox();
+            this.checkBoxConfigFilesPath = new System.Windows.Forms.CheckBox();
+            this.checkBoxRomPath = new System.Windows.Forms.CheckBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.groupBoxImages.SuspendLayout();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.panelPacking = new System.Windows.Forms.Panel();
+            this.panelPackingQuestion = new System.Windows.Forms.Panel();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.buttonInjectNotPack = new System.Windows.Forms.Button();
+            this.buttonMain = new System.Windows.Forms.Button();
+            this.buttonImages = new System.Windows.Forms.Button();
+            this.panelImages = new System.Windows.Forms.Panel();
+            this.panelSettings = new System.Windows.Forms.Panel();
+            this.checkBoxHelp = new System.Windows.Forms.CheckBox();
+            this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
+            this.labelLanguage = new System.Windows.Forms.Label();
+            this.buttonPacking = new System.Windows.Forms.Button();
+            this.buttonSettings = new System.Windows.Forms.Button();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.groupBoxHelp = new System.Windows.Forms.GroupBox();
+            this.labelHelpText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootDrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootTv)).BeginInit();
-            this.tabControlMain.SuspendLayout();
-            this.tabPageMain.SuspendLayout();
-            this.groupBoxGameLayout.SuspendLayout();
+            this.groupBoxVCSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZoom)).BeginInit();
-            this.tabPageConfig.SuspendLayout();
+            this.panelMain.SuspendLayout();
+            this.panelPacking.SuspendLayout();
+            this.panelImages.SuspendLayout();
+            this.panelSettings.SuspendLayout();
+            this.panelMenu.SuspendLayout();
+            this.groupBoxHelp.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonRom
             // 
-            this.buttonRom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRom.Location = new System.Drawing.Point(644, 4);
+            this.buttonRom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonRom.FlatAppearance.BorderSize = 0;
+            this.buttonRom.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonRom.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonRom, "buttonRom");
+            this.buttonRom.ForeColor = System.Drawing.Color.White;
             this.buttonRom.Name = "buttonRom";
-            this.buttonRom.Size = new System.Drawing.Size(24, 23);
-            this.buttonRom.TabIndex = 0;
-            this.buttonRom.Text = "...";
-            this.buttonRom.UseVisualStyleBackColor = true;
+            this.buttonRom.UseVisualStyleBackColor = false;
             this.buttonRom.Click += new System.EventHandler(this.buttonRom_Click);
+            this.buttonRom.MouseEnter += new System.EventHandler(this.ButtonRom_MouseEnter);
+            this.buttonRom.MouseLeave += new System.EventHandler(this.ButtonRom_MouseLeave);
             // 
-            // buttonIni
+            // buttonConfigFile
             // 
-            this.buttonIni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonIni.Location = new System.Drawing.Point(644, 108);
-            this.buttonIni.Name = "buttonIni";
-            this.buttonIni.Size = new System.Drawing.Size(24, 23);
-            this.buttonIni.TabIndex = 1;
-            this.buttonIni.Text = "...";
-            this.buttonIni.UseVisualStyleBackColor = true;
-            this.buttonIni.Click += new System.EventHandler(this.buttonIni_Click);
+            this.buttonConfigFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonConfigFile.FlatAppearance.BorderSize = 0;
+            this.buttonConfigFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonConfigFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonConfigFile, "buttonConfigFile");
+            this.buttonConfigFile.ForeColor = System.Drawing.Color.White;
+            this.buttonConfigFile.Name = "buttonConfigFile";
+            this.buttonConfigFile.UseVisualStyleBackColor = false;
+            this.buttonConfigFile.Click += new System.EventHandler(this.buttonConfigFile_Click);
+            this.buttonConfigFile.MouseEnter += new System.EventHandler(this.ButtonConfigFile_MouseEnter);
+            this.buttonConfigFile.MouseLeave += new System.EventHandler(this.ButtonConfigFile_MouseLeave);
             // 
             // textBoxShortName
             // 
-            this.textBoxShortName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxShortName.Location = new System.Drawing.Point(81, 32);
-            this.textBoxShortName.MaxLength = 256;
+            this.textBoxShortName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.textBoxShortName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxShortName.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.textBoxShortName, "textBoxShortName");
             this.textBoxShortName.Name = "textBoxShortName";
-            this.textBoxShortName.Size = new System.Drawing.Size(587, 20);
-            this.textBoxShortName.TabIndex = 2;
             this.textBoxShortName.TextChanged += new System.EventHandler(this.textBoxShortName_TextChanged);
+            this.textBoxShortName.MouseEnter += new System.EventHandler(this.TextBoxShortName_MouseEnter);
+            this.textBoxShortName.MouseLeave += new System.EventHandler(this.TextBoxShortName_MouseLeave);
             // 
             // labelRom
             // 
-            this.labelRom.AutoSize = true;
-            this.labelRom.Location = new System.Drawing.Point(8, 9);
+            resources.ApplyResources(this.labelRom, "labelRom");
+            this.labelRom.ForeColor = System.Drawing.Color.White;
             this.labelRom.Name = "labelRom";
-            this.labelRom.Size = new System.Drawing.Size(59, 13);
-            this.labelRom.TabIndex = 4;
-            this.labelRom.Text = "ROM path:";
+            this.labelRom.MouseEnter += new System.EventHandler(this.LabelRom_MouseEnter);
+            this.labelRom.MouseLeave += new System.EventHandler(this.LabelRom_MouseLeave);
             // 
-            // labelIni
+            // labelConfigFile
             // 
-            this.labelIni.AutoSize = true;
-            this.labelIni.Location = new System.Drawing.Point(8, 113);
-            this.labelIni.Name = "labelIni";
-            this.labelIni.Size = new System.Drawing.Size(48, 13);
-            this.labelIni.TabIndex = 5;
-            this.labelIni.Text = "INI path:";
+            resources.ApplyResources(this.labelConfigFile, "labelConfigFile");
+            this.labelConfigFile.ForeColor = System.Drawing.Color.White;
+            this.labelConfigFile.Name = "labelConfigFile";
+            this.labelConfigFile.MouseEnter += new System.EventHandler(this.LabelConfigFile_MouseEnter);
+            this.labelConfigFile.MouseLeave += new System.EventHandler(this.LabelConfigFile_MouseLeave);
             // 
             // labeShortName
             // 
-            this.labeShortName.AutoSize = true;
-            this.labeShortName.Location = new System.Drawing.Point(8, 35);
+            resources.ApplyResources(this.labeShortName, "labeShortName");
+            this.labeShortName.ForeColor = System.Drawing.Color.White;
             this.labeShortName.Name = "labeShortName";
-            this.labeShortName.Size = new System.Drawing.Size(64, 13);
-            this.labeShortName.TabIndex = 6;
-            this.labeShortName.Text = "Short name:";
+            this.labeShortName.MouseEnter += new System.EventHandler(this.LabeShortName_MouseEnter);
+            this.labeShortName.MouseLeave += new System.EventHandler(this.LabeShortName_MouseLeave);
             // 
             // labelProductCode
             // 
-            this.labelProductCode.AutoSize = true;
-            this.labelProductCode.Location = new System.Drawing.Point(330, 156);
+            resources.ApplyResources(this.labelProductCode, "labelProductCode");
+            this.labelProductCode.ForeColor = System.Drawing.Color.White;
             this.labelProductCode.Name = "labelProductCode";
-            this.labelProductCode.Size = new System.Drawing.Size(74, 13);
-            this.labelProductCode.TabIndex = 7;
-            this.labelProductCode.Text = "Product code:";
+            this.labelProductCode.MouseEnter += new System.EventHandler(this.LabelProductCode_MouseEnter);
+            this.labelProductCode.MouseLeave += new System.EventHandler(this.LabelProductCode_MouseLeave);
             // 
             // textBoxRom
             // 
-            this.textBoxRom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRom.Location = new System.Drawing.Point(81, 6);
+            this.textBoxRom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.textBoxRom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxRom.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.textBoxRom, "textBoxRom");
             this.textBoxRom.Name = "textBoxRom";
-            this.textBoxRom.Size = new System.Drawing.Size(557, 20);
-            this.textBoxRom.TabIndex = 8;
+            this.textBoxRom.TabStop = false;
+            this.textBoxRom.MouseEnter += new System.EventHandler(this.TextBoxRom_MouseEnter);
+            this.textBoxRom.MouseLeave += new System.EventHandler(this.TextBoxRom_MouseLeave);
             // 
-            // textBoxIni
+            // textBoxConfigFile
             // 
-            this.textBoxIni.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIni.Location = new System.Drawing.Point(81, 110);
-            this.textBoxIni.Name = "textBoxIni";
-            this.textBoxIni.Size = new System.Drawing.Size(557, 20);
-            this.textBoxIni.TabIndex = 9;
+            this.textBoxConfigFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.textBoxConfigFile.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxConfigFile.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.textBoxConfigFile, "textBoxConfigFile");
+            this.textBoxConfigFile.Name = "textBoxConfigFile";
+            this.textBoxConfigFile.TabStop = false;
+            this.textBoxConfigFile.MouseEnter += new System.EventHandler(this.TextBoxConfigFile_MouseEnter);
+            this.textBoxConfigFile.MouseLeave += new System.EventHandler(this.TextBoxConfigFile_MouseLeave);
             // 
-            // buttonInject
+            // buttonInjectPack
             // 
-            this.buttonInject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonInject.Enabled = false;
-            this.buttonInject.Location = new System.Drawing.Point(3, 480);
-            this.buttonInject.Name = "buttonInject";
-            this.buttonInject.Size = new System.Drawing.Size(570, 40);
-            this.buttonInject.TabIndex = 10;
-            this.buttonInject.Text = "Inject";
-            this.buttonInject.UseVisualStyleBackColor = true;
-            this.buttonInject.Click += new System.EventHandler(this.buttonInject_Click);
-            // 
-            // groupBoxImages
-            // 
-            this.groupBoxImages.Controls.Add(this.buttonTitleScreen);
-            this.groupBoxImages.Controls.Add(this.comboBoxPlayers);
-            this.groupBoxImages.Controls.Add(this.comboBoxReleased);
-            this.groupBoxImages.Controls.Add(this.labelPlayers);
-            this.groupBoxImages.Controls.Add(this.labelReleased);
-            this.groupBoxImages.Controls.Add(this.checkBoxShowName);
-            this.groupBoxImages.Controls.Add(this.buttonBootDrc);
-            this.groupBoxImages.Controls.Add(this.pictureBoxBootDrc);
-            this.groupBoxImages.Controls.Add(this.pictureBoxIcon);
-            this.groupBoxImages.Controls.Add(this.buttonIcon);
-            this.groupBoxImages.Controls.Add(this.buttonBootTv);
-            this.groupBoxImages.Controls.Add(this.pictureBoxBootTv);
-            this.groupBoxImages.Location = new System.Drawing.Point(8, 187);
-            this.groupBoxImages.Name = "groupBoxImages";
-            this.groupBoxImages.Size = new System.Drawing.Size(660, 288);
-            this.groupBoxImages.TabIndex = 11;
-            this.groupBoxImages.TabStop = false;
-            this.groupBoxImages.Text = "Images";
+            this.buttonInjectPack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            resources.ApplyResources(this.buttonInjectPack, "buttonInjectPack");
+            this.buttonInjectPack.FlatAppearance.BorderSize = 0;
+            this.buttonInjectPack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonInjectPack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.buttonInjectPack.ForeColor = System.Drawing.Color.White;
+            this.buttonInjectPack.Name = "buttonInjectPack";
+            this.buttonInjectPack.UseVisualStyleBackColor = false;
+            this.buttonInjectPack.Click += new System.EventHandler(this.buttonInjectPack_Click);
+            this.buttonInjectPack.MouseEnter += new System.EventHandler(this.ButtonInjectPack_MouseEnter);
+            this.buttonInjectPack.MouseLeave += new System.EventHandler(this.ButtonInjectPack_MouseLeave);
             // 
             // buttonTitleScreen
             // 
-            this.buttonTitleScreen.Location = new System.Drawing.Point(327, 257);
+            this.buttonTitleScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonTitleScreen.FlatAppearance.BorderSize = 0;
+            this.buttonTitleScreen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonTitleScreen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonTitleScreen, "buttonTitleScreen");
+            this.buttonTitleScreen.ForeColor = System.Drawing.Color.White;
             this.buttonTitleScreen.Name = "buttonTitleScreen";
-            this.buttonTitleScreen.Size = new System.Drawing.Size(94, 23);
-            this.buttonTitleScreen.TabIndex = 13;
-            this.buttonTitleScreen.Text = "Title screen";
-            this.buttonTitleScreen.UseVisualStyleBackColor = true;
+            this.buttonTitleScreen.UseVisualStyleBackColor = false;
             this.buttonTitleScreen.Click += new System.EventHandler(this.buttonTitleScreen_Click);
+            this.buttonTitleScreen.MouseEnter += new System.EventHandler(this.ButtonTitleScreen_MouseEnter);
+            this.buttonTitleScreen.MouseLeave += new System.EventHandler(this.ButtonTitleScreen_MouseLeave);
             // 
             // comboBoxPlayers
             // 
+            this.comboBoxPlayers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            resources.ApplyResources(this.comboBoxPlayers, "comboBoxPlayers");
+            this.comboBoxPlayers.ForeColor = System.Drawing.Color.White;
             this.comboBoxPlayers.FormattingEnabled = true;
             this.comboBoxPlayers.Items.AddRange(new object[] {
-            "None",
-            "1",
-            "2",
-            "3",
-            "4"});
-            this.comboBoxPlayers.Location = new System.Drawing.Point(168, 259);
+            resources.GetString("comboBoxPlayers.Items"),
+            resources.GetString("comboBoxPlayers.Items1"),
+            resources.GetString("comboBoxPlayers.Items2"),
+            resources.GetString("comboBoxPlayers.Items3"),
+            resources.GetString("comboBoxPlayers.Items4")});
             this.comboBoxPlayers.Name = "comboBoxPlayers";
-            this.comboBoxPlayers.Size = new System.Drawing.Size(50, 21);
-            this.comboBoxPlayers.TabIndex = 12;
-            this.comboBoxPlayers.Text = "None";
             this.comboBoxPlayers.SelectedIndexChanged += new System.EventHandler(this.comboBoxPlayers_SelectedIndexChanged);
+            this.comboBoxPlayers.MouseEnter += new System.EventHandler(this.ComboBoxPlayers_MouseEnter);
+            this.comboBoxPlayers.MouseLeave += new System.EventHandler(this.ComboBoxPlayers_MouseLeave);
             // 
             // comboBoxReleased
             // 
+            this.comboBoxReleased.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            resources.ApplyResources(this.comboBoxReleased, "comboBoxReleased");
+            this.comboBoxReleased.ForeColor = System.Drawing.Color.White;
             this.comboBoxReleased.FormattingEnabled = true;
             this.comboBoxReleased.Items.AddRange(new object[] {
-            "None",
-            "1996",
-            "1997",
-            "1998",
-            "1999",
-            "2000",
-            "2001",
-            "2002",
-            "2018"});
-            this.comboBoxReleased.Location = new System.Drawing.Point(62, 259);
+            resources.GetString("comboBoxReleased.Items"),
+            resources.GetString("comboBoxReleased.Items1"),
+            resources.GetString("comboBoxReleased.Items2"),
+            resources.GetString("comboBoxReleased.Items3"),
+            resources.GetString("comboBoxReleased.Items4"),
+            resources.GetString("comboBoxReleased.Items5"),
+            resources.GetString("comboBoxReleased.Items6"),
+            resources.GetString("comboBoxReleased.Items7"),
+            resources.GetString("comboBoxReleased.Items8")});
             this.comboBoxReleased.Name = "comboBoxReleased";
-            this.comboBoxReleased.Size = new System.Drawing.Size(50, 21);
-            this.comboBoxReleased.TabIndex = 11;
-            this.comboBoxReleased.Text = "None";
             this.comboBoxReleased.SelectedIndexChanged += new System.EventHandler(this.comboBoxReleased_SelectedIndexChanged);
+            this.comboBoxReleased.MouseEnter += new System.EventHandler(this.ComboBoxReleased_MouseEnter);
+            this.comboBoxReleased.MouseLeave += new System.EventHandler(this.ComboBoxReleased_MouseLeave);
             // 
             // labelPlayers
             // 
-            this.labelPlayers.AutoSize = true;
-            this.labelPlayers.Location = new System.Drawing.Point(123, 262);
+            resources.ApplyResources(this.labelPlayers, "labelPlayers");
+            this.labelPlayers.ForeColor = System.Drawing.Color.White;
             this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(44, 13);
-            this.labelPlayers.TabIndex = 10;
-            this.labelPlayers.Text = "Players:";
+            this.labelPlayers.MouseEnter += new System.EventHandler(this.LabelPlayers_MouseEnter);
+            this.labelPlayers.MouseLeave += new System.EventHandler(this.LabelPlayers_MouseLeave);
             // 
             // labelReleased
             // 
-            this.labelReleased.AutoSize = true;
-            this.labelReleased.Location = new System.Drawing.Point(6, 262);
+            resources.ApplyResources(this.labelReleased, "labelReleased");
+            this.labelReleased.ForeColor = System.Drawing.Color.White;
             this.labelReleased.Name = "labelReleased";
-            this.labelReleased.Size = new System.Drawing.Size(55, 13);
-            this.labelReleased.TabIndex = 9;
-            this.labelReleased.Text = "Released:";
+            this.labelReleased.MouseEnter += new System.EventHandler(this.LabelReleased_MouseEnter);
+            this.labelReleased.MouseLeave += new System.EventHandler(this.LabelReleased_MouseLeave);
             // 
             // checkBoxShowName
             // 
-            this.checkBoxShowName.AutoSize = true;
+            resources.ApplyResources(this.checkBoxShowName, "checkBoxShowName");
             this.checkBoxShowName.Checked = true;
             this.checkBoxShowName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxShowName.Location = new System.Drawing.Point(237, 261);
+            this.checkBoxShowName.ForeColor = System.Drawing.Color.White;
             this.checkBoxShowName.Name = "checkBoxShowName";
-            this.checkBoxShowName.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxShowName.TabIndex = 8;
-            this.checkBoxShowName.Text = "Show name";
             this.checkBoxShowName.UseVisualStyleBackColor = true;
             this.checkBoxShowName.CheckedChanged += new System.EventHandler(this.checkBoxShowName_CheckedChanged);
+            this.checkBoxShowName.MouseEnter += new System.EventHandler(this.CheckBoxShowName_MouseEnter);
+            this.checkBoxShowName.MouseLeave += new System.EventHandler(this.CheckBoxShowName_MouseLeave);
             // 
             // buttonBootDrc
             // 
-            this.buttonBootDrc.Location = new System.Drawing.Point(426, 198);
+            this.buttonBootDrc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonBootDrc.FlatAppearance.BorderSize = 0;
+            this.buttonBootDrc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonBootDrc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonBootDrc, "buttonBootDrc");
+            this.buttonBootDrc.ForeColor = System.Drawing.Color.White;
             this.buttonBootDrc.Name = "buttonBootDrc";
-            this.buttonBootDrc.Size = new System.Drawing.Size(94, 38);
-            this.buttonBootDrc.TabIndex = 7;
-            this.buttonBootDrc.Text = "Boot Drc";
-            this.buttonBootDrc.UseVisualStyleBackColor = true;
+            this.buttonBootDrc.UseVisualStyleBackColor = false;
             this.buttonBootDrc.Click += new System.EventHandler(this.buttonBootDrc_Click);
+            this.buttonBootDrc.MouseEnter += new System.EventHandler(this.ButtonBootDrc_MouseEnter);
+            this.buttonBootDrc.MouseLeave += new System.EventHandler(this.ButtonBootDrc_MouseLeave);
             // 
             // pictureBoxBootDrc
             // 
-            this.pictureBoxBootDrc.BackColor = System.Drawing.SystemColors.Window;
+            this.pictureBoxBootDrc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.pictureBoxBootDrc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxBootDrc.Location = new System.Drawing.Point(426, 19);
+            resources.ApplyResources(this.pictureBoxBootDrc, "pictureBoxBootDrc");
             this.pictureBoxBootDrc.Name = "pictureBoxBootDrc";
-            this.pictureBoxBootDrc.Size = new System.Drawing.Size(228, 128);
-            this.pictureBoxBootDrc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxBootDrc.TabIndex = 6;
             this.pictureBoxBootDrc.TabStop = false;
+            this.pictureBoxBootDrc.MouseEnter += new System.EventHandler(this.PictureBoxBootDrc_MouseEnter);
+            this.pictureBoxBootDrc.MouseLeave += new System.EventHandler(this.PictureBoxBootDrc_MouseLeave);
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.BackColor = System.Drawing.SystemColors.Window;
+            this.pictureBoxIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.pictureBoxIcon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(526, 153);
+            resources.ApplyResources(this.pictureBoxIcon, "pictureBoxIcon");
             this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(128, 128);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxIcon.TabIndex = 5;
             this.pictureBoxIcon.TabStop = false;
+            this.pictureBoxIcon.MouseEnter += new System.EventHandler(this.PictureBoxIcon_MouseEnter);
+            this.pictureBoxIcon.MouseLeave += new System.EventHandler(this.PictureBoxIcon_MouseLeave);
             // 
             // buttonIcon
             // 
-            this.buttonIcon.Location = new System.Drawing.Point(426, 243);
+            this.buttonIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonIcon.FlatAppearance.BorderSize = 0;
+            this.buttonIcon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonIcon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonIcon, "buttonIcon");
+            this.buttonIcon.ForeColor = System.Drawing.Color.White;
             this.buttonIcon.Name = "buttonIcon";
-            this.buttonIcon.Size = new System.Drawing.Size(94, 38);
-            this.buttonIcon.TabIndex = 4;
-            this.buttonIcon.Text = "Icon";
-            this.buttonIcon.UseVisualStyleBackColor = true;
+            this.buttonIcon.UseVisualStyleBackColor = false;
             this.buttonIcon.Click += new System.EventHandler(this.buttonIcon_Click);
+            this.buttonIcon.MouseEnter += new System.EventHandler(this.ButtonIcon_MouseEnter);
+            this.buttonIcon.MouseLeave += new System.EventHandler(this.ButtonIcon_MouseLeave);
             // 
             // buttonBootTv
             // 
-            this.buttonBootTv.Location = new System.Drawing.Point(426, 153);
+            this.buttonBootTv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonBootTv.FlatAppearance.BorderSize = 0;
+            this.buttonBootTv.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonBootTv.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonBootTv, "buttonBootTv");
+            this.buttonBootTv.ForeColor = System.Drawing.Color.White;
             this.buttonBootTv.Name = "buttonBootTv";
-            this.buttonBootTv.Size = new System.Drawing.Size(94, 38);
-            this.buttonBootTv.TabIndex = 3;
-            this.buttonBootTv.Text = "Boot Tv";
-            this.buttonBootTv.UseVisualStyleBackColor = true;
+            this.buttonBootTv.UseVisualStyleBackColor = false;
             this.buttonBootTv.Click += new System.EventHandler(this.buttonBootTv_Click);
+            this.buttonBootTv.MouseEnter += new System.EventHandler(this.ButtonBootTv_MouseEnter);
+            this.buttonBootTv.MouseLeave += new System.EventHandler(this.ButtonBootTv_MouseLeave);
             // 
             // pictureBoxBootTv
             // 
-            this.pictureBoxBootTv.BackColor = System.Drawing.SystemColors.Window;
+            this.pictureBoxBootTv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.pictureBoxBootTv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxBootTv.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.pictureBoxBootTv, "pictureBoxBootTv");
             this.pictureBoxBootTv.Name = "pictureBoxBootTv";
-            this.pictureBoxBootTv.Size = new System.Drawing.Size(414, 232);
-            this.pictureBoxBootTv.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxBootTv.TabIndex = 2;
             this.pictureBoxBootTv.TabStop = false;
+            this.pictureBoxBootTv.MouseEnter += new System.EventHandler(this.PictureBoxBootTv_MouseEnter);
+            this.pictureBoxBootTv.MouseLeave += new System.EventHandler(this.PictureBoxBootTv_MouseLeave);
             // 
-            // tabControlMain
+            // groupBoxVCSettings
             // 
-            this.tabControlMain.Controls.Add(this.tabPageMain);
-            this.tabControlMain.Controls.Add(this.tabPageConfig);
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.Location = new System.Drawing.Point(0, 0);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(684, 549);
-            this.tabControlMain.TabIndex = 12;
-            // 
-            // tabPageMain
-            // 
-            this.tabPageMain.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageMain.Controls.Add(this.groupBoxGameLayout);
-            this.tabPageMain.Controls.Add(this.checkBoxPackUpResult);
-            this.tabPageMain.Controls.Add(this.labelTitleId);
-            this.tabPageMain.Controls.Add(this.textBoxLNLine2);
-            this.tabPageMain.Controls.Add(this.textBoxLNLine1);
-            this.tabPageMain.Controls.Add(this.checkBoxLongName);
-            this.tabPageMain.Controls.Add(this.labelRom);
-            this.tabPageMain.Controls.Add(this.groupBoxImages);
-            this.tabPageMain.Controls.Add(this.buttonRom);
-            this.tabPageMain.Controls.Add(this.buttonInject);
-            this.tabPageMain.Controls.Add(this.buttonIni);
-            this.tabPageMain.Controls.Add(this.textBoxIni);
-            this.tabPageMain.Controls.Add(this.textBoxShortName);
-            this.tabPageMain.Controls.Add(this.textBoxRom);
-            this.tabPageMain.Controls.Add(this.labelProductCode);
-            this.tabPageMain.Controls.Add(this.labelIni);
-            this.tabPageMain.Controls.Add(this.labeShortName);
-            this.tabPageMain.Location = new System.Drawing.Point(4, 22);
-            this.tabPageMain.Name = "tabPageMain";
-            this.tabPageMain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageMain.Size = new System.Drawing.Size(676, 523);
-            this.tabPageMain.TabIndex = 0;
-            this.tabPageMain.Text = "Main";
-            // 
-            // groupBoxGameLayout
-            // 
-            this.groupBoxGameLayout.Controls.Add(this.checkBoxDarkFilter);
-            this.groupBoxGameLayout.Controls.Add(this.numericUpDownZoom);
-            this.groupBoxGameLayout.Controls.Add(this.checkBoxWidescreen);
-            this.groupBoxGameLayout.Controls.Add(this.labelZoom);
-            this.groupBoxGameLayout.Location = new System.Drawing.Point(8, 136);
-            this.groupBoxGameLayout.Name = "groupBoxGameLayout";
-            this.groupBoxGameLayout.Size = new System.Drawing.Size(296, 45);
-            this.groupBoxGameLayout.TabIndex = 21;
-            this.groupBoxGameLayout.TabStop = false;
-            this.groupBoxGameLayout.Text = "Game layout";
+            this.groupBoxVCSettings.Controls.Add(this.checkBoxDarkFilter);
+            this.groupBoxVCSettings.Controls.Add(this.numericUpDownZoom);
+            this.groupBoxVCSettings.Controls.Add(this.labelConfigFile);
+            this.groupBoxVCSettings.Controls.Add(this.checkBoxWidescreen);
+            this.groupBoxVCSettings.Controls.Add(this.textBoxConfigFile);
+            this.groupBoxVCSettings.Controls.Add(this.labelZoom);
+            this.groupBoxVCSettings.Controls.Add(this.buttonConfigFile);
+            this.groupBoxVCSettings.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.groupBoxVCSettings, "groupBoxVCSettings");
+            this.groupBoxVCSettings.Name = "groupBoxVCSettings";
+            this.groupBoxVCSettings.TabStop = false;
             // 
             // checkBoxDarkFilter
             // 
-            this.checkBoxDarkFilter.AutoSize = true;
+            resources.ApplyResources(this.checkBoxDarkFilter, "checkBoxDarkFilter");
             this.checkBoxDarkFilter.Checked = true;
             this.checkBoxDarkFilter.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxDarkFilter.Location = new System.Drawing.Point(6, 19);
             this.checkBoxDarkFilter.Name = "checkBoxDarkFilter";
-            this.checkBoxDarkFilter.Size = new System.Drawing.Size(71, 17);
-            this.checkBoxDarkFilter.TabIndex = 17;
-            this.checkBoxDarkFilter.Text = "Dark filter";
             this.checkBoxDarkFilter.UseVisualStyleBackColor = true;
             this.checkBoxDarkFilter.CheckedChanged += new System.EventHandler(this.checkBoxDarkFilter_CheckedChanged);
+            this.checkBoxDarkFilter.MouseEnter += new System.EventHandler(this.CheckBoxDarkFilter_MouseEnter);
+            this.checkBoxDarkFilter.MouseLeave += new System.EventHandler(this.CheckBoxDarkFilter_MouseLeave);
             // 
             // numericUpDownZoom
             // 
-            this.numericUpDownZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownZoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.numericUpDownZoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownZoom.ForeColor = System.Drawing.Color.White;
             this.numericUpDownZoom.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.numericUpDownZoom.Location = new System.Drawing.Point(251, 18);
+            resources.ApplyResources(this.numericUpDownZoom, "numericUpDownZoom");
             this.numericUpDownZoom.Maximum = new decimal(new int[] {
             200,
             0,
@@ -442,8 +414,6 @@
             0,
             0});
             this.numericUpDownZoom.Name = "numericUpDownZoom";
-            this.numericUpDownZoom.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDownZoom.TabIndex = 20;
             this.numericUpDownZoom.Value = new decimal(new int[] {
             100,
             0,
@@ -453,326 +423,459 @@
             // 
             // checkBoxWidescreen
             // 
-            this.checkBoxWidescreen.AutoSize = true;
-            this.checkBoxWidescreen.Location = new System.Drawing.Point(92, 19);
+            resources.ApplyResources(this.checkBoxWidescreen, "checkBoxWidescreen");
             this.checkBoxWidescreen.Name = "checkBoxWidescreen";
-            this.checkBoxWidescreen.Size = new System.Drawing.Size(83, 17);
-            this.checkBoxWidescreen.TabIndex = 18;
-            this.checkBoxWidescreen.Text = "Widescreen";
             this.checkBoxWidescreen.UseVisualStyleBackColor = true;
             this.checkBoxWidescreen.CheckedChanged += new System.EventHandler(this.checkBoxWidescreen_CheckedChanged);
+            this.checkBoxWidescreen.MouseEnter += new System.EventHandler(this.CheckBoxWidescreen_MouseEnter);
+            this.checkBoxWidescreen.MouseLeave += new System.EventHandler(this.CheckBoxWidescreen_MouseLeave);
             // 
             // labelZoom
             // 
-            this.labelZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelZoom.AutoSize = true;
-            this.labelZoom.Location = new System.Drawing.Point(213, 20);
+            resources.ApplyResources(this.labelZoom, "labelZoom");
             this.labelZoom.Name = "labelZoom";
-            this.labelZoom.Size = new System.Drawing.Size(37, 13);
-            this.labelZoom.TabIndex = 19;
-            this.labelZoom.Text = "Zoom:";
-            // 
-            // checkBoxPackUpResult
-            // 
-            this.checkBoxPackUpResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxPackUpResult.AutoSize = true;
-            this.checkBoxPackUpResult.Location = new System.Drawing.Point(579, 493);
-            this.checkBoxPackUpResult.Name = "checkBoxPackUpResult";
-            this.checkBoxPackUpResult.Size = new System.Drawing.Size(94, 17);
-            this.checkBoxPackUpResult.TabIndex = 16;
-            this.checkBoxPackUpResult.Text = "Pack up result";
-            this.checkBoxPackUpResult.UseVisualStyleBackColor = true;
+            this.labelZoom.MouseEnter += new System.EventHandler(this.LabelZoom_MouseEnter);
+            this.labelZoom.MouseLeave += new System.EventHandler(this.LabelZoom_MouseLeave);
             // 
             // labelTitleId
             // 
-            this.labelTitleId.AutoSize = true;
-            this.labelTitleId.Location = new System.Drawing.Point(500, 156);
+            resources.ApplyResources(this.labelTitleId, "labelTitleId");
+            this.labelTitleId.ForeColor = System.Drawing.Color.White;
             this.labelTitleId.Name = "labelTitleId";
-            this.labelTitleId.Size = new System.Drawing.Size(44, 13);
-            this.labelTitleId.TabIndex = 15;
-            this.labelTitleId.Text = "Title ID:";
+            this.labelTitleId.MouseEnter += new System.EventHandler(this.LabelTitleId_MouseEnter);
+            this.labelTitleId.MouseLeave += new System.EventHandler(this.LabelTitleId_MouseLeave);
             // 
             // textBoxLNLine2
             // 
-            this.textBoxLNLine2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLNLine2.Enabled = false;
-            this.textBoxLNLine2.Location = new System.Drawing.Point(100, 84);
-            this.textBoxLNLine2.MaxLength = 255;
+            this.textBoxLNLine2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.textBoxLNLine2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBoxLNLine2, "textBoxLNLine2");
+            this.textBoxLNLine2.ForeColor = System.Drawing.Color.White;
             this.textBoxLNLine2.Name = "textBoxLNLine2";
-            this.textBoxLNLine2.Size = new System.Drawing.Size(568, 20);
-            this.textBoxLNLine2.TabIndex = 14;
             this.textBoxLNLine2.TextChanged += new System.EventHandler(this.textBoxLNLine2_TextChanged);
+            this.textBoxLNLine2.MouseEnter += new System.EventHandler(this.TextBoxLNLine2_MouseEnter);
+            this.textBoxLNLine2.MouseLeave += new System.EventHandler(this.TextBoxLNLine2_MouseLeave);
             // 
             // textBoxLNLine1
             // 
-            this.textBoxLNLine1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLNLine1.Enabled = false;
-            this.textBoxLNLine1.Location = new System.Drawing.Point(100, 58);
-            this.textBoxLNLine1.MaxLength = 255;
+            this.textBoxLNLine1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.textBoxLNLine1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBoxLNLine1, "textBoxLNLine1");
+            this.textBoxLNLine1.ForeColor = System.Drawing.Color.White;
             this.textBoxLNLine1.Name = "textBoxLNLine1";
-            this.textBoxLNLine1.Size = new System.Drawing.Size(568, 20);
-            this.textBoxLNLine1.TabIndex = 13;
             this.textBoxLNLine1.TextChanged += new System.EventHandler(this.textBoxLNLine1_TextChanged);
+            this.textBoxLNLine1.MouseEnter += new System.EventHandler(this.TextBoxLNLine1_MouseEnter);
+            this.textBoxLNLine1.MouseLeave += new System.EventHandler(this.TextBoxLNLine1_MouseLeave);
             // 
             // checkBoxLongName
             // 
-            this.checkBoxLongName.AutoSize = true;
-            this.checkBoxLongName.Location = new System.Drawing.Point(12, 66);
+            resources.ApplyResources(this.checkBoxLongName, "checkBoxLongName");
+            this.checkBoxLongName.ForeColor = System.Drawing.Color.White;
             this.checkBoxLongName.Name = "checkBoxLongName";
-            this.checkBoxLongName.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxLongName.TabIndex = 12;
-            this.checkBoxLongName.Text = "Long name:";
             this.checkBoxLongName.UseVisualStyleBackColor = true;
             this.checkBoxLongName.CheckedChanged += new System.EventHandler(this.checkBoxLongName_CheckedChanged);
-            // 
-            // tabPageConfig
-            // 
-            this.tabPageConfig.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageConfig.Controls.Add(this.labelBy);
-            this.tabPageConfig.Controls.Add(this.labelBaseFrom);
-            this.tabPageConfig.Controls.Add(this.panelLoadedBase);
-            this.tabPageConfig.Controls.Add(this.labelLoadedBase);
-            this.tabPageConfig.Controls.Add(this.panelValidKey);
-            this.tabPageConfig.Controls.Add(this.checkBoxImagesDir);
-            this.tabPageConfig.Controls.Add(this.buttonImagesDir);
-            this.tabPageConfig.Controls.Add(this.textBoxImagesDir);
-            this.tabPageConfig.Controls.Add(this.labelCommonKey);
-            this.tabPageConfig.Controls.Add(this.textBoxCommonKey);
-            this.tabPageConfig.Controls.Add(this.buttonBaseFrom);
-            this.tabPageConfig.Controls.Add(this.buttonIniDir);
-            this.tabPageConfig.Controls.Add(this.buttonRomDir);
-            this.tabPageConfig.Controls.Add(this.textBoxBaseFrom);
-            this.tabPageConfig.Controls.Add(this.textBoxIniDir);
-            this.tabPageConfig.Controls.Add(this.textBoxRomDir);
-            this.tabPageConfig.Controls.Add(this.checkBoxAskBase);
-            this.tabPageConfig.Controls.Add(this.checkBoxIniDir);
-            this.tabPageConfig.Controls.Add(this.checkBoxRomDir);
-            this.tabPageConfig.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConfig.Name = "tabPageConfig";
-            this.tabPageConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfig.Size = new System.Drawing.Size(676, 523);
-            this.tabPageConfig.TabIndex = 1;
-            this.tabPageConfig.Text = "Config";
+            this.checkBoxLongName.MouseEnter += new System.EventHandler(this.CheckBoxLongName_MouseEnter);
+            this.checkBoxLongName.MouseLeave += new System.EventHandler(this.CheckBoxLongName_MouseLeave);
             // 
             // labelBy
             // 
-            this.labelBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelBy.AutoSize = true;
-            this.labelBy.Location = new System.Drawing.Point(592, 482);
+            resources.ApplyResources(this.labelBy, "labelBy");
+            this.labelBy.ForeColor = System.Drawing.Color.White;
             this.labelBy.Name = "labelBy";
-            this.labelBy.Size = new System.Drawing.Size(55, 13);
-            this.labelBy.TabIndex = 18;
-            this.labelBy.Text = "phacox.cll";
-            // 
-            // labelBaseFrom
-            // 
-            this.labelBaseFrom.AutoSize = true;
-            this.labelBaseFrom.Location = new System.Drawing.Point(6, 165);
-            this.labelBaseFrom.Name = "labelBaseFrom";
-            this.labelBaseFrom.Size = new System.Drawing.Size(83, 13);
-            this.labelBaseFrom.TabIndex = 17;
-            this.labelBaseFrom.Text = "Load base from:";
             // 
             // panelLoadedBase
             // 
-            this.panelLoadedBase.BackColor = System.Drawing.SystemColors.Control;
+            this.panelLoadedBase.BackColor = System.Drawing.Color.Transparent;
             this.panelLoadedBase.BackgroundImage = global::_64Inject.Properties.Resources.x_mark_16;
-            this.panelLoadedBase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panelLoadedBase.Location = new System.Drawing.Point(120, 194);
+            resources.ApplyResources(this.panelLoadedBase, "panelLoadedBase");
             this.panelLoadedBase.Name = "panelLoadedBase";
-            this.panelLoadedBase.Size = new System.Drawing.Size(20, 20);
-            this.panelLoadedBase.TabIndex = 16;
+            this.panelLoadedBase.MouseEnter += new System.EventHandler(this.PanelLoadedBase_MouseEnter);
+            this.panelLoadedBase.MouseLeave += new System.EventHandler(this.PanelLoadedBase_MouseLeave);
             // 
             // labelLoadedBase
             // 
-            this.labelLoadedBase.AutoSize = true;
-            this.labelLoadedBase.Location = new System.Drawing.Point(146, 191);
+            resources.ApplyResources(this.labelLoadedBase, "labelLoadedBase");
+            this.labelLoadedBase.ForeColor = System.Drawing.Color.White;
             this.labelLoadedBase.Name = "labelLoadedBase";
-            this.labelLoadedBase.Size = new System.Drawing.Size(69, 13);
-            this.labelLoadedBase.TabIndex = 15;
-            this.labelLoadedBase.Text = "Base loaded:\r\n";
+            this.labelLoadedBase.MouseEnter += new System.EventHandler(this.LabelLoadedBase_MouseEnter);
+            this.labelLoadedBase.MouseLeave += new System.EventHandler(this.LabelLoadedBase_MouseLeave);
             // 
             // panelValidKey
             // 
-            this.panelValidKey.BackColor = System.Drawing.SystemColors.Control;
+            this.panelValidKey.BackColor = System.Drawing.Color.Transparent;
             this.panelValidKey.BackgroundImage = global::_64Inject.Properties.Resources.x_mark_16;
-            this.panelValidKey.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panelValidKey.Location = new System.Drawing.Point(342, 110);
+            resources.ApplyResources(this.panelValidKey, "panelValidKey");
             this.panelValidKey.Name = "panelValidKey";
-            this.panelValidKey.Size = new System.Drawing.Size(20, 20);
-            this.panelValidKey.TabIndex = 14;
+            this.panelValidKey.MouseEnter += new System.EventHandler(this.PanelValidKey_MouseEnter);
+            this.panelValidKey.MouseLeave += new System.EventHandler(this.PanelValidKey_MouseLeave);
             // 
-            // checkBoxImagesDir
+            // checkBoxImagesPath
             // 
-            this.checkBoxImagesDir.AutoSize = true;
-            this.checkBoxImagesDir.Checked = true;
-            this.checkBoxImagesDir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxImagesDir.Location = new System.Drawing.Point(8, 34);
-            this.checkBoxImagesDir.Name = "checkBoxImagesDir";
-            this.checkBoxImagesDir.Size = new System.Drawing.Size(106, 17);
-            this.checkBoxImagesDir.TabIndex = 13;
-            this.checkBoxImagesDir.Text = "Images directory:";
-            this.checkBoxImagesDir.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.checkBoxImagesPath, "checkBoxImagesPath");
+            this.checkBoxImagesPath.Checked = true;
+            this.checkBoxImagesPath.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxImagesPath.ForeColor = System.Drawing.Color.White;
+            this.checkBoxImagesPath.Name = "checkBoxImagesPath";
+            this.checkBoxImagesPath.UseVisualStyleBackColor = true;
+            this.checkBoxImagesPath.MouseEnter += new System.EventHandler(this.CheckBoxImagesPath_MouseEnter);
+            this.checkBoxImagesPath.MouseLeave += new System.EventHandler(this.CheckBoxImagesPath_MouseLeave);
             // 
-            // buttonImagesDir
+            // buttonImagesPath
             // 
-            this.buttonImagesDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonImagesDir.Location = new System.Drawing.Point(644, 30);
-            this.buttonImagesDir.Name = "buttonImagesDir";
-            this.buttonImagesDir.Size = new System.Drawing.Size(24, 23);
-            this.buttonImagesDir.TabIndex = 12;
-            this.buttonImagesDir.Text = "...";
-            this.buttonImagesDir.UseVisualStyleBackColor = true;
-            this.buttonImagesDir.Click += new System.EventHandler(this.buttonImagesDir_Click);
+            this.buttonImagesPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonImagesPath.FlatAppearance.BorderSize = 0;
+            this.buttonImagesPath.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonImagesPath.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonImagesPath, "buttonImagesPath");
+            this.buttonImagesPath.ForeColor = System.Drawing.Color.White;
+            this.buttonImagesPath.Name = "buttonImagesPath";
+            this.buttonImagesPath.UseVisualStyleBackColor = false;
+            this.buttonImagesPath.Click += new System.EventHandler(this.buttonImagesPath_Click);
+            this.buttonImagesPath.MouseEnter += new System.EventHandler(this.ButtonImagesPath_MouseEnter);
+            this.buttonImagesPath.MouseLeave += new System.EventHandler(this.ButtonImagesPath_MouseLeave);
             // 
-            // textBoxImagesDir
+            // textBoxImagesPath
             // 
-            this.textBoxImagesDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxImagesDir.Location = new System.Drawing.Point(120, 32);
-            this.textBoxImagesDir.Name = "textBoxImagesDir";
-            this.textBoxImagesDir.Size = new System.Drawing.Size(518, 20);
-            this.textBoxImagesDir.TabIndex = 11;
+            this.textBoxImagesPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.textBoxImagesPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBoxImagesPath, "textBoxImagesPath");
+            this.textBoxImagesPath.ForeColor = System.Drawing.Color.White;
+            this.textBoxImagesPath.Name = "textBoxImagesPath";
+            this.textBoxImagesPath.TabStop = false;
+            this.textBoxImagesPath.MouseEnter += new System.EventHandler(this.TextBoxImagesPath_MouseEnter);
+            this.textBoxImagesPath.MouseLeave += new System.EventHandler(this.TextBoxImagesPath_MouseLeave);
             // 
             // labelCommonKey
             // 
-            this.labelCommonKey.AutoSize = true;
-            this.labelCommonKey.Location = new System.Drawing.Point(6, 113);
+            resources.ApplyResources(this.labelCommonKey, "labelCommonKey");
+            this.labelCommonKey.ForeColor = System.Drawing.Color.White;
             this.labelCommonKey.Name = "labelCommonKey";
-            this.labelCommonKey.Size = new System.Drawing.Size(100, 13);
-            this.labelCommonKey.TabIndex = 10;
-            this.labelCommonKey.Text = "Wii U Common key:";
+            this.labelCommonKey.MouseEnter += new System.EventHandler(this.LabelCommonKey_MouseEnter);
+            this.labelCommonKey.MouseLeave += new System.EventHandler(this.LabelCommonKey_MouseLeave);
             // 
             // textBoxCommonKey
             // 
-            this.textBoxCommonKey.Location = new System.Drawing.Point(120, 110);
+            this.textBoxCommonKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.textBoxCommonKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxCommonKey.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.textBoxCommonKey, "textBoxCommonKey");
             this.textBoxCommonKey.Name = "textBoxCommonKey";
-            this.textBoxCommonKey.Size = new System.Drawing.Size(216, 20);
-            this.textBoxCommonKey.TabIndex = 9;
             this.textBoxCommonKey.TextChanged += new System.EventHandler(this.textBoxCommonKey_TextChanged);
+            this.textBoxCommonKey.MouseEnter += new System.EventHandler(this.TextBoxCommonKey_MouseEnter);
+            this.textBoxCommonKey.MouseLeave += new System.EventHandler(this.TextBoxCommonKey_MouseLeave);
             // 
-            // buttonBaseFrom
+            // buttonLoadBase
             // 
-            this.buttonBaseFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonBaseFrom.Location = new System.Drawing.Point(644, 160);
-            this.buttonBaseFrom.Name = "buttonBaseFrom";
-            this.buttonBaseFrom.Size = new System.Drawing.Size(24, 23);
-            this.buttonBaseFrom.TabIndex = 8;
-            this.buttonBaseFrom.Text = "...";
-            this.buttonBaseFrom.UseVisualStyleBackColor = true;
-            this.buttonBaseFrom.Click += new System.EventHandler(this.buttonBaseFrom_Click);
+            this.buttonLoadBase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonLoadBase.FlatAppearance.BorderSize = 0;
+            this.buttonLoadBase.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonLoadBase.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonLoadBase, "buttonLoadBase");
+            this.buttonLoadBase.ForeColor = System.Drawing.Color.White;
+            this.buttonLoadBase.Name = "buttonLoadBase";
+            this.buttonLoadBase.UseVisualStyleBackColor = false;
+            this.buttonLoadBase.Click += new System.EventHandler(this.buttonLoadBase_Click);
+            this.buttonLoadBase.MouseEnter += new System.EventHandler(this.ButtonLoadBase_MouseEnter);
+            this.buttonLoadBase.MouseLeave += new System.EventHandler(this.ButtonLoadBase_MouseLeave);
             // 
-            // buttonIniDir
+            // buttonConfigFilesPath
             // 
-            this.buttonIniDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonIniDir.Location = new System.Drawing.Point(644, 56);
-            this.buttonIniDir.Name = "buttonIniDir";
-            this.buttonIniDir.Size = new System.Drawing.Size(24, 23);
-            this.buttonIniDir.TabIndex = 7;
-            this.buttonIniDir.Text = "...";
-            this.buttonIniDir.UseVisualStyleBackColor = true;
-            this.buttonIniDir.Click += new System.EventHandler(this.buttonIniDir_Click);
+            this.buttonConfigFilesPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonConfigFilesPath.FlatAppearance.BorderSize = 0;
+            this.buttonConfigFilesPath.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonConfigFilesPath.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonConfigFilesPath, "buttonConfigFilesPath");
+            this.buttonConfigFilesPath.ForeColor = System.Drawing.Color.White;
+            this.buttonConfigFilesPath.Name = "buttonConfigFilesPath";
+            this.buttonConfigFilesPath.UseVisualStyleBackColor = false;
+            this.buttonConfigFilesPath.Click += new System.EventHandler(this.buttonConfigFilesPath_Click);
+            this.buttonConfigFilesPath.MouseEnter += new System.EventHandler(this.ButtonConfigFilesPath_MouseEnter);
+            this.buttonConfigFilesPath.MouseLeave += new System.EventHandler(this.ButtonConfigFilesPath_MouseLeave);
             // 
-            // buttonRomDir
+            // buttonRomPath
             // 
-            this.buttonRomDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRomDir.Location = new System.Drawing.Point(644, 4);
-            this.buttonRomDir.Name = "buttonRomDir";
-            this.buttonRomDir.Size = new System.Drawing.Size(24, 23);
-            this.buttonRomDir.TabIndex = 6;
-            this.buttonRomDir.Text = "...";
-            this.buttonRomDir.UseVisualStyleBackColor = true;
-            this.buttonRomDir.Click += new System.EventHandler(this.buttonRomDir_Click);
+            this.buttonRomPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonRomPath.FlatAppearance.BorderSize = 0;
+            this.buttonRomPath.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonRomPath.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonRomPath, "buttonRomPath");
+            this.buttonRomPath.ForeColor = System.Drawing.Color.White;
+            this.buttonRomPath.Name = "buttonRomPath";
+            this.buttonRomPath.UseVisualStyleBackColor = false;
+            this.buttonRomPath.Click += new System.EventHandler(this.buttonRomPath_Click);
+            this.buttonRomPath.MouseEnter += new System.EventHandler(this.ButtonRomPath_MouseEnter);
+            this.buttonRomPath.MouseLeave += new System.EventHandler(this.ButtonRomPath_MouseLeave);
             // 
-            // textBoxBaseFrom
+            // textBoxConfigFilesPath
             // 
-            this.textBoxBaseFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBaseFrom.Location = new System.Drawing.Point(120, 162);
-            this.textBoxBaseFrom.Name = "textBoxBaseFrom";
-            this.textBoxBaseFrom.Size = new System.Drawing.Size(518, 20);
-            this.textBoxBaseFrom.TabIndex = 5;
+            this.textBoxConfigFilesPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.textBoxConfigFilesPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBoxConfigFilesPath, "textBoxConfigFilesPath");
+            this.textBoxConfigFilesPath.ForeColor = System.Drawing.Color.White;
+            this.textBoxConfigFilesPath.Name = "textBoxConfigFilesPath";
+            this.textBoxConfigFilesPath.TabStop = false;
+            this.textBoxConfigFilesPath.MouseEnter += new System.EventHandler(this.TextBoxConfigFilesPath_MouseEnter);
+            this.textBoxConfigFilesPath.MouseLeave += new System.EventHandler(this.TextBoxConfigFilesPath_MouseLeave);
             // 
-            // textBoxIniDir
+            // textBoxRomPath
             // 
-            this.textBoxIniDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIniDir.Location = new System.Drawing.Point(120, 58);
-            this.textBoxIniDir.Name = "textBoxIniDir";
-            this.textBoxIniDir.Size = new System.Drawing.Size(518, 20);
-            this.textBoxIniDir.TabIndex = 4;
+            this.textBoxRomPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.textBoxRomPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBoxRomPath, "textBoxRomPath");
+            this.textBoxRomPath.ForeColor = System.Drawing.Color.White;
+            this.textBoxRomPath.Name = "textBoxRomPath";
+            this.textBoxRomPath.TabStop = false;
+            this.textBoxRomPath.MouseEnter += new System.EventHandler(this.TextBoxRomPath_MouseEnter);
+            this.textBoxRomPath.MouseLeave += new System.EventHandler(this.TextBoxRomPath_MouseLeave);
             // 
-            // textBoxRomDir
+            // checkBoxConfigFilesPath
             // 
-            this.textBoxRomDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRomDir.Location = new System.Drawing.Point(120, 6);
-            this.textBoxRomDir.Name = "textBoxRomDir";
-            this.textBoxRomDir.Size = new System.Drawing.Size(518, 20);
-            this.textBoxRomDir.TabIndex = 3;
+            resources.ApplyResources(this.checkBoxConfigFilesPath, "checkBoxConfigFilesPath");
+            this.checkBoxConfigFilesPath.Checked = true;
+            this.checkBoxConfigFilesPath.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxConfigFilesPath.ForeColor = System.Drawing.Color.White;
+            this.checkBoxConfigFilesPath.Name = "checkBoxConfigFilesPath";
+            this.checkBoxConfigFilesPath.UseVisualStyleBackColor = true;
+            this.checkBoxConfigFilesPath.MouseEnter += new System.EventHandler(this.CheckBoxConfigFilesPath_MouseEnter);
+            this.checkBoxConfigFilesPath.MouseLeave += new System.EventHandler(this.CheckBoxConfigFilesPath_MouseLeave);
             // 
-            // checkBoxAskBase
+            // checkBoxRomPath
             // 
-            this.checkBoxAskBase.AutoSize = true;
-            this.checkBoxAskBase.Location = new System.Drawing.Point(8, 226);
-            this.checkBoxAskBase.Name = "checkBoxAskBase";
-            this.checkBoxAskBase.Size = new System.Drawing.Size(165, 17);
-            this.checkBoxAskBase.TabIndex = 2;
-            this.checkBoxAskBase.Text = "Ask for a base when injecting";
-            this.checkBoxAskBase.UseVisualStyleBackColor = true;
-            this.checkBoxAskBase.CheckedChanged += new System.EventHandler(this.checkBoxAskBase_CheckedChanged);
+            resources.ApplyResources(this.checkBoxRomPath, "checkBoxRomPath");
+            this.checkBoxRomPath.Checked = true;
+            this.checkBoxRomPath.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRomPath.ForeColor = System.Drawing.Color.White;
+            this.checkBoxRomPath.Name = "checkBoxRomPath";
+            this.checkBoxRomPath.UseVisualStyleBackColor = true;
+            this.checkBoxRomPath.MouseEnter += new System.EventHandler(this.CheckBoxRomPath_MouseEnter);
+            this.checkBoxRomPath.MouseLeave += new System.EventHandler(this.CheckBoxRomPath_MouseLeave);
             // 
-            // checkBoxIniDir
+            // panelMain
             // 
-            this.checkBoxIniDir.AutoSize = true;
-            this.checkBoxIniDir.Checked = true;
-            this.checkBoxIniDir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxIniDir.Location = new System.Drawing.Point(8, 60);
-            this.checkBoxIniDir.Name = "checkBoxIniDir";
-            this.checkBoxIniDir.Size = new System.Drawing.Size(86, 17);
-            this.checkBoxIniDir.TabIndex = 1;
-            this.checkBoxIniDir.Text = "INI directory:";
-            this.checkBoxIniDir.UseVisualStyleBackColor = true;
+            this.panelMain.Controls.Add(this.groupBoxVCSettings);
+            this.panelMain.Controls.Add(this.labelRom);
+            this.panelMain.Controls.Add(this.panelLoadedBase);
+            this.panelMain.Controls.Add(this.labelTitleId);
+            this.panelMain.Controls.Add(this.labelLoadedBase);
+            this.panelMain.Controls.Add(this.textBoxRom);
+            this.panelMain.Controls.Add(this.buttonRom);
+            this.panelMain.Controls.Add(this.textBoxLNLine2);
+            this.panelMain.Controls.Add(this.buttonLoadBase);
+            this.panelMain.Controls.Add(this.labelProductCode);
+            this.panelMain.Controls.Add(this.textBoxShortName);
+            this.panelMain.Controls.Add(this.textBoxLNLine1);
+            this.panelMain.Controls.Add(this.checkBoxLongName);
+            this.panelMain.Controls.Add(this.labeShortName);
+            this.panelMain.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panelMain, "panelMain");
+            this.panelMain.Name = "panelMain";
             // 
-            // checkBoxRomDir
+            // panelPacking
             // 
-            this.checkBoxRomDir.AutoSize = true;
-            this.checkBoxRomDir.Checked = true;
-            this.checkBoxRomDir.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRomDir.Location = new System.Drawing.Point(8, 8);
-            this.checkBoxRomDir.Name = "checkBoxRomDir";
-            this.checkBoxRomDir.Size = new System.Drawing.Size(97, 17);
-            this.checkBoxRomDir.TabIndex = 0;
-            this.checkBoxRomDir.Text = "ROM directory:";
-            this.checkBoxRomDir.UseVisualStyleBackColor = true;
+            this.panelPacking.Controls.Add(this.panelPackingQuestion);
+            this.panelPacking.Controls.Add(this.textBoxLog);
+            this.panelPacking.Controls.Add(this.buttonInjectNotPack);
+            this.panelPacking.Controls.Add(this.buttonInjectPack);
+            this.panelPacking.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panelPacking, "panelPacking");
+            this.panelPacking.Name = "panelPacking";
+            // 
+            // panelPackingQuestion
+            // 
+            this.panelPackingQuestion.BackColor = System.Drawing.Color.Transparent;
+            this.panelPackingQuestion.BackgroundImage = global::_64Inject.Properties.Resources.question;
+            resources.ApplyResources(this.panelPackingQuestion, "panelPackingQuestion");
+            this.panelPackingQuestion.Name = "panelPackingQuestion";
+            this.panelPackingQuestion.MouseEnter += new System.EventHandler(this.PanelPackingQuestion_MouseEnter);
+            this.panelPackingQuestion.MouseLeave += new System.EventHandler(this.PanelPackingQuestion_MouseLeave);
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.textBoxLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.textBoxLog, "textBoxLog");
+            this.textBoxLog.ForeColor = System.Drawing.Color.White;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.MouseEnter += new System.EventHandler(this.TextBoxLog_MouseEnter);
+            this.textBoxLog.MouseLeave += new System.EventHandler(this.TextBoxLog_MouseLeave);
+            // 
+            // buttonInjectNotPack
+            // 
+            this.buttonInjectNotPack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            resources.ApplyResources(this.buttonInjectNotPack, "buttonInjectNotPack");
+            this.buttonInjectNotPack.FlatAppearance.BorderSize = 0;
+            this.buttonInjectNotPack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonInjectNotPack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.buttonInjectNotPack.Name = "buttonInjectNotPack";
+            this.buttonInjectNotPack.UseVisualStyleBackColor = false;
+            this.buttonInjectNotPack.Click += new System.EventHandler(this.ButtonInjectNotPack_Click);
+            this.buttonInjectNotPack.MouseEnter += new System.EventHandler(this.ButtonInjectNotPack_MouseEnter);
+            this.buttonInjectNotPack.MouseLeave += new System.EventHandler(this.ButtonInjectNotPack_MouseLeave);
+            // 
+            // buttonMain
+            // 
+            this.buttonMain.FlatAppearance.BorderSize = 0;
+            this.buttonMain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonMain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonMain, "buttonMain");
+            this.buttonMain.Name = "buttonMain";
+            this.buttonMain.UseVisualStyleBackColor = true;
+            this.buttonMain.Click += new System.EventHandler(this.ButtonMain_Click);
+            // 
+            // buttonImages
+            // 
+            this.buttonImages.FlatAppearance.BorderSize = 0;
+            this.buttonImages.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonImages.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonImages, "buttonImages");
+            this.buttonImages.Name = "buttonImages";
+            this.buttonImages.UseVisualStyleBackColor = true;
+            this.buttonImages.Click += new System.EventHandler(this.ButtonImages_Click);
+            // 
+            // panelImages
+            // 
+            this.panelImages.Controls.Add(this.buttonTitleScreen);
+            this.panelImages.Controls.Add(this.buttonBootTv);
+            this.panelImages.Controls.Add(this.buttonIcon);
+            this.panelImages.Controls.Add(this.pictureBoxBootTv);
+            this.panelImages.Controls.Add(this.comboBoxPlayers);
+            this.panelImages.Controls.Add(this.pictureBoxIcon);
+            this.panelImages.Controls.Add(this.pictureBoxBootDrc);
+            this.panelImages.Controls.Add(this.buttonBootDrc);
+            this.panelImages.Controls.Add(this.comboBoxReleased);
+            this.panelImages.Controls.Add(this.checkBoxShowName);
+            this.panelImages.Controls.Add(this.labelReleased);
+            this.panelImages.Controls.Add(this.labelPlayers);
+            this.panelImages.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panelImages, "panelImages");
+            this.panelImages.Name = "panelImages";
+            // 
+            // panelSettings
+            // 
+            this.panelSettings.Controls.Add(this.checkBoxHelp);
+            this.panelSettings.Controls.Add(this.comboBoxLanguage);
+            this.panelSettings.Controls.Add(this.labelLanguage);
+            this.panelSettings.Controls.Add(this.labelBy);
+            this.panelSettings.Controls.Add(this.checkBoxRomPath);
+            this.panelSettings.Controls.Add(this.labelCommonKey);
+            this.panelSettings.Controls.Add(this.textBoxRomPath);
+            this.panelSettings.Controls.Add(this.panelValidKey);
+            this.panelSettings.Controls.Add(this.buttonRomPath);
+            this.panelSettings.Controls.Add(this.textBoxCommonKey);
+            this.panelSettings.Controls.Add(this.checkBoxImagesPath);
+            this.panelSettings.Controls.Add(this.textBoxImagesPath);
+            this.panelSettings.Controls.Add(this.buttonConfigFilesPath);
+            this.panelSettings.Controls.Add(this.buttonImagesPath);
+            this.panelSettings.Controls.Add(this.textBoxConfigFilesPath);
+            this.panelSettings.Controls.Add(this.checkBoxConfigFilesPath);
+            this.panelSettings.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panelSettings, "panelSettings");
+            this.panelSettings.Name = "panelSettings";
+            // 
+            // checkBoxHelp
+            // 
+            resources.ApplyResources(this.checkBoxHelp, "checkBoxHelp");
+            this.checkBoxHelp.Checked = true;
+            this.checkBoxHelp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxHelp.Name = "checkBoxHelp";
+            this.checkBoxHelp.UseVisualStyleBackColor = true;
+            this.checkBoxHelp.CheckedChanged += new System.EventHandler(this.CheckBoxHelp_CheckedChanged);
+            this.checkBoxHelp.MouseEnter += new System.EventHandler(this.CheckBoxHelp_MouseEnter);
+            this.checkBoxHelp.MouseLeave += new System.EventHandler(this.CheckBoxHelp_MouseLeave);
+            // 
+            // comboBoxLanguage
+            // 
+            this.comboBoxLanguage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            resources.ApplyResources(this.comboBoxLanguage, "comboBoxLanguage");
+            this.comboBoxLanguage.ForeColor = System.Drawing.Color.White;
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.Items.AddRange(new object[] {
+            resources.GetString("comboBoxLanguage.Items"),
+            resources.GetString("comboBoxLanguage.Items1")});
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBoxLanguage_SelectedIndexChanged);
+            // 
+            // labelLanguage
+            // 
+            resources.ApplyResources(this.labelLanguage, "labelLanguage");
+            this.labelLanguage.Name = "labelLanguage";
+            // 
+            // buttonPacking
+            // 
+            this.buttonPacking.FlatAppearance.BorderSize = 0;
+            this.buttonPacking.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonPacking.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonPacking, "buttonPacking");
+            this.buttonPacking.Name = "buttonPacking";
+            this.buttonPacking.UseVisualStyleBackColor = true;
+            this.buttonPacking.Click += new System.EventHandler(this.ButtonPacking_Click);
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.FlatAppearance.BorderSize = 0;
+            this.buttonSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonSettings, "buttonSettings");
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
+            // 
+            // panelMenu
+            // 
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.panelMenu.Controls.Add(this.buttonMain);
+            this.panelMenu.Controls.Add(this.buttonSettings);
+            this.panelMenu.Controls.Add(this.buttonImages);
+            this.panelMenu.Controls.Add(this.buttonPacking);
+            this.panelMenu.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panelMenu, "panelMenu");
+            this.panelMenu.Name = "panelMenu";
+            // 
+            // groupBoxHelp
+            // 
+            this.groupBoxHelp.Controls.Add(this.labelHelpText);
+            resources.ApplyResources(this.groupBoxHelp, "groupBoxHelp");
+            this.groupBoxHelp.ForeColor = System.Drawing.Color.White;
+            this.groupBoxHelp.Name = "groupBoxHelp";
+            this.groupBoxHelp.TabStop = false;
+            // 
+            // labelHelpText
+            // 
+            resources.ApplyResources(this.labelHelpText, "labelHelpText");
+            this.labelHelpText.Name = "labelHelpText";
             // 
             // _64InjectGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 549);
-            this.Controls.Add(this.tabControlMain);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(700, 588);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.Controls.Add(this.groupBoxHelp);
+            this.Controls.Add(this.panelMenu);
+            this.Controls.Add(this.panelMain);
+            this.Controls.Add(this.panelSettings);
+            this.Controls.Add(this.panelImages);
+            this.Controls.Add(this.panelPacking);
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.White;
+            this.MaximizeBox = false;
             this.Name = "_64InjectGUI";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "64InjectGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this._64InjectGUI_FormClosing);
-            this.groupBoxImages.ResumeLayout(false);
-            this.groupBoxImages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootDrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootTv)).EndInit();
-            this.tabControlMain.ResumeLayout(false);
-            this.tabPageMain.ResumeLayout(false);
-            this.tabPageMain.PerformLayout();
-            this.groupBoxGameLayout.ResumeLayout(false);
-            this.groupBoxGameLayout.PerformLayout();
+            this.groupBoxVCSettings.ResumeLayout(false);
+            this.groupBoxVCSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZoom)).EndInit();
-            this.tabPageConfig.ResumeLayout(false);
-            this.tabPageConfig.PerformLayout();
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
+            this.panelPacking.ResumeLayout(false);
+            this.panelPacking.PerformLayout();
+            this.panelImages.ResumeLayout(false);
+            this.panelImages.PerformLayout();
+            this.panelSettings.ResumeLayout(false);
+            this.panelSettings.PerformLayout();
+            this.panelMenu.ResumeLayout(false);
+            this.groupBoxHelp.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -780,48 +883,40 @@
         #endregion
 
         private System.Windows.Forms.Button buttonRom;
-        private System.Windows.Forms.Button buttonIni;
+        private System.Windows.Forms.Button buttonConfigFile;
         private System.Windows.Forms.TextBox textBoxShortName;
         private System.Windows.Forms.Label labelRom;
-        private System.Windows.Forms.Label labelIni;
+        private System.Windows.Forms.Label labelConfigFile;
         private System.Windows.Forms.Label labeShortName;
         private System.Windows.Forms.Label labelProductCode;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TextBox textBoxRom;
-        private System.Windows.Forms.TextBox textBoxIni;
-        private System.Windows.Forms.Button buttonInject;
-        private System.Windows.Forms.GroupBox groupBoxImages;
+        private System.Windows.Forms.TextBox textBoxConfigFile;
+        private System.Windows.Forms.Button buttonInjectPack;
         private System.Windows.Forms.Button buttonIcon;
         private System.Windows.Forms.Button buttonBootTv;
         private System.Windows.Forms.PictureBox pictureBoxBootTv;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
-        private System.Windows.Forms.TabControl tabControlMain;
-        private System.Windows.Forms.TabPage tabPageMain;
-        private System.Windows.Forms.TabPage tabPageConfig;
         private System.Windows.Forms.Label labelCommonKey;
         private System.Windows.Forms.TextBox textBoxCommonKey;
-        private System.Windows.Forms.Button buttonBaseFrom;
-        private System.Windows.Forms.Button buttonIniDir;
-        private System.Windows.Forms.Button buttonRomDir;
-        private System.Windows.Forms.TextBox textBoxBaseFrom;
-        private System.Windows.Forms.TextBox textBoxIniDir;
-        private System.Windows.Forms.TextBox textBoxRomDir;
-        private System.Windows.Forms.CheckBox checkBoxAskBase;
-        private System.Windows.Forms.CheckBox checkBoxIniDir;
-        private System.Windows.Forms.CheckBox checkBoxRomDir;
+        private System.Windows.Forms.Button buttonLoadBase;
+        private System.Windows.Forms.Button buttonConfigFilesPath;
+        private System.Windows.Forms.Button buttonRomPath;
+        private System.Windows.Forms.TextBox textBoxConfigFilesPath;
+        private System.Windows.Forms.TextBox textBoxRomPath;
+        private System.Windows.Forms.CheckBox checkBoxConfigFilesPath;
+        private System.Windows.Forms.CheckBox checkBoxRomPath;
         private System.Windows.Forms.TextBox textBoxLNLine2;
         private System.Windows.Forms.TextBox textBoxLNLine1;
         private System.Windows.Forms.CheckBox checkBoxLongName;
         private System.Windows.Forms.Label labelTitleId;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
-        private System.Windows.Forms.CheckBox checkBoxImagesDir;
-        private System.Windows.Forms.Button buttonImagesDir;
-        private System.Windows.Forms.TextBox textBoxImagesDir;
+        private System.Windows.Forms.CheckBox checkBoxImagesPath;
+        private System.Windows.Forms.Button buttonImagesPath;
+        private System.Windows.Forms.TextBox textBoxImagesPath;
         private System.Windows.Forms.Panel panelValidKey;
         private System.Windows.Forms.Label labelLoadedBase;
-        private System.Windows.Forms.Label labelBaseFrom;
         private System.Windows.Forms.Panel panelLoadedBase;
-        private System.Windows.Forms.CheckBox checkBoxPackUpResult;
         private System.Windows.Forms.PictureBox pictureBoxBootDrc;
         private System.Windows.Forms.Button buttonBootDrc;
         private System.Windows.Forms.Label labelBy;
@@ -835,6 +930,23 @@
         private System.Windows.Forms.Label labelZoom;
         private System.Windows.Forms.CheckBox checkBoxWidescreen;
         private System.Windows.Forms.CheckBox checkBoxDarkFilter;
-        private System.Windows.Forms.GroupBox groupBoxGameLayout;
+        private System.Windows.Forms.GroupBox groupBoxVCSettings;
+        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.Panel panelPacking;
+        private System.Windows.Forms.Button buttonMain;
+        private System.Windows.Forms.Button buttonImages;
+        private System.Windows.Forms.Panel panelImages;
+        private System.Windows.Forms.Panel panelSettings;
+        private System.Windows.Forms.Button buttonPacking;
+        private System.Windows.Forms.Button buttonSettings;
+        private System.Windows.Forms.Panel panelMenu;
+        private System.Windows.Forms.Button buttonInjectNotPack;
+        private System.Windows.Forms.GroupBox groupBoxHelp;
+        private System.Windows.Forms.Label labelHelpText;
+        private System.Windows.Forms.TextBox textBoxLog;
+        private System.Windows.Forms.ComboBox comboBoxLanguage;
+        private System.Windows.Forms.Label labelLanguage;
+        private System.Windows.Forms.CheckBox checkBoxHelp;
+        private System.Windows.Forms.Panel panelPackingQuestion;
     }
 }

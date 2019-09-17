@@ -10,7 +10,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.3 debug"; //CllVersionReplace "major.minor stability"
+        public const string Release = "1.5 debug"; //CllVersionReplace "major.minor stability"
 
         public string BasePath;
         public string ShortName;
@@ -182,7 +182,7 @@ namespace _64Inject
             if (_continue)
                 Cll.Log.WriteLine("Injection completed successfully!");
             else
-                Cll.Log.WriteLine("The injection failed.");
+                Cll.Log.WriteLine("The injection failed.\nCheck the log file \"" + Cll.Log.Filename + "\".");
 
             return _continue;
         }
@@ -549,18 +549,26 @@ namespace _64Inject
                 uint hash = Cll.Security.ComputeCRC32(fs);
                 fs.Close();
 
-                if (hash == VCN64.DonkeyKong64.HashCRC32)
-                    return VCN64.DonkeyKong64;
+                if (hash == VCN64.DonkeyKong64U.HashCRC32)
+                    return VCN64.DonkeyKong64U;
+                else if (hash == VCN64.DonkeyKong64J.HashCRC32)
+                    return VCN64.DonkeyKong64J;
                 else if (hash == VCN64.Ocarina.HashCRC32)
                     return VCN64.Ocarina;
                 else if (hash == VCN64.PaperMario.HashCRC32)
                     return VCN64.PaperMario;
-                else if (hash == VCN64.Kirby64.HashCRC32)
-                    return VCN64.Kirby64;
-                else if (hash == VCN64.MarioTennis.HashCRC32)
-                    return VCN64.MarioTennis;
-                else if (hash == VCN64.MarioGolf.HashCRC32)
-                    return VCN64.MarioGolf;
+                else if (hash == VCN64.Kirby64J.HashCRC32)
+                    return VCN64.Kirby64J;
+                else if (hash == VCN64.Kirby64U.HashCRC32)
+                    return VCN64.Kirby64U;
+                else if (hash == VCN64.MarioTennisJ.HashCRC32)
+                    return VCN64.MarioTennisJ;
+                else if (hash == VCN64.MarioTennisU.HashCRC32)
+                    return VCN64.MarioTennisU;
+                else if (hash == VCN64.MarioGolfJ.HashCRC32)
+                    return VCN64.MarioGolfJ;
+                else if (hash == VCN64.MarioGolfU.HashCRC32)
+                    return VCN64.MarioGolfU;
                 else if (hash == VCN64.StarFox64.HashCRC32)
                     return VCN64.StarFox64;
                 else if (hash == VCN64.SinAndP.HashCRC32)
@@ -569,14 +577,20 @@ namespace _64Inject
                     return VCN64.MarioKart64;
                 else if (hash == VCN64.YoshiStory.HashCRC32)
                     return VCN64.YoshiStory;
-                else if (hash == VCN64.WaveRace64.HashCRC32)
-                    return VCN64.WaveRace64;
-                else if (hash == VCN64.Majora.HashCRC32)
-                    return VCN64.Majora;
+                else if (hash == VCN64.WaveRace64J.HashCRC32)
+                    return VCN64.WaveRace64J;
+                else if (hash == VCN64.WaveRace64U.HashCRC32)
+                    return VCN64.WaveRace64U;
+                else if (hash == VCN64.MajoraJ.HashCRC32)
+                    return VCN64.MajoraJ;
+                else if (hash == VCN64.MajoraU.HashCRC32)
+                    return VCN64.MajoraU;
                 else if (hash == VCN64.PokemonSnap.HashCRC32)
                     return VCN64.PokemonSnap;
                 else if (hash == VCN64.MarioParty2.HashCRC32)
                     return VCN64.MarioParty2;
+                else if (hash == VCN64.CustomRoboV2.HashCRC32)
+                    return VCN64.CustomRoboV2;
                 else if (hash == VCN64.OgreBattle64.HashCRC32)
                     return VCN64.OgreBattle64;
                 else if (hash == VCN64.Excitebike64.HashCRC32)
@@ -584,7 +598,10 @@ namespace _64Inject
                 else if (hash == VCN64.FZeroX.HashCRC32)
                     return VCN64.FZeroX;
                 else
+                {
+                    Cll.Log.WriteLine("The base is valid but was not defined in the program code.");
                     return new VCN64(hash, "", "**Unidentified**");
+                }
             }
             else
                 return null;
@@ -610,7 +627,23 @@ namespace _64Inject
                 File.Exists(path + "\\meta\\meta.xml"))
                 return true;
             else
+            {
+                Cll.Log.WriteLine("The base is invalid.");
+                Cll.Log.WriteLine("Some of the following files or folders are missing:");
+                Cll.Log.WriteLine(path + "\\code\\app.xml");
+                Cll.Log.WriteLine(path + "\\code\\cos.xml");
+                Cll.Log.WriteLine(path + "\\code\\VESSEL.rpx");
+                Cll.Log.WriteLine(path + "\\content\\config");
+                Cll.Log.WriteLine(path + "\\content\\rom");
+                Cll.Log.WriteLine(path + "\\content\\BuildInfo.txt");
+                Cll.Log.WriteLine(path + "\\content\\config.ini");
+                Cll.Log.WriteLine(path + "\\content\\FrameLayout.arc");
+                Cll.Log.WriteLine(path + "\\meta\\iconTex.tga");
+                Cll.Log.WriteLine(path + "\\meta\\bootTvTex.tga");
+                Cll.Log.WriteLine(path + "\\meta\\bootDrcTex.tga");
+                Cll.Log.WriteLine(path + "\\meta\\meta.xml");
                 return false;
+            }
         }
 
         private bool IsValidEncryptedBase(string path)
@@ -632,11 +665,32 @@ namespace _64Inject
 
                     if (cos_argstr.InnerText == "VESSEL.rpx")
                         return true;
+                    else
+                    {
+                        Cll.Log.WriteLine("\"" + path + "\" does not contain a N64 Wii U VC game.");
+                        return false;
+                    }
                 }
-                else if(name != null)
+                else if (name != null)
+                {
+                    Cll.Log.WriteLine("The NUS CONTENT does not contains \"cos.xml\" file.");
                     Directory.Delete(name, true);
+                    return false;
+                }
+                else
+                {
+                    Cll.Log.WriteLine("JNUSToolWrapper could not decipher the NUS CONTENT.");
+                    return false;
+                }
             }
-            return false;
+            else
+            {
+                Cll.Log.WriteLine("Some of the following files are missing:");
+                Cll.Log.WriteLine(path + "\\title.tmd");
+                Cll.Log.WriteLine(path + "\\title.tik");
+                Cll.Log.WriteLine(path + "\\title.cert");
+                return false;
+            }
         }
 
         public bool IsValidCode(string code)

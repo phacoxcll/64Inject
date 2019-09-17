@@ -14,7 +14,8 @@ namespace Cll
             All
         }
 
-        private static String _filename;
+        private static string _filename;
+        public static string Filename { get { return _filename != null ? _filename : ""; } }
         public static void SaveIn(String filename, bool clear = true)
         {
             if (filename != null && filename.Length > 0)

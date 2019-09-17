@@ -197,6 +197,16 @@
     </Compile>
     <Compile Include="64Injector.cs" />
     <Compile Include="BootImage.cs" />
+    <Compile Include="HelpString.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HelpString.resx</DependentUpon>
+    </Compile>
+    <Compile Include="HelpString.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HelpString.es.resx</DependentUpon>
+    </Compile>
     <Compile Include="IconImage.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Program.cs" />
@@ -206,6 +216,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="RomN64.cs" />
     <Compile Include="NusContent.cs" />
     <Compile Include="Security.cs" />
@@ -213,9 +228,20 @@
     <Compile Include="VCN64.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="64InjectGUI.es.resx">
+      <DependentUpon>64InjectGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="64InjectGUI.resx">
       <DependentUpon>64InjectGUI.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpString.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HelpString.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpString.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HelpString.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -224,6 +250,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\x-mark-16.png" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\question.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

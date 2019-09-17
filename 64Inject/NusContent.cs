@@ -109,7 +109,7 @@ namespace _64Inject
 
         private static bool IsValidCommonKey(string key)
         {
-            byte[] array = Encoding.ASCII.GetBytes(key);
+            byte[] array = Encoding.ASCII.GetBytes(key.ToUpper());
             uint hash = Cll.Security.ComputeCRC32(array, 0, array.Length);
             if (hash == CommonKeyHashCRC32)
                 return true;
@@ -128,11 +128,11 @@ namespace _64Inject
                         Directory.CreateDirectory("resources\\jnustool");
 
                     StreamWriter sw = File.CreateText("resources\\nuspacker\\encryptKeyWith");
-                    sw.WriteLine(key);
+                    sw.WriteLine(key.ToUpper());
                     sw.Close();
                     sw = File.CreateText("resources\\jnustool\\config");
                     sw.WriteLine(NusContent.JNUSToolConfig.UpdateServer);
-                    sw.WriteLine(key);
+                    sw.WriteLine(key.ToUpper());
                     sw.WriteLine("updatetitles.csv");
                     sw.WriteLine(NusContent.JNUSToolConfig.TAGAYA1);
                     sw.Write(NusContent.JNUSToolConfig.TAGAYA2);
@@ -289,7 +289,7 @@ namespace _64Inject
             }
             catch
             {
-                Console.WriteLine("JNUSToolWrapper: Failed.");
+                Cll.Log.WriteLine("JNUSToolWrapper: Failed.");
             }
             return null;
         }
