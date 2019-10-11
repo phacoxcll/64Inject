@@ -172,7 +172,7 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;buttonConfigFile.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="textBoxShortName.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 29</value>
@@ -250,7 +250,7 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;labelConfigFile.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="labeShortName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -349,7 +349,7 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;textBoxConfigFile.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="buttonInjectPack.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -738,76 +738,31 @@
   <data name="&gt;&gt;pictureBoxBootTv.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;checkBoxDarkFilter.Name" xml:space="preserve">
-    <value>checkBoxDarkFilter</value>
+  <data name="buttonEditConfigFile.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="&gt;&gt;checkBoxDarkFilter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="buttonEditConfigFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 43</value>
   </data>
-  <data name="&gt;&gt;checkBoxDarkFilter.Parent" xml:space="preserve">
+  <data name="buttonEditConfigFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 22</value>
+  </data>
+  <data name="buttonEditConfigFile.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="buttonEditConfigFile.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="&gt;&gt;buttonEditConfigFile.Name" xml:space="preserve">
+    <value>buttonEditConfigFile</value>
+  </data>
+  <data name="&gt;&gt;buttonEditConfigFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonEditConfigFile.Parent" xml:space="preserve">
     <value>groupBoxVCSettings</value>
   </data>
-  <data name="&gt;&gt;checkBoxDarkFilter.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownZoom.Name" xml:space="preserve">
-    <value>numericUpDownZoom</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownZoom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownZoom.Parent" xml:space="preserve">
-    <value>groupBoxVCSettings</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownZoom.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;checkBoxWidescreen.Name" xml:space="preserve">
-    <value>checkBoxWidescreen</value>
-  </data>
-  <data name="&gt;&gt;checkBoxWidescreen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxWidescreen.Parent" xml:space="preserve">
-    <value>groupBoxVCSettings</value>
-  </data>
-  <data name="&gt;&gt;checkBoxWidescreen.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;labelZoom.Name" xml:space="preserve">
-    <value>labelZoom</value>
-  </data>
-  <data name="&gt;&gt;labelZoom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelZoom.Parent" xml:space="preserve">
-    <value>groupBoxVCSettings</value>
-  </data>
-  <data name="&gt;&gt;labelZoom.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="groupBoxVCSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 167</value>
-  </data>
-  <data name="groupBoxVCSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>642, 96</value>
-  </data>
-  <data name="groupBoxVCSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="groupBoxVCSettings.Text" xml:space="preserve">
-    <value>VC Settings</value>
-  </data>
-  <data name="&gt;&gt;groupBoxVCSettings.Name" xml:space="preserve">
-    <value>groupBoxVCSettings</value>
-  </data>
-  <data name="&gt;&gt;groupBoxVCSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBoxVCSettings.Parent" xml:space="preserve">
-    <value>panelMain</value>
-  </data>
-  <data name="&gt;&gt;groupBoxVCSettings.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;buttonEditConfigFile.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="checkBoxDarkFilter.AutoSize" type="System.Boolean, mscorlib">
@@ -835,7 +790,7 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;checkBoxDarkFilter.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="numericUpDownZoom.Location" type="System.Drawing.Point, System.Drawing">
     <value>215, 18</value>
@@ -856,7 +811,7 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;numericUpDownZoom.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="checkBoxWidescreen.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -883,7 +838,7 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;checkBoxWidescreen.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="labelZoom.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -910,7 +865,31 @@
     <value>groupBoxVCSettings</value>
   </data>
   <data name="&gt;&gt;labelZoom.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
+  </data>
+  <data name="groupBoxVCSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 167</value>
+  </data>
+  <data name="groupBoxVCSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>642, 96</value>
+  </data>
+  <data name="groupBoxVCSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="groupBoxVCSettings.Text" xml:space="preserve">
+    <value>VC Settings</value>
+  </data>
+  <data name="&gt;&gt;groupBoxVCSettings.Name" xml:space="preserve">
+    <value>groupBoxVCSettings</value>
+  </data>
+  <data name="&gt;&gt;groupBoxVCSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBoxVCSettings.Parent" xml:space="preserve">
+    <value>panelMain</value>
+  </data>
+  <data name="&gt;&gt;groupBoxVCSettings.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="labelTitleId.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

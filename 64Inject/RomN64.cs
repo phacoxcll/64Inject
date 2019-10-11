@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _64Inject
 {
-    public class RomN64 : IDisposable
+    public class RomN64
     {
         public enum Endian
         {
@@ -13,8 +13,6 @@ namespace _64Inject
             ByteSwapped,
             Indeterminate
         }
-
-        private bool disposed = false;
 
         public int Size
         { private set; get; }
@@ -36,7 +34,7 @@ namespace _64Inject
         public string ProductCode
         { get { return (FormatCode + Id + ContryCode).ToUpper(); } }
         public string ProductCodeVersion
-        { get { return ProductCode + Version.ToString("X1"); } }
+        { get { return ProductCode + Version.ToString("X"); } }
         public bool IsValid
         { private set; get; }
         public uint HashCRC32
@@ -50,6 +48,8 @@ namespace _64Inject
             Id = "??";
             ContryCode = '?';
             Version = 0;
+            IsValid = false;
+            HashCRC32 = 0;
 
             try
             {
@@ -124,28 +124,6 @@ namespace _64Inject
             catch
             {
                 Cll.Log.WriteLine("Error reading ROM.");
-            }
-        }
-
-        ~RomN64()
-        {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                }
-                disposed = true;
             }
         }
 

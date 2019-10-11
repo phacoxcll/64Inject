@@ -53,6 +53,7 @@
             this.buttonBootTv = new System.Windows.Forms.Button();
             this.pictureBoxBootTv = new System.Windows.Forms.PictureBox();
             this.groupBoxVCSettings = new System.Windows.Forms.GroupBox();
+            this.buttonEditConfigFile = new System.Windows.Forms.Button();
             this.checkBoxDarkFilter = new System.Windows.Forms.CheckBox();
             this.numericUpDownZoom = new System.Windows.Forms.NumericUpDown();
             this.checkBoxWidescreen = new System.Windows.Forms.CheckBox();
@@ -369,6 +370,7 @@
             // 
             // groupBoxVCSettings
             // 
+            this.groupBoxVCSettings.Controls.Add(this.buttonEditConfigFile);
             this.groupBoxVCSettings.Controls.Add(this.checkBoxDarkFilter);
             this.groupBoxVCSettings.Controls.Add(this.numericUpDownZoom);
             this.groupBoxVCSettings.Controls.Add(this.labelConfigFile);
@@ -380,6 +382,19 @@
             resources.ApplyResources(this.groupBoxVCSettings, "groupBoxVCSettings");
             this.groupBoxVCSettings.Name = "groupBoxVCSettings";
             this.groupBoxVCSettings.TabStop = false;
+            // 
+            // buttonEditConfigFile
+            // 
+            this.buttonEditConfigFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonEditConfigFile.FlatAppearance.BorderSize = 0;
+            this.buttonEditConfigFile.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonEditConfigFile.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.buttonEditConfigFile, "buttonEditConfigFile");
+            this.buttonEditConfigFile.Name = "buttonEditConfigFile";
+            this.buttonEditConfigFile.UseVisualStyleBackColor = false;
+            this.buttonEditConfigFile.Click += new System.EventHandler(this.buttonEditConfigFile_Click);
+            this.buttonEditConfigFile.MouseEnter += new System.EventHandler(this.buttonEditConfigFile_MouseEnter);
+            this.buttonEditConfigFile.MouseLeave += new System.EventHandler(this.buttonEditConfigFile_MouseLeave);
             // 
             // checkBoxDarkFilter
             // 
@@ -948,5 +963,6 @@
         private System.Windows.Forms.Label labelLanguage;
         private System.Windows.Forms.CheckBox checkBoxHelp;
         private System.Windows.Forms.Panel panelPackingQuestion;
+        private System.Windows.Forms.Button buttonEditConfigFile;
     }
 }

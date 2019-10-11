@@ -154,6 +154,9 @@
   <data name="groupBoxVCSettings.Text" xml:space="preserve">
     <value>Ajustes de la Consola Virtual</value>
   </data>
+  <data name="buttonEditConfigFile.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
   <data name="checkBoxLongName.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
   </data>

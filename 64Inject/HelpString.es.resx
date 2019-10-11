@@ -432,4 +432,10 @@
   <data name="Injection Failed" xml:space="preserve">
     <value>La inyección falló.</value>
   </data>
+  <data name="Edit Config File" xml:space="preserve">
+    <value>Editar archivo de configuración</value>
+  </data>
+  <data name="Edit Config File Description" xml:space="preserve">
+    <value>Crea o modifica el archivo ".ini" de configuración para el juego que quieres inyectar. Lamentablemente, no hay mucha información acerca de lo que hace cada opción. (Recomendado sólo para usuarios avanzados).</value>
+  </data>
 </root>

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
-using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
@@ -241,9 +238,6 @@ namespace _64Inject
                 injector.RomPath = openFileDialog.FileName;
                 textBoxRom.Text = Path.GetFileName(injector.RomPath);
 
-                if (injector.Rom != null)
-                    injector.Rom.Dispose();
-
                 injector.Rom = new RomN64(injector.RomPath);
 
                 if (injector.Rom.IsValid)
@@ -450,7 +444,7 @@ namespace _64Inject
         {
             openFileDialog.FileName = "";
             openFileDialog.FilterIndex = 0;
-            openFileDialog.Filter = "INI file|*.ini|All files|*.*";
+            openFileDialog.Filter = "INI file|*.ini|TXT file|*.txt|All files|*.*";
             if (checkBoxConfigFilesPath.Checked && Directory.Exists(textBoxConfigFilesPath.Text))
                 openFileDialog.InitialDirectory = textBoxConfigFilesPath.Text;
             else
@@ -460,21 +454,67 @@ namespace _64Inject
             {
                 injector.IniPath = openFileDialog.FileName;
 
-                if (!injector.LoadIni(injector.IniPath))
-                {
+                injector.Ini = new VCN64ConfigFile(injector.IniPath);
+
+                if (injector.Ini.IsValid)
+                    textBoxConfigFile.Text = Path.GetFileName(injector.IniPath);
+                else
                     MessageBox.Show(HelpString.Config_File_Invalid,
                         "64Inject", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (injector.BaseIsLoaded && injector.RomIsLoaded)
-                {
+
+                if (injector.BaseIsLoaded && injector.RomIsLoaded)
                     labelTitleId.Text = "Title ID: " + injector.TitleId;
-                    textBoxConfigFile.Text = Path.GetFileName(injector.IniPath);
-                }
-                else
-                    textBoxConfigFile.Text = Path.GetFileName(injector.IniPath);
             }
         }
         
+        private void buttonEditConfigFile_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists("resources\\vcn64configs"))
+                Directory.CreateDirectory("resources\\vcn64configs");
+
+            string input = "";
+            if (injector.IniIsLoaded)
+                input = injector.IniPath;
+
+            StringBuilder output = new StringBuilder("resources\\vcn64configs\\");
+            if (injector.RomIsLoaded)
+            {
+                output.Append(injector.Rom.ProductCodeVersion);
+                output.Append(" (" + injector.Rom.Title + ")");
+            }
+            else            
+                output.Append("TempConfigFile");            
+            output.Append(".ini");
+
+            StringBuilder desc = new StringBuilder();
+            if (textBoxShortName.Text.Length > 0)
+                desc.Append(textBoxShortName.Text);
+            if (desc.Length > 0)
+                desc.Append(" ");
+            if (injector.RomIsLoaded)
+                desc.Append(injector.Rom.ProductCodeVersion);
+
+            VCN64Config.FormEditor editor = new VCN64Config.FormEditor();
+
+            if (editor.ShowDialog(input, output.ToString(), desc.ToString()) == DialogResult.OK)
+            {
+                injector.IniPath = output.ToString();
+
+                injector.Ini = new VCN64ConfigFile(injector.IniPath);
+
+                if (injector.Ini.IsValid)
+                    textBoxConfigFile.Text = Path.GetFileName(injector.IniPath);
+                else
+                    MessageBox.Show(HelpString.Config_File_Invalid,
+                        "64Inject", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                if (injector.BaseIsLoaded && injector.RomIsLoaded)
+                    labelTitleId.Text = "Title ID: " + injector.TitleId;
+            }
+
+            editor.Dispose();
+        }
+
         #endregion
 
         #region Images
@@ -1153,6 +1193,12 @@ namespace _64Inject
             labelHelpText.Text = HelpString.Choose_Config_File_Description;
         }
 
+        private void buttonEditConfigFile_MouseEnter(object sender, EventArgs e)
+        {
+            groupBoxHelp.Text = HelpString.Edit_Config_File;
+            labelHelpText.Text = HelpString.Edit_Config_File_Description;
+        }
+
         private void LabelConfigFile_MouseLeave(object sender, EventArgs e)
         {
             groupBoxHelp.Text = "";
@@ -1166,6 +1212,12 @@ namespace _64Inject
         }
 
         private void ButtonConfigFile_MouseLeave(object sender, EventArgs e)
+        {
+            groupBoxHelp.Text = "";
+            labelHelpText.Text = "";
+        }
+
+        private void buttonEditConfigFile_MouseLeave(object sender, EventArgs e)
         {
             groupBoxHelp.Text = "";
             labelHelpText.Text = "";
@@ -1542,6 +1594,5 @@ namespace _64Inject
         }
 
         #endregion
-
     }
 }

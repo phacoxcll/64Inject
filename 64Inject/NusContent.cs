@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
-using Microsoft.Win32;
 
 namespace _64Inject
 {

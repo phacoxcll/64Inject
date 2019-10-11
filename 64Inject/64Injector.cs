@@ -1,6 +1,5 @@
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
@@ -10,7 +9,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.5 debug"; //CllVersionReplace "major.minor stability"
+        public const string Release = "1.6 debug"; //CllVersionReplace "major.minor stability"
 
         public string BasePath;
         public string ShortName;
@@ -29,11 +28,11 @@ namespace _64Inject
 
         private VCN64 _base;
         public RomN64 Rom;
-        private byte[] _ini;
+        public VCN64ConfigFile Ini;
         public float Scale;
         public BootImage BootTvImg;
         public BootImage BootDrcImg;
-        public IconImage IconImg;        
+        public IconImage IconImg;
 
         public bool BaseIsLoaded
         {
@@ -47,7 +46,7 @@ namespace _64Inject
 
         public bool IniIsLoaded
         {
-            get { return _ini != null; }
+            get { return Ini != null && Ini.IsValid; }
         }
 
         public string LoadedBase
@@ -99,7 +98,7 @@ namespace _64Inject
                 crc >>= 1;
 
                 if (IniIsLoaded)
-                    crc += Cll.Security.ComputeCRC32(_ini, 0, _ini.Length);
+                    crc += Ini.HashCRC32;
                 else
                     crc += Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
                 crc >>= 1;
@@ -139,7 +138,7 @@ namespace _64Inject
 
             _base = GetLoadedBase();
             Rom = null;
-            _ini = null;
+            Ini = null;
             Scale = 1.0F;
             BootTvImg = new BootImage();
             BootDrcImg = new BootImage();
@@ -160,6 +159,9 @@ namespace _64Inject
 
             if (_continue)
                 _continue = InjectMeta();
+
+            if (_continue)
+                _continue = InjectIni();
 
             if (_continue)
                 _continue = InjectRom();
@@ -448,7 +450,7 @@ namespace _64Inject
             return false;
         }
 
-        private bool InjectRom()
+        private bool InjectIni()
         {
             bool injected = true;
 
@@ -459,19 +461,36 @@ namespace _64Inject
                 Directory.CreateDirectory("base\\content\\config");
 
                 Cll.Log.WriteLine("Injecting INI data.");
-                if (IniIsLoaded)
-                {
-                    FileStream fs = File.Open("base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini", FileMode.Create);
-                    fs.Write(_ini, 0, _ini.Length);
-                    fs.Close();
-                    Cll.Log.WriteLine("INI injected.");
-                }
-                else
+                if (!IniIsLoaded)                    
                 {
                     File.Create("base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini").Close();
                     Cll.Log.WriteLine("An empty INI injected.");
                 }
+                else if (VCN64ConfigFile.Copy(IniPath, "base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini"))
+                {
+                    Cll.Log.WriteLine("Injected INI.");
+                }
+                else
+                {
+                    Cll.Log.WriteLine("INI not injected, \"VCN64ConfigFile.Copy\" failed.");
+                    injected = false;
+                }
+            }
+            catch
+            {
+                Cll.Log.WriteLine("Error injecting INI.");
+                injected = false;
+            }
 
+            return injected;
+        }
+
+        private bool InjectRom()
+        {
+            bool injected = true;
+
+            try
+            {
                 Cll.Log.WriteLine("Empty \"base\\content\\rom\" folder.");
                 Directory.Delete("base\\content\\rom", true);
                 Directory.CreateDirectory("base\\content\\rom");
@@ -483,7 +502,7 @@ namespace _64Inject
                 }
                 else
                 {
-                    Cll.Log.WriteLine("ROM not injected, \"ToBigEndian\" failed.");
+                    Cll.Log.WriteLine("ROM not injected, \"RomN64.ToBigEndian\" failed.");
                     injected = false;
                 }
             }
@@ -495,7 +514,6 @@ namespace _64Inject
 
             return injected;
         }
-
 
         #region Loads
 
@@ -525,7 +543,7 @@ namespace _64Inject
             return BaseIsLoaded;
         }
 
-        public bool LoadIni(string filename)
+        /*public bool LoadIni(string filename)
         {
             FileStream fs = File.Open(filename, FileMode.Open);
             _ini = new byte[fs.Length];
@@ -539,7 +557,7 @@ namespace _64Inject
                 _ini = null;
                 return false;
             }
-        }
+        }*/
 
         private VCN64 GetLoadedBase()
         {
@@ -613,37 +631,46 @@ namespace _64Inject
 
         private bool IsValidBase(string path)
         {
-            if (File.Exists(path + "\\code\\app.xml") &&
-                File.Exists(path + "\\code\\cos.xml") &&
-                File.Exists(path + "\\code\\VESSEL.rpx") &&
-                Directory.Exists(path + "\\content\\config") &&
-                Directory.Exists(path + "\\content\\rom") &&
-                File.Exists(path + "\\content\\BuildInfo.txt") &&
-                File.Exists(path + "\\content\\config.ini") &&
-                File.Exists(path + "\\content\\FrameLayout.arc") &&
-                File.Exists(path + "\\meta\\iconTex.tga") &&
-                File.Exists(path + "\\meta\\bootTvTex.tga") &&
-                File.Exists(path + "\\meta\\bootDrcTex.tga") &&
-                File.Exists(path + "\\meta\\meta.xml"))
-                return true;
-            else
+            bool valid = true;
+            string[] folders = {
+                path + "\\content\\config",
+                path + "\\content\\rom"
+            };
+            string[] files = {
+                path + "\\code\\app.xml",
+                path + "\\code\\cos.xml",
+                path + "\\code\\VESSEL.rpx",
+                path + "\\content\\BuildInfo.txt",
+                path + "\\content\\config.ini",
+                path + "\\content\\FrameLayout.arc",
+                path + "\\meta\\iconTex.tga",
+                path + "\\meta\\bootTvTex.tga",
+                path + "\\meta\\bootDrcTex.tga",
+                path + "\\meta\\meta.xml"
+            };
+
+            foreach (string folder in folders)
             {
-                Cll.Log.WriteLine("The base is invalid.");
-                Cll.Log.WriteLine("Some of the following files or folders are missing:");
-                Cll.Log.WriteLine(path + "\\code\\app.xml");
-                Cll.Log.WriteLine(path + "\\code\\cos.xml");
-                Cll.Log.WriteLine(path + "\\code\\VESSEL.rpx");
-                Cll.Log.WriteLine(path + "\\content\\config");
-                Cll.Log.WriteLine(path + "\\content\\rom");
-                Cll.Log.WriteLine(path + "\\content\\BuildInfo.txt");
-                Cll.Log.WriteLine(path + "\\content\\config.ini");
-                Cll.Log.WriteLine(path + "\\content\\FrameLayout.arc");
-                Cll.Log.WriteLine(path + "\\meta\\iconTex.tga");
-                Cll.Log.WriteLine(path + "\\meta\\bootTvTex.tga");
-                Cll.Log.WriteLine(path + "\\meta\\bootDrcTex.tga");
-                Cll.Log.WriteLine(path + "\\meta\\meta.xml");
-                return false;
+                if (!Directory.Exists(folder))
+                {
+                    valid = false;
+                    Cll.Log.WriteLine("This folder is missing: \"" + folder + "\"");
+                }
             }
+
+            foreach (string file in files)
+            {
+                if (!File.Exists(file))
+                {
+                    valid = false;
+                    Cll.Log.WriteLine("This file is missing: \"" + file + "\"");
+                }
+            }
+
+            if (!valid)
+                Cll.Log.WriteLine("The base is invalid.");
+
+            return valid;
         }
 
         private bool IsValidEncryptedBase(string path)

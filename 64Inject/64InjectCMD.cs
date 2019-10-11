@@ -116,7 +116,7 @@ namespace _64Inject
 
         private void ConsoleHelp()
         {
-            Cll.Log.WriteText(global::_64Inject.Properties.Resources.Help, 80, 0, Cll.Log.TabMode.All);
+            Cll.Log.WriteText(Properties.Resources.Help, 80, 0, Cll.Log.TabMode.All);
         }
 
         private bool CreateImage(string[] args)
@@ -875,7 +875,8 @@ namespace _64Inject
             {
                 if (File.Exists(injector.IniPath))
                 {
-                    if (!injector.LoadIni(injector.IniPath))
+                    injector.Ini = new VCN64ConfigFile(injector.IniPath);
+                    if (!injector.Ini.IsValid)
                     {
                         Cll.Log.WriteLine("The INI file is not valid.");
                         return false;
@@ -894,7 +895,8 @@ namespace _64Inject
                     injector.IniPath = injector.InPath + "\\vc.ini";
                     if (File.Exists(injector.IniPath))
                     {
-                        if (!injector.LoadIni(injector.IniPath))
+                        injector.Ini = new VCN64ConfigFile(injector.IniPath);
+                        if (!injector.Ini.IsValid)
                         {
                             Cll.Log.WriteLine("The INI file is not valid.");
                             return false;

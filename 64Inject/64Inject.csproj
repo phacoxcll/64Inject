@@ -12,7 +12,7 @@
     <AssemblyName>64Inject</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -226,6 +226,7 @@
     <Compile Include="Security.cs" />
     <Compile Include="Useful.cs" />
     <Compile Include="VCN64.cs" />
+    <Compile Include="VCN64ConfigFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="64InjectGUI.es.resx">
@@ -260,7 +261,6 @@
     <None Include="Resources\checkmark-16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
     <None Include="Resources\question.png" />
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +284,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\VCN64Config\VCN64Config\VCN64Config.csproj">
+      <Project>{0d3458e2-05e8-4220-a698-65d0dbe38475}</Project>
+      <Name>VCN64Config</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

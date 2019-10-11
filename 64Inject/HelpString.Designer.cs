@@ -304,6 +304,24 @@ namespace _64Inject {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Edit config file.
+        /// </summary>
+        internal static string Edit_Config_File {
+            get {
+                return ResourceManager.GetString("Edit Config File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Create or modify the &quot;.ini&quot; configuration file for the game you want to inject. Unfortunately there is not much information about what each option does. (Recommended for advanced users only)..
+        /// </summary>
+        internal static string Edit_Config_File_Description {
+            get {
+                return ResourceManager.GetString("Edit Config File Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a To enable the buttons in the Packing section you have to choose a ROM, put a name and load a base..
         /// </summary>
         internal static string Enable_Packing {

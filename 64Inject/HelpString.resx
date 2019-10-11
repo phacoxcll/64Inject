@@ -432,4 +432,10 @@
   <data name="Injection Failed" xml:space="preserve">
     <value>The injection failed.</value>
   </data>
+  <data name="Edit Config File" xml:space="preserve">
+    <value>Edit config file</value>
+  </data>
+  <data name="Edit Config File Description" xml:space="preserve">
+    <value>Create or modify the ".ini" configuration file for the game you want to inject. Unfortunately there is not much information about what each option does. (Recommended for advanced users only).</value>
+  </data>
 </root>
