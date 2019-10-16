@@ -185,6 +185,7 @@ namespace _64Inject
                 }
                 catch
                 {
+                    Cll.Log.WriteLine("Error restoring Wii U common key in nuspacker.");
                     return false;
                 }
             }
@@ -203,11 +204,15 @@ namespace _64Inject
                 }
                 catch
                 {
+                    Cll.Log.WriteLine("Error restoring Wii U common key in jnustool.");
                     return false;
                 }
             }
             else
+            {
+                Cll.Log.WriteLine("You have not entered the Wii U common key.");
                 return false;
+            }
         }
         
         public static bool Encrypt(string inputPath, string outputPath)

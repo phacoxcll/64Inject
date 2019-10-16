@@ -9,7 +9,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.6 debug"; //CllVersionReplace "major.minor stability"
+        public const string Release = "1.7 debug"; //CllVersionReplace "major.minor stability"
 
         public string BasePath;
         public string ShortName;
@@ -184,7 +184,7 @@ namespace _64Inject
             if (_continue)
                 Cll.Log.WriteLine("Injection completed successfully!");
             else
-                Cll.Log.WriteLine("The injection failed.\nCheck the log file \"" + Cll.Log.Filename + "\".");
+                Cll.Log.WriteLine("The injection failed.");
 
             return _continue;
         }

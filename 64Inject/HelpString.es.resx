@@ -205,7 +205,7 @@
     <value>Realiza la inyección y copia el resultado en la ruta que selecciones. Para Loadiine.</value>
   </data>
   <data name="Log Description" xml:space="preserve">
-    <value>Una vez realizada una inyección muestra el contenido del archivo de registro del programa.</value>
+    <value>Muestra el contenido del archivo de registro del programa.</value>
   </data>
   <data name="Wii U Common Key Description" xml:space="preserve">
     <value>Clave común para empacar o desempacar los juegos de Wii U.</value>
@@ -310,7 +310,7 @@
     <value>Base error</value>
   </data>
   <data name="Base" xml:space="preserve">
-    <value>base</value>
+    <value>Base</value>
   </data>
   <data name="Config File" xml:space="preserve">
     <value>Archivo de configuración</value>

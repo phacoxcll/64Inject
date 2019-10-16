@@ -610,7 +610,7 @@ namespace _64Inject {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Once an injection is made, it shows the contents of the program log file..
+        ///   Busca una cadena traducida similar a Shows the contents of the program log file..
         /// </summary>
         internal static string Log_Description {
             get {

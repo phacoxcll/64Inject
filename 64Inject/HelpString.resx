@@ -202,7 +202,7 @@
     <value>Perform the injection and copy the result in the path you select. For loadiine.</value>
   </data>
   <data name="Log Description" xml:space="preserve">
-    <value>Once an injection is made, it shows the contents of the program log file.</value>
+    <value>Shows the contents of the program log file.</value>
   </data>
   <data name="Wii U Common Key Description" xml:space="preserve">
     <value>Common key to pack or unpack Wii U games.</value>

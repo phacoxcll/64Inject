@@ -19,7 +19,7 @@ namespace _64Inject
         public _64InjectGUI()
         {
             Cll.Log.SaveIn("64Inject.log");
-            Cll.Log.WriteLine(DateTime.UtcNow.ToString());
+            Cll.Log.WriteLine(DateTime.Now.ToString());
             Cll.Log.WriteLine("64Inject open in GUI mode.");
 
             injector = new _64Injector();
@@ -70,8 +70,8 @@ namespace _64Inject
 
             labelLoadedBase.Text = "Base: " + injector.LoadedBase;
             if (injector.BaseIsLoaded)
-                panelLoadedBase.BackgroundImage = Properties.Resources.checkmark_16;         
-   
+                panelLoadedBase.BackgroundImage = Properties.Resources.checkmark_16;
+
             if (File.Exists("resources\\boot.png"))
             {
                 injector.BootTvImg.Frame = new Bitmap("resources\\boot.png");
@@ -99,7 +99,23 @@ namespace _64Inject
             Cll.Log.WriteLine("Close.");
             Cll.Log.WriteLine("----------------------------------------------------------------");
         }
-        
+
+        private void LoadLogFile()
+        {
+            try
+            {
+                textBoxLog.Clear();
+                StreamReader sr = File.OpenText(Cll.Log.Filename);
+                textBoxLog.AppendText(sr.ReadToEnd());
+                sr.Close();
+                //this.Update();
+            }
+            catch
+            {
+                Cll.Log.WriteLine("Error reading log file.");
+            }
+        }
+
         private void LoadSettings()
         {
             BasePath = Properties.Settings.Default.BasePath;
@@ -132,7 +148,7 @@ namespace _64Inject
 
             textBoxRomPath.Text = Properties.Settings.Default.ROMPath;
             textBoxImagesPath.Text = Properties.Settings.Default.ImagePath;
-            textBoxConfigFilesPath.Text = Properties.Settings.Default.ConfigFilePath;            
+            textBoxConfigFilesPath.Text = Properties.Settings.Default.ConfigFilePath;
 
             checkBoxRomPath.Checked = Properties.Settings.Default.ROMCheck;
             checkBoxImagesPath.Checked = Properties.Settings.Default.ImageCheck;
@@ -199,6 +215,8 @@ namespace _64Inject
 
         private void ButtonPacking_Click(object sender, EventArgs e)
         {
+            LoadLogFile();
+
             buttonMain.BackColor = Color.FromArgb(17, 17, 17);
             buttonImages.BackColor = Color.FromArgb(17, 17, 17);
             buttonPacking.BackColor = Color.FromArgb(16, 110, 190);
@@ -220,7 +238,7 @@ namespace _64Inject
             panelPacking.Visible = false;
             panelSettings.Visible = true;
         }
-        
+
         #region Main
 
         private void buttonRom_Click(object sender, EventArgs e)
@@ -234,7 +252,7 @@ namespace _64Inject
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {                
+            {
                 injector.RomPath = openFileDialog.FileName;
                 textBoxRom.Text = Path.GetFileName(injector.RomPath);
 
@@ -439,7 +457,7 @@ namespace _64Inject
                 labelTitleId.Text = "Title ID: " + injector.TitleId;
             }
         }
-        
+
         private void buttonConfigFile_Click(object sender, EventArgs e)
         {
             openFileDialog.FileName = "";
@@ -466,8 +484,21 @@ namespace _64Inject
                     labelTitleId.Text = "Title ID: " + injector.TitleId;
             }
         }
-        
+
         private void buttonEditConfigFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StartVCN64ConfigEditor();
+            }
+            catch
+            {
+                Cll.Log.WriteLine("Error \"VCN64Config.exe\" program not found.");
+                MessageBox.Show("\"VCN64Config.exe\" program not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void StartVCN64ConfigEditor()
         {
             if (!Directory.Exists("resources\\vcn64configs"))
                 Directory.CreateDirectory("resources\\vcn64configs");
@@ -482,8 +513,8 @@ namespace _64Inject
                 output.Append(injector.Rom.ProductCodeVersion);
                 output.Append(" (" + injector.Rom.Title + ")");
             }
-            else            
-                output.Append("TempConfigFile");            
+            else
+                output.Append("TempConfigFile");
             output.Append(".ini");
 
             StringBuilder desc = new StringBuilder();
@@ -495,7 +526,6 @@ namespace _64Inject
                 desc.Append(injector.Rom.ProductCodeVersion);
 
             VCN64Config.FormEditor editor = new VCN64Config.FormEditor();
-
             if (editor.ShowDialog(input, output.ToString(), desc.ToString()) == DialogResult.OK)
             {
                 injector.IniPath = output.ToString();
@@ -511,7 +541,6 @@ namespace _64Inject
                 if (injector.BaseIsLoaded && injector.RomIsLoaded)
                     labelTitleId.Text = "Title ID: " + injector.TitleId;
             }
-
             editor.Dispose();
         }
 
@@ -776,6 +805,10 @@ namespace _64Inject
 
         private void Inject(bool pack)
         {
+            UpdateBootName();
+            UpdateBootTvPictureBox();
+            UpdateBootDrcPictureBox();
+
             bool _continue = true;
 
             if (textBoxShortName.Text.Length != 0)
@@ -839,11 +872,8 @@ namespace _64Inject
 
                     _continue = injector.Inject();
 
-                    textBoxLog.Clear();
-                    StreamReader sr = File.OpenText(Cll.Log.Filename);
-                    textBoxLog.AppendText(sr.ReadToEnd());
-                    sr.Close();
-                    this.Update();
+                    LoadLogFile();
+
 
                     if (_continue)
                         MessageBox.Show(HelpString.Injection_Successfully,

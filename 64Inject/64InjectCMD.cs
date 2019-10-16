@@ -10,7 +10,7 @@ namespace _64Inject
         public _64InjectCMD()
         {
             Cll.Log.SaveIn("64Inject_log.txt");
-            Cll.Log.WriteLine(DateTime.UtcNow.ToString());
+            Cll.Log.WriteLine(DateTime.Now.ToString());
             Cll.Log.WriteLine("64Inject open in CMD mode.");
 
             injector = new _64Injector();
