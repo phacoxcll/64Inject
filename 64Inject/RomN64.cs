@@ -6,7 +6,7 @@ namespace _64Inject
 {
     public class RomN64
     {
-        public enum Endian
+        public enum Subformat
         {
             BigEndian,
             LittleEndian,
@@ -14,17 +14,18 @@ namespace _64Inject
             Indeterminate
         }
 
-        public int Size
+        public Subformat Endianness
         { private set; get; }
-        public Endian Endianness
+
+        public int Size
         { private set; get; }
         public string Title
         { private set; get; }
         public char FormatCode
         { private set; get; }
-        public string Id
+        public string ShortId
         { private set; get; }
-        public char ContryCode
+        public char RegionCode
         { private set; get; }
         public byte Version
         { private set; get; }
@@ -32,12 +33,12 @@ namespace _64Inject
         public char Revision
         { get { return Version == 0? ' ' :(char)(Version + 0x40); } }
         public string ProductCode
-        { get { return (FormatCode + Id + ContryCode).ToUpper(); } }
+        { get { return (FormatCode + ShortId + RegionCode).ToUpper(); } }
         public string ProductCodeVersion
         { get { return ProductCode + Version.ToString("X"); } }
         public bool IsValid
         { private set; get; }
-        public uint HashCRC32
+        public ushort HashCRC16
         { private set; get; }
 
         public RomN64(string filename)
@@ -45,15 +46,15 @@ namespace _64Inject
             Size = 0;
             Title = "";
             FormatCode = '?';
-            Id = "??";
-            ContryCode = '?';
+            ShortId = "??";
+            RegionCode = '?';
             Version = 0;
             IsValid = false;
-            HashCRC32 = 0;
+            HashCRC16 = 0;
 
             try
             {
-                Cll.Log.WriteLine("Validating ROM.");
+                Cll.Log.WriteLine("Validating N64 ROM.");
 
                 byte[] header = new byte[0x40];
                 FileStream fs = File.Open(filename, FileMode.Open);
@@ -61,72 +62,74 @@ namespace _64Inject
                 fs.Read(header, 0, 0x40);
                 fs.Close();
 
-                if (Size > 0xFFF)
+                Endianness = GetFormat(header);
+
+                if (Endianness != Subformat.Indeterminate && Size % 4 == 0)
                 {
-                    if (header[0] == 0x80 &&
-                        header[1] == 0x37 &&
-                        header[2] == 0x12 &&
-                        header[3] == 0x40)
-                        Endianness = Endian.BigEndian;
-                    else if (header[0] == 0x37 &&
-                        header[1] == 0x80 &&
-                        header[2] == 0x40 &&
-                        header[3] == 0x12)
-                        Endianness = Endian.ByteSwapped;
-                    else if (header[0] == 0x40 &&
-                        header[1] == 0x12 &&
-                        header[2] == 0x37 &&
-                        header[3] == 0x80)
-                        Endianness = Endian.LittleEndian;
-                    else
-                        Endianness = Endian.Indeterminate;
+                    byte uniqueCode;
+                    byte[] shortTitle = new byte[2];
+                    byte region;
 
-                    if (Endianness != Endian.Indeterminate && Size % 4 == 0)
-                    {
-                        IsValid = true;
+                    header = ToBigEndian(header, Endianness);
 
-                        byte formatCode;
-                        byte[] id = new byte[2];
-                        byte contryCode;
+                    uniqueCode = header[0x3B];
+                    shortTitle[0] = header[0x3C];
+                    shortTitle[1] = header[0x3D];
+                    region = header[0x3E];
+                    Version = header[0x3F];
+                    FormatCode = (char)uniqueCode;
+                    ShortId = Encoding.ASCII.GetString(shortTitle);
+                    RegionCode = (char)region;
 
-                        header = ToBigEndian(header, Endianness);
+                    byte[] titleBytes = new byte[20];
+                    Array.Copy(header, 0x20, titleBytes, 0, 20);
+                    int count = 20;
+                    while (titleBytes[--count] == 0x20 && count > 0) ;
+                    Title = Encoding.ASCII.GetString(titleBytes, 0, count + 1);
 
-                        formatCode = header[0x3B];
-                        id[0] = header[0x3C];
-                        id[1] = header[0x3D];
-                        contryCode = header[0x3E];
-                        Version = header[0x3F];
-                        FormatCode = (char)formatCode;
-                        Id = Encoding.ASCII.GetString(id);
-                        ContryCode = (char)contryCode;
+                    fs = File.Open(filename, FileMode.Open);
+                    //Size = (int)fs.Length;
+                    HashCRC16 = Cll.Security.ComputeCRC16(fs);
+                    fs.Close();
 
-                        byte[] titleBytes = new byte[20];
-                        Array.Copy(header, 0x20, titleBytes, 0, 20);
-                        int count = 20;
-                        while (titleBytes[--count] == 0x20 && count > 0) ;
-                        Title = Encoding.ASCII.GetString(titleBytes, 0, count + 1);
-
-                        fs = File.Open(filename, FileMode.Open);
-                        HashCRC32 = Cll.Security.ComputeCRC32(fs);
-                        fs.Close();
-
-                        Cll.Log.WriteLine("The ROM is valid and its metadata has been loaded.");
-                    }
-                    else
-                        Cll.Log.WriteLine("It was not possible to determine the ROM format.");
+                    IsValid = true;
+                    Cll.Log.WriteLine("The N64 ROM is valid and its metadata has been loaded.");
                 }
                 else
                 {
                     Size = 0;
-                    Cll.Log.WriteLine("The ROM is too small to be valid.");
+                    Cll.Log.WriteLine("It was not possible to determine the N64 ROM format.");
                 }
             }
             catch
             {
-                Cll.Log.WriteLine("Error reading ROM.");
+                Cll.Log.WriteLine("Error reading N64 ROM.");
             }
         }
 
+        private static Subformat GetFormat(byte[] header)
+        {
+            Subformat format = Subformat.Indeterminate;
+
+            if (header[0] == 0x80 &&
+                header[1] == 0x37 &&
+                header[2] == 0x12 &&
+                header[3] == 0x40)
+                format = Subformat.BigEndian;
+            else if (header[0] == 0x37 &&
+                header[1] == 0x80 &&
+                header[2] == 0x40 &&
+                header[3] == 0x12)
+                format = Subformat.ByteSwapped;
+            else if (header[0] == 0x40 &&
+                header[1] == 0x12 &&
+                header[2] == 0x37 &&
+                header[3] == 0x80)
+                format = Subformat.LittleEndian;
+
+            return format;
+        }
+        
         public static bool ToBigEndian(string source, string destination)
         {
             RomN64 rom = new RomN64(source);
@@ -152,14 +155,14 @@ namespace _64Inject
             return false;
         }
 
-        private static byte[] ToBigEndian(byte[] array, Endian endianness)
+        private static byte[] ToBigEndian(byte[] array, Subformat endianness)
         {
             if (array.Length % 4 != 0)
                 throw new Exception("ToBigEndian: Invalid array length.");
 
             byte[] bigEndian = new byte[4];
 
-            if (endianness == Endian.ByteSwapped)
+            if (endianness == Subformat.ByteSwapped)
             {
                 for (int i = 0; i < array.Length / 4; i++)
                 {
@@ -174,7 +177,7 @@ namespace _64Inject
                     array[(i * 4) + 3] = bigEndian[3];
                 }
             }
-            else if (endianness == Endian.LittleEndian)
+            else if (endianness == Subformat.LittleEndian)
             {
                 for (int i = 0; i < array.Length / 4; i++)
                 {

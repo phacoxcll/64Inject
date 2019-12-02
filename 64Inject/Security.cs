@@ -179,5 +179,12 @@ namespace Cll
             source.Read(array, 0, array.Length);
             return ComputeCRC32(array, 0, array.Length);
         }
+
+        public static ushort ComputeCRC16(Stream source)
+        {
+            byte[] array = new byte[source.Length];
+            source.Read(array, 0, array.Length);
+            return ComputeCRC16_ARC(array, 0, array.Length);
+        }
     }
 }

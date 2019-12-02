@@ -9,7 +9,7 @@ namespace _64Inject
 {
     public class _64Injector
     {
-        public const string Release = "1.7 debug"; //CllVersionReplace "major.minor stability"
+        public const string Release = "1.8 debug"; //CllVersionReplace "major.minor stability"
 
         public string BasePath;
         public string ShortName;
@@ -84,37 +84,25 @@ namespace _64Inject
         {
             get
             {
-                ulong crc;
+                if (BaseIsLoaded && RomIsLoaded)
+                {
+                    uint crc = Rom.HashCRC16;
 
-                if (BaseIsLoaded)
-                    crc = _base.HashCRC32;
+                    if (IniIsLoaded)
+                        crc += Ini.HashCRC16;
+                    else
+                        crc += Cll.Security.ComputeCRC16_ARC(new byte[] { }, 0, 0);
+                    crc >>= 1;
+
+                    int flags = _base.Index;
+                    flags |= DarkFilter ? 0x80 : 0;
+                    flags |= Widescreen ? 0x40 : 0;
+                    flags |= Scale != 1.0F ? 0x20 : 0;
+
+                    return "0005000064" + crc.ToString("X4") + ((byte)(flags)).ToString("X2");
+                }
                 else
-                    crc = Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
-
-                if (RomIsLoaded)
-                    crc += Rom.HashCRC32;                    
-                else
-                    crc += Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
-                crc >>= 1;
-
-                if (IniIsLoaded)
-                    crc += Ini.HashCRC32;
-                else
-                    crc += Cll.Security.ComputeCRC32(new byte[] { }, 0, 0);
-                crc >>= 1;
-
-                byte[] b = BitConverter.GetBytes((uint)crc);
-                UInt16 id = (UInt16)((((b[3] << 8) + (b[2])) + ((b[1] << 8) + (b[0]))) >> 1);
-
-                int flags = 0;
-                flags |= DarkFilter ? 0x80 : 0;
-                flags |= Widescreen ? 0x40 : 0;
-                flags |= Scale != 1.0F ? 0x20 : 0;
-                flags |= IconImg.IsDefault ? 0 : 0x10;
-                flags |= BootTvImg.IsDefault ? 0 : 8;
-                flags |= BootDrcImg.IsDefault ? 0 : 4;                
-
-                return "0005000064" + id.ToString("X4") + ((byte)(flags)).ToString("X2");
+                    return "";
             }
         }
         
@@ -149,7 +137,13 @@ namespace _64Inject
         {
             _base = GetLoadedBase();
             bool _continue = BaseIsLoaded;
-            Cll.Log.WriteLine("The base is ready: " + _continue.ToString());
+            if (_continue)
+            {
+                Cll.Log.WriteLine("Base info:");
+                Cll.Log.WriteLine(_base.ToString());
+            }
+            else
+                Cll.Log.WriteLine("The base is not loaded.");
 
             if (_continue)
                 _continue = InjectGameLayout();
@@ -417,8 +411,30 @@ namespace _64Inject
                 XmlNode meta_product_code = xmlMeta.SelectSingleNode("menu/product_code");
                 XmlNode meta_title_id = xmlMeta.SelectSingleNode("menu/title_id");
                 XmlNode meta_group_id = xmlMeta.SelectSingleNode("menu/group_id");
+                XmlNode meta_longname_ja = xmlMeta.SelectSingleNode("menu/longname_ja");
                 XmlNode meta_longname_en = xmlMeta.SelectSingleNode("menu/longname_en");
+                XmlNode meta_longname_fr = xmlMeta.SelectSingleNode("menu/longname_fr");
+                XmlNode meta_longname_de = xmlMeta.SelectSingleNode("menu/longname_de");
+                XmlNode meta_longname_it = xmlMeta.SelectSingleNode("menu/longname_it");
+                XmlNode meta_longname_es = xmlMeta.SelectSingleNode("menu/longname_es");
+                XmlNode meta_longname_zhs = xmlMeta.SelectSingleNode("menu/longname_zhs");
+                XmlNode meta_longname_ko = xmlMeta.SelectSingleNode("menu/longname_ko");
+                XmlNode meta_longname_nl = xmlMeta.SelectSingleNode("menu/longname_nl");
+                XmlNode meta_longname_pt = xmlMeta.SelectSingleNode("menu/longname_pt");
+                XmlNode meta_longname_ru = xmlMeta.SelectSingleNode("menu/longname_ru");
+                XmlNode meta_longname_zht = xmlMeta.SelectSingleNode("menu/longname_zht");
+                XmlNode meta_shortname_ja = xmlMeta.SelectSingleNode("menu/shortname_ja");
                 XmlNode meta_shortname_en = xmlMeta.SelectSingleNode("menu/shortname_en");
+                XmlNode meta_shortname_fr = xmlMeta.SelectSingleNode("menu/shortname_fr");
+                XmlNode meta_shortname_de = xmlMeta.SelectSingleNode("menu/shortname_de");
+                XmlNode meta_shortname_it = xmlMeta.SelectSingleNode("menu/shortname_it");
+                XmlNode meta_shortname_es = xmlMeta.SelectSingleNode("menu/shortname_es");
+                XmlNode meta_shortname_zhs = xmlMeta.SelectSingleNode("menu/shortname_zhs");
+                XmlNode meta_shortname_ko = xmlMeta.SelectSingleNode("menu/shortname_ko");
+                XmlNode meta_shortname_nl = xmlMeta.SelectSingleNode("menu/shortname_nl");
+                XmlNode meta_shortname_pt = xmlMeta.SelectSingleNode("menu/shortname_pt");
+                XmlNode meta_shortname_ru = xmlMeta.SelectSingleNode("menu/shortname_ru");
+                XmlNode meta_shortname_zht = xmlMeta.SelectSingleNode("menu/shortname_zht");
 
                 app_title_id.InnerText = titleId;
                 app_group_id.InnerText = "0000" + id[5].ToString("X2") + id[6].ToString("X2");
@@ -426,8 +442,30 @@ namespace _64Inject
                 meta_product_code.InnerText = "WUP-N-" + Rom.ProductCode;
                 meta_title_id.InnerText = titleId;
                 meta_group_id.InnerText = "0000" + id[5].ToString("X2") + id[6].ToString("X2");
+                meta_longname_ja.InnerText = LongName;
                 meta_longname_en.InnerText = LongName;
+                meta_longname_fr.InnerText = LongName;
+                meta_longname_de.InnerText = LongName;
+                meta_longname_it.InnerText = LongName;
+                meta_longname_es.InnerText = LongName;
+                meta_longname_zhs.InnerText = LongName;
+                meta_longname_ko.InnerText = LongName;
+                meta_longname_nl.InnerText = LongName;
+                meta_longname_pt.InnerText = LongName;
+                meta_longname_ru.InnerText = LongName;
+                meta_longname_zht.InnerText = LongName;
+                meta_shortname_ja.InnerText = ShortName;
                 meta_shortname_en.InnerText = ShortName;
+                meta_shortname_fr.InnerText = ShortName;
+                meta_shortname_de.InnerText = ShortName;
+                meta_shortname_it.InnerText = ShortName;
+                meta_shortname_es.InnerText = ShortName;
+                meta_shortname_zhs.InnerText = ShortName;
+                meta_shortname_ko.InnerText = ShortName;
+                meta_shortname_nl.InnerText = ShortName;
+                meta_shortname_pt.InnerText = ShortName;
+                meta_shortname_ru.InnerText = ShortName;
+                meta_shortname_zht.InnerText = ShortName;
 
                 XmlWriter app = XmlWriter.Create("base\\code\\app.xml", xmlSettings);
                 XmlWriter meta = XmlWriter.Create("base\\meta\\meta.xml", xmlSettings);
@@ -463,11 +501,15 @@ namespace _64Inject
                 Cll.Log.WriteLine("Injecting INI data.");
                 if (!IniIsLoaded)                    
                 {
+                    Cll.Log.WriteLine("Injecting an empty INI.");
                     File.Create("base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini").Close();
-                    Cll.Log.WriteLine("An empty INI injected.");
+                    Cll.Log.WriteLine("In: \"base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini\"");
+                    Cll.Log.WriteLine("INI injected.");
                 }
                 else if (VCN64ConfigFile.Copy(IniPath, "base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini"))
                 {
+                    Cll.Log.WriteLine("CRC16: " + Ini.HashCRC16.ToString("X4"));
+                    Cll.Log.WriteLine("In: \"base\\content\\config\\U" + Rom.ProductCodeVersion + ".z64.ini\"");
                     Cll.Log.WriteLine("Injected INI.");
                 }
                 else
@@ -498,6 +540,8 @@ namespace _64Inject
                 Cll.Log.WriteLine("Injecting ROM.");
                 if (RomN64.ToBigEndian(RomPath, "base\\content\\rom\\U" + Rom.ProductCodeVersion + ".z64"))
                 {
+                    Cll.Log.WriteLine("CRC16: " + Rom.HashCRC16.ToString("X4"));
+                    Cll.Log.WriteLine("In: \"base\\content\\rom\\U" + Rom.ProductCodeVersion + ".z64\"");
                     Cll.Log.WriteLine("Injected ROM.");
                 }
                 else
@@ -543,22 +587,6 @@ namespace _64Inject
             return BaseIsLoaded;
         }
 
-        /*public bool LoadIni(string filename)
-        {
-            FileStream fs = File.Open(filename, FileMode.Open);
-            _ini = new byte[fs.Length];
-            fs.Read(_ini, 0, _ini.Length);
-            fs.Close();
-
-            if (Useful.IsUTF8(_ini))
-                return true;
-            else
-            {
-                _ini = null;
-                return false;
-            }
-        }*/
-
         private VCN64 GetLoadedBase()
         {
             if (IsValidBase("base"))
@@ -567,58 +595,35 @@ namespace _64Inject
                 uint hash = Cll.Security.ComputeCRC32(fs);
                 fs.Close();
 
-                if (hash == VCN64.DonkeyKong64U.HashCRC32)
-                    return VCN64.DonkeyKong64U;
-                else if (hash == VCN64.DonkeyKong64J.HashCRC32)
-                    return VCN64.DonkeyKong64J;
-                else if (hash == VCN64.Ocarina.HashCRC32)
-                    return VCN64.Ocarina;
-                else if (hash == VCN64.PaperMario.HashCRC32)
-                    return VCN64.PaperMario;
-                else if (hash == VCN64.Kirby64J.HashCRC32)
-                    return VCN64.Kirby64J;
-                else if (hash == VCN64.Kirby64U.HashCRC32)
-                    return VCN64.Kirby64U;
-                else if (hash == VCN64.MarioTennisJ.HashCRC32)
-                    return VCN64.MarioTennisJ;
-                else if (hash == VCN64.MarioTennisU.HashCRC32)
-                    return VCN64.MarioTennisU;
-                else if (hash == VCN64.MarioGolfJ.HashCRC32)
-                    return VCN64.MarioGolfJ;
-                else if (hash == VCN64.MarioGolfU.HashCRC32)
-                    return VCN64.MarioGolfU;
-                else if (hash == VCN64.StarFox64.HashCRC32)
-                    return VCN64.StarFox64;
-                else if (hash == VCN64.SinAndP.HashCRC32)
-                    return VCN64.SinAndP;
-                else if (hash == VCN64.MarioKart64.HashCRC32)
-                    return VCN64.MarioKart64;
-                else if (hash == VCN64.YoshiStory.HashCRC32)
-                    return VCN64.YoshiStory;
-                else if (hash == VCN64.WaveRace64J.HashCRC32)
-                    return VCN64.WaveRace64J;
-                else if (hash == VCN64.WaveRace64U.HashCRC32)
-                    return VCN64.WaveRace64U;
-                else if (hash == VCN64.MajoraJ.HashCRC32)
-                    return VCN64.MajoraJ;
-                else if (hash == VCN64.MajoraU.HashCRC32)
-                    return VCN64.MajoraU;
-                else if (hash == VCN64.PokemonSnap.HashCRC32)
-                    return VCN64.PokemonSnap;
-                else if (hash == VCN64.MarioParty2.HashCRC32)
-                    return VCN64.MarioParty2;
-                else if (hash == VCN64.CustomRoboV2.HashCRC32)
-                    return VCN64.CustomRoboV2;
-                else if (hash == VCN64.OgreBattle64.HashCRC32)
-                    return VCN64.OgreBattle64;
-                else if (hash == VCN64.Excitebike64.HashCRC32)
-                    return VCN64.Excitebike64;
-                else if (hash == VCN64.FZeroX.HashCRC32)
-                    return VCN64.FZeroX;
-                else
+                switch (hash)
                 {
-                    Cll.Log.WriteLine("The base is valid but was not defined in the program code.");
-                    return new VCN64(hash, "", "**Unidentified**");
+                    case 0xFB245F10: return VCN64.Title01;
+                    case 0x8EF60284: return VCN64.Title02;
+                    case 0xF042E451: return VCN64.Title03;
+                    case 0xAE933905: return VCN64.Title04;
+                    case 0xCEB7A833: return VCN64.Title05;
+                    case 0x7EB7B97D: return VCN64.Title06;
+                    case 0x17BCC968: return VCN64.Title07;
+                    case 0x05F20995: return VCN64.Title08;
+                    case 0x8D3C196C: return VCN64.Title09;
+                    case 0x307DCE21: return VCN64.Title10;
+                    case 0xF41BC127: return VCN64.Title11;
+                    case 0x36C0456E: return VCN64.Title12;
+                    case 0x5559F831: return VCN64.Title13;
+                    case 0xD554D2E4: return VCN64.Title14;
+                    case 0x04F7D67F: return VCN64.Title15;
+                    case 0xC376B949: return VCN64.Title16;
+                    case 0xEE8855FF: return VCN64.Title17;
+                    case 0x71FC1731: return VCN64.Title18;
+                    case 0x967E7DF0: return VCN64.Title19;
+                    case 0xBE3CEC5F: return VCN64.Title20;
+                    case 0x89F2BC09: return VCN64.Title21;
+                    case 0xFED1FB48: return VCN64.Title22;
+                    case 0x724C4F5D: return VCN64.Title23;
+                    case 0x2AF3C23B: return VCN64.Title24;
+                    default:
+                        Cll.Log.WriteLine("The base is valid but was not defined in the program code.");
+                        return new VCN64(hash);
                 }
             }
             else
@@ -718,22 +723,6 @@ namespace _64Inject
                 Cll.Log.WriteLine(path + "\\title.cert");
                 return false;
             }
-        }
-
-        public bool IsValidCode(string code)
-        {
-            if (code.Length == 4)
-            {
-                foreach (char c in code)
-                {
-                    if ((c < 'A' || c > 'Z') && (c < '0' || c > '9'))
-                        return false;
-                }
-            }
-            else
-                return false;
-
-            return true;
         }
 
         #endregion

@@ -1,47 +1,85 @@
-﻿
+﻿using System;
+
 namespace _64Inject
 {
     public class VCN64
     {
-        public readonly uint HashCRC32;
+        public readonly int Index;
+        public readonly uint Hash;
+        public readonly DateTime Date;
         public readonly string Title;
-        public readonly string Info;
+        public readonly int SVN;
 
-        public VCN64(uint hashCRC32, string info, string title)
+        public VCN64(int index, uint hash, DateTime date, string title, int svn)
         {
-            HashCRC32 = hashCRC32;
+            Index = index;
+            Hash = hash;
+            Date = date;
             Title = title;
-            Info = info;
+            SVN = svn;
+        }
+
+        public VCN64(uint hash)
+        {
+            Index = 0;
+            Hash = hash;
+            Date = new DateTime();
+            Title = "Unknown";
+            SVN = 0;
         }
 
         public override string ToString()
         {
-            return Title + "\nCRC32: " + HashCRC32.ToString("X8") + " " + Info;
+            return "Hash: " + Hash.ToString("X8") + ", SVN: " + SVN.ToString() + " TIME: " + Date.ToString("yyyy/MM/dd hh:mm:ss") + " \nTitle: " + Title;
         }
 
-        public static readonly VCN64 DonkeyKong64U  = new VCN64(0xFB245F10, "SVN: 1680 TIME: 2015/01/20 14:12:06", "Super Mario 64 (USA/EUR/JPN)/Donkey Kong 64 (USA/EUR)");
-        public static readonly VCN64 DonkeyKong64J  = new VCN64(0x8EF60284, "SVN: 1690 TIME: 2015/01/27 16:08:00", "Donkey Kong 64 (JPN)");
-        public static readonly VCN64 Ocarina        = new VCN64(0xF042E451, "SVN: 1696 TIME: 2015/01/30 10:49:22", "The Legend of Zelda: Ocarina of Time (USA/EUR/JPN)");
-        public static readonly VCN64 PaperMario     = new VCN64(0xAE933905, "SVN: 1743 TIME: 2015/03/05 15:06:57", "Paper Mario (USA/EUR/JPN)");
-        public static readonly VCN64 Kirby64J       = new VCN64(0xCEB7A833, "SVN: 1778 TIME: 2015/03/19 16:15:32", "Kirby 64: The Crystal Shards (JPN)");
-        public static readonly VCN64 Kirby64U       = new VCN64(0x7EB7B97D, "SVN: 1790 TIME: 2015/03/24 13:46:36", "Kirby 64: The Crystal Shards (USA/EUR)");
-        public static readonly VCN64 MarioTennisJ   = new VCN64(0x17BCC968, "SVN: 1897 TIME: 2015/05/12 17:32:21", "Mario Tennis (JPN)/1080º Snowboarding (JPN)");
-        public static readonly VCN64 MarioTennisU   = new VCN64(0x05F20995, "SVN: 1918 TIME: 2015/05/20 14:34:00", "Mario Tennis (USA/EUR)/1080º Snowboarding (USA/EUR)");
-        public static readonly VCN64 MarioGolfJ     = new VCN64(0x8D3C196C, "SVN: 1946 TIME: 2015/06/09 11:00:28", "Mario Golf (JPN)");
-        public static readonly VCN64 MarioGolfU     = new VCN64(0x307DCE21, "SVN: 1955 TIME: 2015/06/16 16:09:03", "Mario Golf (USA/EUR)");
-        public static readonly VCN64 StarFox64      = new VCN64(0xF41BC127, "SVN: 1970 TIME: 2015/06/30 14:07:35", "Star Fox 64 (USA/EUR/JPN)");
-        public static readonly VCN64 SinAndP        = new VCN64(0x36C0456E, "SVN: 1991 TIME: 2015/07/16 09:20:39", "Sin and Punishment (USA/EUR/JPN)");
-        public static readonly VCN64 MarioKart64    = new VCN64(0x5559F831, "SVN: 2043 TIME: 2015/08/18 10:07:52", "Mario Kart 64 (USA/EUR/JPN)");
-        public static readonly VCN64 YoshiStory     = new VCN64(0xD554D2E4, "SVN: 2079 TIME: 2015/09/15 16:19:11", "Yoshi's Story (USA/EUR/JPN)");
-        public static readonly VCN64 WaveRace64J    = new VCN64(0x04F7D67F, "SVN: 2109 TIME: 2015/10/22 10:15:03", "Wave Race 64 (JPN)");
-        public static readonly VCN64 WaveRace64U    = new VCN64(0xC376B949, "SVN: 2136 TIME: 2015/11/18 12:41:26", "Wave Race 64 (USA/EUR)");
-        public static readonly VCN64 MajoraJ        = new VCN64(0xEE8855FF, "SVN: 2170 TIME: 2015/12/16 16:01:23", "The Legend of Zelda: Majora's Mask (JPN)");
-        public static readonly VCN64 MajoraU        = new VCN64(0x71FC1731, "SVN: 2190 TIME: 2016/01/05 16:50:14", "The Legend of Zelda: Majora's Mask (USA/EUR)");
-        public static readonly VCN64 PokemonSnap    = new VCN64(0x967E7DF0, "SVN: 2195 TIME: 2016/01/08 09:42:51", "Pokémon Snap (USA/EUR/JPN)");
-        public static readonly VCN64 MarioParty2    = new VCN64(0xBE3CEC5F, "SVN: 2234 TIME: 2016/02/02 10:56:10", "Mario Party 2 (USA/EUR/JPN)");
-        public static readonly VCN64 CustomRoboV2   = new VCN64(0x89F2BC09, "SVN: 2244 TIME: 2016/02/26 09:03:55", "Custom Robo V2 (JPN)");
-        public static readonly VCN64 OgreBattle64   = new VCN64(0xFED1FB48, "SVN: 2395 TIME: 2016/08/30 13:57:02", "Ogre Battle 64: Person of Lordly Caliber (USA/EUR/JPN)");
-        public static readonly VCN64 Excitebike64   = new VCN64(0x724C4F5D, "SVN: 2404 TIME: 2016/09/14 13:42:00", "Excitebike 64 (USA/EUR/JPN)");
-        public static readonly VCN64 FZeroX         = new VCN64(0x2AF3C23B, "SVN: 2428 TIME: 2016/11/18 11:44:39", "F-Zero X (USA/EUR/JPN)/Bomberman 64 (USA/EUR/JPN)/Harvest Moon 64 (USA/EUR/JPN)");
+        /// <summary>Donkey Kong 64 (USA/EUR)/Super Mario 64 (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title01 = new VCN64(01, 0xFB245F10, new DateTime(2015, 1, 20, 14, 12, 6), "Super Mario 64 (USA/EUR/JPN)/Donkey Kong 64 (USA/EUR)", 1680);
+        /// <summary>Donkey Kong 64 (JPN)</summary>
+        public static readonly VCN64 Title02 = new VCN64(02, 0x8EF60284, new DateTime(2015, 1, 27, 16, 8, 0), "Donkey Kong 64 (JPN)", 1690);
+        /// <summary>The Legend of Zelda: Ocarina of Time (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title03 = new VCN64(03, 0xF042E451, new DateTime(2015, 1, 30, 10, 49, 22), "The Legend of Zelda: Ocarina of Time (USA/EUR/JPN)", 1696);
+        /// <summary>Paper Mario (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title04 = new VCN64(04, 0xAE933905, new DateTime(2015, 3, 5, 15, 6, 57), "Paper Mario (USA/EUR/JPN)", 1743);
+        /// <summary>Kirby 64: The Crystal Shards (JPN)</summary>
+        public static readonly VCN64 Title05 = new VCN64(05, 0xCEB7A833, new DateTime(2015, 3, 19, 16, 15, 32), "Kirby 64: The Crystal Shards (JPN)", 1778);
+        /// <summary>Kirby 64: The Crystal Shards (USA/EUR)</summary>
+        public static readonly VCN64 Title06 = new VCN64(06, 0x7EB7B97D, new DateTime(2015, 3, 24, 13, 46, 36), "Kirby 64: The Crystal Shards (USA/EUR)", 1790);
+        /// <summary>Mario Tennis (JPN)/1080º Snowboarding (JPN)</summary>
+        public static readonly VCN64 Title07 = new VCN64(07, 0x17BCC968, new DateTime(2015, 5, 12, 17, 32, 21), "Mario Tennis (JPN)/1080º Snowboarding (JPN)", 1897);
+        /// <summary>Mario Tennis (USA/EUR)/1080º Snowboarding (USA/EUR)</summary>
+        public static readonly VCN64 Title08 = new VCN64(08, 0x05F20995, new DateTime(2015, 5, 20, 14, 34, 0), "Mario Tennis (USA/EUR)/1080º Snowboarding (USA/EUR)", 1918);
+        /// <summary>Mario Golf (JPN)</summary>
+        public static readonly VCN64 Title09 = new VCN64(09, 0x8D3C196C, new DateTime(2015, 6, 9, 11, 0, 28), "Mario Golf (JPN)", 1946);
+        /// <summary>Mario Golf (USA/EUR)</summary>
+        public static readonly VCN64 Title10 = new VCN64(10, 0x307DCE21, new DateTime(2015, 6, 16, 16, 9, 3), "Mario Golf (USA/EUR)", 1955);
+        /// <summary>Star Fox 64 (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title11 = new VCN64(11, 0xF41BC127, new DateTime(2015, 6, 30, 14, 7, 35), "Star Fox 64 (USA/EUR/JPN)", 1970);
+        /// <summary>Sin and Punishment (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title12 = new VCN64(12, 0x36C0456E, new DateTime(2015, 7, 16, 9, 20, 39), "Sin and Punishment (USA/EUR/JPN)", 1991);
+        /// <summary>Mario Kart 64 (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title13 = new VCN64(13, 0x5559F831, new DateTime(2015, 8, 18, 10, 7, 52), "Mario Kart 64 (USA/EUR/JPN)", 2043);
+        /// <summary>Yoshi's Story (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title14 = new VCN64(14, 0xD554D2E4, new DateTime(2015, 9, 15, 16, 19, 11), "Yoshi's Story (USA/EUR/JPN)", 2079);
+        /// <summary>Wave Race 64 (JPN)</summary>
+        public static readonly VCN64 Title15 = new VCN64(15, 0x04F7D67F, new DateTime(2015, 10, 22, 10, 15, 3), "Wave Race 64 (JPN)", 2109);
+        /// <summary>Wave Race 64 (USA/EUR)</summary>
+        public static readonly VCN64 Title16 = new VCN64(16, 0xC376B949, new DateTime(2015, 11, 18, 12, 41, 26), "Wave Race 64 (USA/EUR)", 2136);
+        /// <summary>The Legend of Zelda: Majora's Mask (JPN)</summary>
+        public static readonly VCN64 Title17 = new VCN64(17, 0xEE8855FF, new DateTime(2015, 12, 16, 16, 1, 23), "The Legend of Zelda: Majora's Mask (JPN)", 2170);
+        /// <summary>The Legend of Zelda: Majora's Mask (USA/EUR)</summary>
+        public static readonly VCN64 Title18 = new VCN64(18, 0x71FC1731, new DateTime(2016, 1, 5, 16, 50, 14), "The Legend of Zelda: Majora's Mask (USA/EUR)", 2190);
+        /// <summary>Pokémon Snap (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title19 = new VCN64(19, 0x967E7DF0, new DateTime(2016, 1, 8, 9, 42, 51), "Pokémon Snap (USA/EUR/JPN)", 2195);
+        /// <summary>Mario Party 2 (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title20 = new VCN64(20, 0xBE3CEC5F, new DateTime(2016, 2, 2, 10, 56, 10), "Mario Party 2 (USA/EUR/JPN)", 2234);
+        /// <summary>Custom Robo V2 (JPN)</summary>
+        public static readonly VCN64 Title21 = new VCN64(21, 0x89F2BC09, new DateTime(2016, 2, 26, 9, 3, 55), "Custom Robo V2 (JPN)", 2244);
+        /// <summary>Ogre Battle 64: Person of Lordly Caliber (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title22 = new VCN64(22, 0xFED1FB48, new DateTime(2016, 8, 30, 13, 57, 2), "Ogre Battle 64: Person of Lordly Caliber (USA/EUR/JPN)", 2395);
+        /// <summary>Excitebike 64 (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title23 = new VCN64(23, 0x724C4F5D, new DateTime(2016, 9, 14, 13, 42, 0), "Excitebike 64 (USA/EUR/JPN)", 2404);
+        /// <summary>F-Zero X (USA/EUR/JPN)/Bomberman 64 (USA/EUR/JPN)/Harvest Moon 64 (USA/EUR/JPN)</summary>
+        public static readonly VCN64 Title24 = new VCN64(24, 0x2AF3C23B, new DateTime(2016, 11, 18, 11, 44, 39), "F-Zero X (USA/EUR/JPN)/Bomberman 64 (USA/EUR/JPN)/Harvest Moon 64 (USA/EUR/JPN)", 2428);
     }
 }

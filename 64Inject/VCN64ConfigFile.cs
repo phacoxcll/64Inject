@@ -7,13 +7,13 @@ namespace _64Inject
     {
         public bool IsValid
         { private set; get; }
-        public uint HashCRC32
+        public ushort HashCRC16
         { private set; get; }
 
         public VCN64ConfigFile(string filename)
         {
             IsValid = false;
-            HashCRC32 = 0;
+            HashCRC16 = 0;
 
             try
             {
@@ -30,13 +30,13 @@ namespace _64Inject
                 try
                 {
                     FileStream fs = File.Open(filename, FileMode.Open);
-                    HashCRC32 = Cll.Security.ComputeCRC32(fs);
+                    HashCRC16 = Cll.Security.ComputeCRC16(fs);
                     fs.Close();
                     Cll.Log.WriteLine("The configuration file is valid and its metadata has been loaded.");
                 }
                 catch
                 {
-                    HashCRC32 = 0;
+                    HashCRC16 = 0;
                     Cll.Log.WriteLine("Error reading \"" + filename + "\".");
                 }
             }
